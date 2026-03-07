@@ -1,0 +1,43 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# IDE / editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build / packaging
+build/
+dist/
+*.egg-info/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Local database and generated data
+data/app.db
+gallery/thumbs/
+gallery/chroma/
+
+# Optional: keep folder structure with placeholder files
+!data/.gitkeep
+!gallery/thumbs/.gitkeep
+!gallery/chroma/.gitkeep
