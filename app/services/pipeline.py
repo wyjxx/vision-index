@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from app.ai.llm import analyze_image
-from app.core import inbox_dir, supported_image_ext
+from app.config import inbox_dir, supported_image_ext
 from app.storage.db import image_exists, insert_image
 
 

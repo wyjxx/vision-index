@@ -2,7 +2,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from app.core import db_path
+from app.config import db_path
 
 
 """

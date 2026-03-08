@@ -49,7 +49,7 @@ Development stages:
 
 vision-index/
 ├─ app/
-│  ├─ core.py
+│  ├─ config.py
 │  ├─ main.py
 │  ├─ models.py
 │  ├─ ai/llm.py
@@ -63,12 +63,14 @@ vision-index/
 │  ├─ chroma/
 │  ├─ inbox/
 │  └─ thumbs/
+├─ scripts/
+│  └─ test_vlm.py
 
 ```
 
 ### Responsibilities
 
-core.py  
+config.py  
 - shared project paths
 - small shared settings
 

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import requests
 
-from app.core import ollama_host, vision_model
+from app.config import ollama_host, vision_model
 
 
 """
@@ -23,6 +23,7 @@ def analyze_image(image_path: Path) -> dict:
     """Analyze one image with VLM."""
     image_b64 = encode_image(image_path)
 
+    # response format schema
     schema = {
         "type": "object",
         "properties": {

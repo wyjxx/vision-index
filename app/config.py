@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 ## Centralized project paths & settings ##
 
 # Usage:
-from app.core import inbox_dir, db_path
+from app.config import inbox_dir, db_path
 for img in inbox_dir.iterdir():
     print(img)
 
