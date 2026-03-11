@@ -36,6 +36,8 @@ htmlcov/
 data/app.db
 gallery/thumbs/
 gallery/chroma/
+gallery/inbox_test/
+gallery/inbox/
 
 # Optional: keep folder structure with placeholder files
 !data/.gitkeep

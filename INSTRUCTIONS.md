@@ -52,19 +52,34 @@ vision-index/
 │  ├─ config.py
 │  ├─ main.py
 │  ├─ models.py
-│  ├─ ai/llm.py
+│  │
+│  ├─ ai/
+│  │  └─ llm.py
+│  │
 │  ├─ services/
 │  │  ├─ pipeline.py
+│  │  ├─ thumbnail.py
 │  │  └─ search.py
-│  └─ storage/db.py
+│  │
+│  ├─ storage/
+│  │  └─ db.py
+│  │
+│  ├─ templates/
+│  │  └─ viewer.html
+│  │
+│  └─ static/
+│     └─ style.css
+│
 ├─ data/
 │  └─ app.db
+│
 ├─ gallery/
 │  ├─ chroma/
 │  ├─ inbox/
 │  └─ thumbs/
+│
 ├─ scripts/
-│  └─ test_vlm.py
+│  ├─ test_pipeline.py
 
 ```
 
@@ -79,15 +94,24 @@ main.py
 
 pipeline.py  
 - image indexing workflow
+- scan inbox
+- call VLM
+- store metadata
+
+thumbnail.py
+- generate thumbnails
+- store in gallery/thumbs
 
 search.py  
 - semantic search logic
 
 db.py  
 - SQLite and Chroma access
+- metadata storage
 
 llm.py  
-- local VLM calls and embeddings
+- local VLM calls 
+- embeddings generation
 
 
 ## MVP Scope
@@ -98,9 +122,11 @@ Required:
 
 - scan `gallery/inbox`
 - skip already processed images
+- generate thumbnails
 - analyze images with a VLM
 - generate:
   - caption
+  - description
   - objects
   - scene tags
 - store metadata in SQLite

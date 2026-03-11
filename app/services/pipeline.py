@@ -30,8 +30,9 @@ def scan_images() -> list[Path]:
 # Index one image if it is not already indexed.
 def index_image(file_path: Path) -> bool:
     
+    db_file_path = f"inbox/{file_path.name}"
     # Check if image record exists
-    if image_exists(file_path):
+    if image_exists(db_file_path):
         return False
 
     # timing start
