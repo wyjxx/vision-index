@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Page title -->
+    <title>vision-index viewer</title>
+
+    <!-- Load external CSS file -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- Page title -->
+<h1>vision-index viewer</h1>
+
+<!-- Container for all image cards -->
+<div class="grid">
+
+{% for img in images %}
+<!-- Loop through all images passed from Python -->
+
+<div class="card">
+
+<!-- Click image to open original file -->
+<a href="/gallery/{{ img.file_path }}" target="_blank">
+
+<!-- Thumbnail image -->
+<img src="/gallery/{{ img.thumbnail_path }}">
+
+</a>
+
+<!-- Image filename -->
+<h3>{{ img.file_name }}</h3>
+
+<!-- Image metadata -->
+<p><b>Caption:</b> {{ img.caption }}</p>
+
+<p><b>Description:</b> {{ img.description }}</p>
+
+<p><b>Objects:</b> {{ img.objects }}</p>
+
+<p><b>Scene:</b> {{ img.scene_tags }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

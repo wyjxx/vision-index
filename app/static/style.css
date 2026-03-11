@@ -1,0 +1,23 @@
+/* Page base style */
+body {
+    font-family: Arial, sans-serif; /* Font */
+    margin: 40px; /* Page margin */
+}
+
+/* Grid layout for image cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
+    gap: 20px; /* Space between cards */
+}
+
+/* Individual image card */
+.card {
+    border: 1px solid #ccc;
+    padding: 12px;
+}
+
+/* Thumbnail image */
+.card img {
+    max-width: 100%;
+}

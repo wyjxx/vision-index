@@ -4,6 +4,7 @@ from pathlib import Path
 from app.ai.llm import analyze_image
 from app.config import inbox_dir, supported_image_ext
 from app.storage.db import image_exists, insert_image
+from app.services.thumbnail import make_thumbnail
 
 
 """
@@ -36,6 +37,8 @@ def index_image(file_path: Path) -> bool:
     # timing start
     start = time.time()
 
+    # Generate thumbnail 
+    thumb_path = make_thumbnail(file_path)
     # Call VLM
     result = analyze_image(file_path)
     
@@ -46,13 +49,13 @@ def index_image(file_path: Path) -> bool:
     # Insert image record into database
     insert_image(
         file_name=file_path.name,
-        file_path=str(file_path),
+        file_path=f"inbox/{file_path.name}",
         caption=result["caption"],
         description=result["description"],
         objects=result["objects"],
         scene_tags=result["scene_tags"],
         embedding_id="",
-        thumbnail_path="",
+        thumbnail_path=thumb_path,
     )
     return True
 
