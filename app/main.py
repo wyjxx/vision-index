@@ -18,28 +18,28 @@ This module handles:
 app = FastAPI(title="vision-index")
 
 
+# Initialize database on app startup.
 @app.on_event("startup")
 def on_startup() -> None:
-    """Initialize database on app startup."""
     init_db()
 
 
+# Simple health check.
 @app.get("/")
 def read_root() -> dict:
-    """Simple health check."""
     return {
         "message": "vision-index is running"
     }
 
 
+# Run the image indexing pipeline.
 @app.post("/index", response_model=IndexResult)
 def index_images() -> dict:
-    """Run the image indexing pipeline."""
     return run_pipeline()
 
 
+# Return all indexed image records.
 @app.get("/images", response_model=list[ImageRecord])
 def list_images() -> list[dict]:
-    """Return all indexed image records."""
     rows = get_all_images()
     return [dict(row) for row in rows]

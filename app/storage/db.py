@@ -4,7 +4,6 @@ from pathlib import Path
 
 from app.config import db_path
 
-
 """
 Simple SQLite helpers.
 
@@ -14,22 +13,21 @@ This module handles:
 - basic image record queries
 """
 
-
+# Create a SQLite connection.
 def connect_db() -> sqlite3.Connection:
-    """Create a SQLite connection."""
     db_path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn
 
+# Delete then init db
 def reset_db():
-    '''Delete then init db'''
     if db_path.exists():
         db_path.unlink()
     init_db()
 
+# Create the images table if it does not exist.
 def init_db() -> None:
-    """Create the images table if it does not exist."""
     with connect_db() as conn:
         conn.execute(
             """
@@ -49,9 +47,8 @@ def init_db() -> None:
         )
         conn.commit()
 
-
+# Check whether an image is already indexed.
 def image_exists(file_path: Path | str) -> bool:
-    """Check whether an image is already indexed."""
     with connect_db() as conn:
         row = conn.execute(
             "SELECT 1 FROM images WHERE file_path = ? LIMIT 1",
@@ -59,7 +56,7 @@ def image_exists(file_path: Path | str) -> bool:
         ).fetchone()
     return row is not None
 
-
+# Insert one image record.
 def insert_image(
     file_name: str,
     file_path: str,
@@ -70,7 +67,6 @@ def insert_image(
     embedding_id: str = "",
     thumbnail_path: str = "",
 ) -> None:
-    """Insert one image record."""
     objects = objects or []
     scene_tags = scene_tags or []
 
@@ -102,9 +98,8 @@ def insert_image(
         )
         conn.commit()
 
-
+# Return all images.
 def get_all_images() -> list[sqlite3.Row]:
-    """Return all images."""
     with connect_db() as conn:
         rows = conn.execute(
             """
@@ -125,9 +120,8 @@ def get_all_images() -> list[sqlite3.Row]:
         ).fetchall()
     return rows
 
-
+# Return one image by path.
 def get_image_by_path(file_path: Path | str) -> sqlite3.Row | None:
-    """Return one image by path."""
     with connect_db() as conn:
         row = conn.execute(
             """

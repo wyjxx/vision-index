@@ -13,6 +13,7 @@ for img in inbox_dir.iterdir():
     ocr_dir = gallery_dir / "ocr"
     cache_dir = project_root / "cache"
 """
+load_dotenv() 
 
 # Directory paths
 project_root = Path(__file__).resolve().parent.parent
@@ -33,4 +34,4 @@ supported_image_ext = {".jpg", ".jpeg", ".png", ".webp"}
 
 # Ollama settings -> modify .env to change model
 ollama_host = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
-vision_model = os.getenv("VISION_MODEL", "qwen3.5:9b")
+vision_model = os.getenv("VISION_MODEL", "qwen3.5:4b")

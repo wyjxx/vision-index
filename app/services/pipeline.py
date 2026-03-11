@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 
 from app.ai.llm import analyze_image
@@ -9,14 +10,15 @@ from app.storage.db import image_exists, insert_image
 Image indexing pipeline.
 """
 
-
+# Scan and return all images in inbox.
 def scan_images() -> list[Path]:
-    """Return all supported image files in inbox."""
+    
     if not inbox_dir.exists():
         return []
 
     image_files = []
 
+    # Check if image is valid format
     for file_path in inbox_dir.iterdir():
         if file_path.is_file() and file_path.suffix.lower() in supported_image_ext:
             image_files.append(file_path)
@@ -24,14 +26,24 @@ def scan_images() -> list[Path]:
     return image_files
 
 
+# Index one image if it is not already indexed.
 def index_image(file_path: Path) -> bool:
-    """Index one image if it is not already indexed."""
+    
+    # Check if image record exists
     if image_exists(file_path):
         return False
 
-    # call llm
-    result = analyze_image(file_path)
+    # timing start
+    start = time.time()
 
+    # Call VLM
+    result = analyze_image(file_path)
+    
+    # timing end
+    elapsed = time.time() - start
+    print(f"{file_path.name} analyzed in {elapsed:.2f}s")
+
+    # Insert image record into database
     insert_image(
         file_name=file_path.name,
         file_path=str(file_path),
@@ -45,14 +57,17 @@ def index_image(file_path: Path) -> bool:
     return True
 
 
+# Scan inbox and index new images
+# Return count results
 def run_pipeline() -> dict:
-    """Scan inbox and index new images -> summarize results"""
+    
     image_files = scan_images()
 
     total = len(image_files)
     indexed = 0
     skipped = 0
 
+    # Count results
     for file_path in image_files:
         if index_image(file_path):
             indexed += 1

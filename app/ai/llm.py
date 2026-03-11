@@ -13,17 +13,17 @@ Ollama VLM call.
 Send an image to VLM and returns structured metadata.
 """
 
-
+# Return base64 string for one image file.
 def encode_image(image_path: Path) -> str:
-    """Return base64 string for one image file."""
+    
     return base64.b64encode(image_path.read_bytes()).decode("utf-8")
 
-
+# Analyze one image with VLM
 def analyze_image(image_path: Path) -> dict:
-    """Analyze one image with VLM."""
+    
     image_b64 = encode_image(image_path)
 
-    # response format schema
+    # Response format schema
     schema = {
         "type": "object",
         "properties": {
@@ -47,11 +47,16 @@ def analyze_image(image_path: Path) -> dict:
     Analyze this image and return structured JSON.
 
     Rules:
-    - caption: one short sentence
-    - description: 1-2 sentences
-    - objects: main visible objects only
-    - scene_tags: short scene or style tags
-    - use English
+    - Be concise, literal, and grounded in visible content
+    - Prefer stable, searchable terms over expressive or poetic wording.
+    - Do not guess exact location, landmark or country unless visually certain.
+    - Use English
+
+    Fields:
+    - caption: one short sentence summarizing image
+    - description: 1-2 short concise sentences describing the overall scene
+    - objects: 4-8 main visible objects only
+    - scene_tags: 3-6 short scene or style tags
     """
 
     response = requests.post(
@@ -62,7 +67,7 @@ def analyze_image(image_path: Path) -> dict:
             "images": [image_b64],
             "stream": False,
             "format": schema,
-            "think": False, # disable think mode
+            "think": False, # Disable think mode
         },
         timeout=120,
     )
@@ -70,8 +75,10 @@ def analyze_image(image_path: Path) -> dict:
     response.raise_for_status()
     data = response.json()
 
+    # Raw model response
     #print("full response:", data)
     #print("raw response text:", data.get("response"))
+    #print("MODEL:", vision_model)
 
     result = json.loads(data["response"])
 
