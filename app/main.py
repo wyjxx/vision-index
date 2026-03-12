@@ -1,15 +1,16 @@
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request, UploadFile, File
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi import Request
 
 from app.models import ImageRecord, IndexResult
-from app.services.pipeline import run_pipeline
+from app.services.pipeline import run_pipeline, scan_images
 from app.storage.db import get_all_images, init_db
 from app.config import gallery_dir
 
 from pathlib import Path
+import shutil
 
 
 """
@@ -38,6 +39,10 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 # Create jinja2 template object
 templates = Jinja2Templates(directory="app/templates")
 
+# Inbox directory path
+INBOX_DIR = Path(gallery_dir) / "inbox"
+
+
 # Simple health check.
 @app.get("/")
 def read_root() -> dict:
@@ -46,18 +51,53 @@ def read_root() -> dict:
     }
 
 
-# Run image pipeline and Return count result
-@app.post("/index", response_model=IndexResult)
-def index_images() -> dict:
-    return run_pipeline()
-
-
 # Return all image records
 @app.get("/images", response_model=list[ImageRecord])
 def list_images() -> list[dict]:
     rows = get_all_images()
     return [dict(row) for row in rows]
 
+
+# Upload image to inbox
+@app.post("/upload")
+async def upload_image(file: UploadFile = File(...)):
+    INBOX_DIR.mkdir(parents=True, exist_ok=True)
+
+    save_path = INBOX_DIR / file.filename
+
+    with save_path.open("wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    return RedirectResponse(url="/inbox", status_code=303)
+
+
+# Show inbox images via HTML
+@app.get("/inbox")
+def inbox_viewer(request: Request):
+    files = scan_images()
+
+    images = []
+    for path in files:
+        images.append(
+            {
+                "file_name": path.name,
+                "file_path": f"/gallery/inbox/{path.name}",
+            }
+        )
+
+    return templates.TemplateResponse(
+        "inbox.html",
+        {
+            "request": request,
+            "images": images,
+        },
+    )
+
+
+# Run image pipeline and Return count result
+@app.post("/index", response_model=IndexResult)
+def index_images() -> dict:
+    return run_pipeline()
 
 
 # Show all image records via HTML
