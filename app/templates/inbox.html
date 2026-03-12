@@ -2,31 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Page title -->
     <title>Inbox - vision-index</title>
+
     <style>
+        /* Base page style */
         body {
             font-family: Arial, sans-serif;
             margin: 24px;
         }
 
+        /* Top action links / buttons area */
         .topbar {
             display: flex;
             gap: 12px;
             margin-bottom: 20px;
         }
 
+        /* Image grid layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 16px;
         }
 
+        /* Single image card */
         .card {
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 12px;
         }
 
+        /* Preview image style */
         .card img {
             width: 100%;
             height: 180px;
@@ -34,6 +42,7 @@
             border-radius: 8px;
         }
 
+        /* File name text */
         .filename {
             margin-top: 8px;
             font-size: 14px;
@@ -42,12 +51,15 @@
     </style>
 </head>
 <body>
+    <!-- Page heading -->
     <h1>Inbox</h1>
 
+    <!-- Link to indexed image viewer -->
     <div class="topbar">
         <a href="/viewer">View Indexed Images</a>
     </div>
 
+    <!-- Upload one image file -->
     <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" required>
         <button type="submit">Upload</button>
@@ -55,12 +67,14 @@
 
     <br>
 
+    <!-- Run pipeline -->
     <form action="/index" method="post">
         <button type="submit">Run Pipeline</button>
     </form>
 
     <hr>
 
+    <!-- Inbox image list -->
     <div class="grid">
         {% for image in images %}
         <div class="card">
