@@ -89,7 +89,8 @@ def inbox_viewer(request: Request):
         images.append(
             {
                 "file_name": path.name, # Image name
-                "file_path": preview_path, # Image path
+                "thumb_path": preview_path, # Thumbnail path
+                "image_path": f"/gallery/inbox/{path.name}" # Image path
             }
         )
 

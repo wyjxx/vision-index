@@ -78,8 +78,13 @@
     <div class="grid">
         {% for image in images %}
         <div class="card">
-            <img src="{{ image.file_path }}" alt="{{ image.file_name }}">
-            <div class="filename">{{ image.file_name }}</div>
+            <!-- Click to open original file -->
+            <a href="{{ image.image_path }}" target="_blank">
+                <!-- Show thumbnail -->
+                <img src="{{ image.thumb_path }}" alt="{{ image.file_name }}">
+                <!-- File name -->
+                <div class="filename">{{ image.file_name }}</div>
+            </a>
         </div>
         {% endfor %}
     </div>
