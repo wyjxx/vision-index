@@ -15,9 +15,9 @@ def make_thumbnail(image_path: Path) -> str:
     thumbs_dir.mkdir(parents=True, exist_ok=True)
 
     thumb_path = thumbs_dir / image_path.name
-
-    with Image.open(image_path) as img:
-        img.thumbnail(thumbnail_size)
-        img.save(thumb_path)
+    if not thumb_path.exists():
+        with Image.open(image_path) as img:
+            img.thumbnail(thumbnail_size)
+            img.save(thumb_path)
 
     return f"thumbs/{image_path.name}"

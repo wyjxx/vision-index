@@ -6,8 +6,9 @@ from fastapi import Request
 
 from app.models import ImageRecord, IndexResult
 from app.services.pipeline import run_pipeline, scan_images
+from app.services.thumbnail import make_thumbnail
 from app.storage.db import get_all_images, init_db
-from app.config import gallery_dir
+from app.config import gallery_dir, thumbs_dir, inbox_dir
 
 from pathlib import Path
 import shutil
@@ -39,9 +40,6 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 # Create jinja2 template object
 templates = Jinja2Templates(directory="app/templates")
 
-# Inbox directory path
-INBOX_DIR = Path(gallery_dir) / "inbox"
-
 
 # Simple health check.
 @app.get("/")
@@ -58,30 +56,40 @@ def list_images() -> list[dict]:
     return [dict(row) for row in rows]
 
 
-# Upload image to inbox
+# 1. Upload image to inbox
 @app.post("/upload")
 async def upload_image(file: UploadFile = File(...)):
-    INBOX_DIR.mkdir(parents=True, exist_ok=True)
+    inbox_dir.mkdir(parents=True, exist_ok=True)
 
-    save_path = INBOX_DIR / file.filename
+    save_path = inbox_dir / file.filename
 
     with save_path.open("wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
+    # Generate thumbnail after upload
+    make_thumbnail(save_path)
+
     return RedirectResponse(url="/inbox", status_code=303)
 
 
-# Show inbox images via HTML
+# 2. Show inbox images via HTML
 @app.get("/inbox")
 def inbox_viewer(request: Request):
     files = scan_images()
 
     images = []
     for path in files:
+        # Add thumbnail path
+        thumb_path = thumbs_dir / path.name
+        if thumb_path.exists():
+            preview_path = f"/gallery/thumbs/{path.name}"
+        else:
+            preview_path = f"/gallery/inbox/{path.name}"
+
         images.append(
             {
-                "file_name": path.name,
-                "file_path": f"/gallery/inbox/{path.name}",
+                "file_name": path.name, # Image name
+                "file_path": preview_path, # Image path
             }
         )
 
@@ -94,13 +102,13 @@ def inbox_viewer(request: Request):
     )
 
 
-# Run image pipeline and Return count result
+# 3. Run image pipeline and Return count result
 @app.post("/index", response_model=IndexResult)
 def index_images() -> dict:
     return run_pipeline()
 
 
-# Show all image records via HTML
+# 4. Show all image records via HTML
 @app.get("/viewer")
 def image_viewer(request: Request):
 
