@@ -4,7 +4,7 @@ from pathlib import Path
 
 import requests
 
-from app.config import ollama_host, vision_model
+from app.config import ollama_host, vision_model, embedding_model
 
 
 """
@@ -88,3 +88,21 @@ def analyze_image(image_path: Path) -> dict:
         "objects": result.get("objects", []),
         "scene_tags": result.get("scene_tags", []),
     }
+
+
+# Generate embedding using embedding model.
+def generate_embedding(text: str) -> list[float]:
+
+    response = requests.post(
+        f"{ollama_host}/api/embeddings",
+        json={
+            "model": embedding_model,
+            "prompt": text,
+        },
+        timeout=120,
+    )
+
+    response.raise_for_status()
+    data = response.json()
+
+    return data["embedding"]

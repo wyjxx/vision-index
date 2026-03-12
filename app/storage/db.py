@@ -66,12 +66,12 @@ def insert_image(
     scene_tags: list[str] | None = None,
     embedding_id: str = "",
     thumbnail_path: str = "",
-) -> None:
+) -> int:
     objects = objects or []
     scene_tags = scene_tags or []
 
     with connect_db() as conn:
-        conn.execute(
+        cursor = conn.execute(
             """
             INSERT INTO images (
                 file_name,
@@ -97,6 +97,9 @@ def insert_image(
             ),
         )
         conn.commit()
+        
+        # Return image_id
+        return cursor.lastrowid
 
 # Return all images.
 def get_all_images() -> list[sqlite3.Row]:

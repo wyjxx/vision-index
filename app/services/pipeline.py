@@ -5,6 +5,7 @@ from app.ai.llm import analyze_image
 from app.config import inbox_dir, supported_image_ext
 from app.storage.db import image_exists, insert_image
 from app.services.thumbnail import make_thumbnail
+from app.storage.vector_db import upsert_embedding
 
 
 """
@@ -48,7 +49,7 @@ def index_image(file_path: Path) -> bool:
     print(f"{file_path.name} analyzed in {elapsed:.2f}s")
 
     # Insert image record into database
-    insert_image(
+    image_id = insert_image(
         file_name=file_path.name,
         file_path=f"inbox/{file_path.name}",
         caption=result["caption"],
@@ -58,6 +59,18 @@ def index_image(file_path: Path) -> bool:
         embedding_id="",
         thumbnail_path=thumb_path,
     )
+
+    # Build text for embedding
+    text = " ".join([
+        result["caption"],
+        #result["description"],
+        " ".join(result["objects"]),
+        " ".join(result["scene_tags"]),
+    ])
+
+    # Store embedding into Chroma
+    upsert_embedding(image_id, text)
+
     return True
 
 

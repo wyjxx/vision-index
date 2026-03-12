@@ -35,3 +35,7 @@ supported_image_ext = {".jpg", ".jpeg", ".png", ".webp"}
 # Ollama settings -> modify .env to change model
 ollama_host = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
 vision_model = os.getenv("VISION_MODEL", "qwen3.5:4b")
+
+# Embedding / vector search
+embedding_model = os.getenv("EMBEDDING_MODEL", "nomic-embed-text:latest")
+chroma_collection = "vision_index_images"
