@@ -19,6 +19,23 @@
     <a href="/inbox">Go to Inbox</a>
 </div>
 
+<!-- Search -->
+<form action="/search-page" method="get" style="margin-bottom:20px; display:flex; gap:8px;">
+    <input
+        type="text"
+        name="q"
+        value="{{ query if query else '' }}"
+        placeholder="Search images..."
+        style="padding:8px; width:320px;"
+    >
+    <button type="submit">Search</button>
+</form>
+
+<!-- Remind search query-->
+{% if is_search %}
+<p>Search results for: <b>{{ query }}</b></p>
+{% endif %}
+
 <!-- Container for all image cards -->
 <div class="grid">
 

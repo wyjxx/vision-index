@@ -145,3 +145,32 @@ def get_image_by_path(file_path: Path | str) -> sqlite3.Row | None:
             (str(file_path),),
         ).fetchone()
     return row
+
+# Return images by a list of ids.
+def get_images_by_ids(image_ids: list[int]) -> list[sqlite3.Row]:
+    if not image_ids:
+        return []
+
+    placeholders = ",".join("?" for _ in image_ids)
+
+    with connect_db() as conn:
+        rows = conn.execute(
+            f"""
+            SELECT
+                id,
+                file_name,
+                file_path,
+                caption,
+                description,
+                objects,
+                scene_tags,
+                embedding_id,
+                thumbnail_path,
+                created_at
+            FROM images
+            WHERE id IN ({placeholders})
+            """,
+            image_ids,
+        ).fetchall()
+
+    return rows

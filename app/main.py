@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, UploadFile, File
+from fastapi import FastAPI, Request, UploadFile, File, Query
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -7,6 +7,7 @@ from fastapi import Request
 from app.models import ImageRecord, IndexResult
 from app.services.pipeline import run_pipeline, scan_images
 from app.services.thumbnail import make_thumbnail
+from app.services.search import semantic_search
 from app.storage.db import get_all_images, init_db
 from app.config import gallery_dir, thumbs_dir, inbox_dir
 
@@ -124,4 +125,24 @@ def image_viewer(request: Request):
             "request": request,
             "images": images
         }
+    )
+
+# 5. Search images by semantic query
+@app.get("/search")
+def search_images(q: str = Query(default=""), limit: int = 3) -> list[dict]:
+    return semantic_search(q, limit=limit)
+
+# 6. Show search results via HTML
+@app.get("/search-page")
+def search_page(request: Request, q: str = "", limit: int = 3):
+    images = semantic_search(q, limit=limit) if q.strip() else []
+
+    return templates.TemplateResponse(
+        "viewer.html",
+        {
+            "request": request,
+            "images": images,
+            "query": q,
+            "is_search": True,
+        },
     )
