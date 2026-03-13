@@ -1,6 +1,8 @@
-from app.storage.db import get_all_images
+from app.storage.db import reset_db, get_all_images
+from app.services.pipeline import run_pipeline
+from app.storage.vector_db import search_embeddings
+import time
 
-rows = get_all_images()
-
-for row in rows:
-    print(dict(row))
+# Reset database
+print("\nReset database...")
+reset_db()

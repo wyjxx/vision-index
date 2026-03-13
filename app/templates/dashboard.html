@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Page title -->
+    <title>vision-index</title>
+
+    <!-- Load external CSS file -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- Page title -->
+    <h1>vision-index</h1>
+
+    <!-- Top action bar -->
+    <div class="topbar">
+
+        <!-- Upload image -->
+        <form action="/upload" method="post" enctype="multipart/form-data" class="inline-form">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        <!-- Run pipeline -->
+        <form action="/run-pipeline" method="post" class="inline-form">
+            <button type="submit">Run Pipeline</button>
+        </form>
+
+        <!-- Search indexed images -->
+        <form action="/search" method="get" class="inline-form search-form">
+            <input
+                type="text"
+                name="q"
+                value="{{ query }}"
+                placeholder="Search indexed images..."
+            >
+            <button type="submit">Search</button>
+        </form>
+
+    </div>
+
+    <!-- Search results -->
+    {% if query %}
+    <section class="section-block">
+
+        <h2>Search results</h2>
+        <p class="section-subtitle">Query: <b>{{ query }}</b></p>
+
+        {% if search_results %}
+        <div class="grid">
+            {% for img in search_results %}
+            <div class="card">
+
+                <!-- Open original image -->
+                <a href="/gallery/{{ img.file_path }}" target="_blank" class="image-link">
+                    <img src="/gallery/{{ img.thumbnail_path }}" alt="{{ img.file_name }}">
+                </a>
+
+                <div class="filename">{{ img.file_name }}</div>
+
+                <div class="status indexed">Indexed</div>
+
+                <details class="meta-box">
+                    <summary>Metadata</summary>
+
+                    <p><b>Caption:</b> {{ img.caption }}</p>
+                    <p><b>Description:</b> {{ img.description }}</p>
+                    <p><b>Objects:</b> {{ img.objects }}</p>
+                    <p><b>Scene:</b> {{ img.scene_tags }}</p>
+                </details>
+
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-text">No search results found.</p>
+        {% endif %}
+
+    </section>
+    {% endif %}
+
+    <!-- Main gallery -->
+    <section class="section-block">
+
+        <h2>Gallery</h2>
+
+        <div class="grid">
+            {% for image in images %}
+            <div class="card">
+
+                <!-- Open original image -->
+                <a href="{{ image.image_path }}" target="_blank" class="image-link">
+                    <img src="{{ image.thumb_path }}" alt="{{ image.file_name }}">
+                </a>
+
+                <div class="filename">{{ image.file_name }}</div>
+
+                {% if image.indexed %}
+                <div class="status indexed">Indexed</div>
+
+                <details class="meta-box">
+                    <summary>Metadata</summary>
+
+                    <p><b>Caption:</b> {{ image.caption }}</p>
+                    <p><b>Description:</b> {{ image.description }}</p>
+                    <p><b>Objects:</b> {{ image.objects }}</p>
+                    <p><b>Scene:</b> {{ image.scene_tags }}</p>
+                </details>
+
+                {% else %}
+                <div class="status pending">Pending</div>
+                {% endif %}
+
+            </div>
+            {% endfor %}
+        </div>
+
+    </section>
+
+</body>
+
+</html>
