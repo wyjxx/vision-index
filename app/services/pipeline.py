@@ -96,8 +96,7 @@ def index_image(file_path: Path) -> None:
     upsert_embedding(image_id, text)
 
 
-# Scan inbox and index new images.
-# Return count results.
+# Scan inbox -> index images -> count results
 def run_pipeline() -> dict:
 
     # Scan inbox
@@ -105,9 +104,11 @@ def run_pipeline() -> dict:
 
     total = indexed + skipped
 
+    # Index new images
     for file_path in new_images:
         index_image(file_path)
 
+    # Return count results
     return {
         "total": total,
         "indexed": indexed,
