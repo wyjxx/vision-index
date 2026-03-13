@@ -7,7 +7,7 @@ Semantic search service.
 """
 
 # Search images by text query, limit: number of results
-def semantic_search(query: str, limit: int = 3) -> list[dict]:
+def semantic_search(query: str, limit: int) -> list[dict]:
     
     query = query.strip()
     if not query:

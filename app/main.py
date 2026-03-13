@@ -5,11 +5,11 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Request
 
 from app.models import ImageRecord, IndexResult
-from app.services.pipeline import run_pipeline, scan_images
+from app.services.pipeline import run_pipeline, scan_images, list_inbox_images
 from app.services.thumbnail import make_thumbnail
 from app.services.search import semantic_search
 from app.storage.db import get_all_images, init_db
-from app.config import gallery_dir, thumbs_dir, inbox_dir
+from app.config import gallery_dir, thumbs_dir, inbox_dir, search_limit
 
 from pathlib import Path
 import shutil
@@ -76,7 +76,7 @@ async def upload_image(file: UploadFile = File(...)):
 # 2. Show inbox images via HTML
 @app.get("/inbox")
 def inbox_viewer(request: Request):
-    files = scan_images()
+    files = list_inbox_images()
 
     images = []
     for path in files:
@@ -129,12 +129,12 @@ def image_viewer(request: Request):
 
 # 5. Search images by semantic query
 @app.get("/search")
-def search_images(q: str = Query(default=""), limit: int = 3) -> list[dict]:
+def search_images(q: str = Query(default=""), limit: int = search_limit) -> list[dict]:
     return semantic_search(q, limit=limit)
 
 # 6. Show search results via HTML
 @app.get("/search-page")
-def search_page(request: Request, q: str = "", limit: int = 3):
+def search_page(request: Request, q: str = "", limit: int = search_limit):
     images = semantic_search(q, limit=limit) if q.strip() else []
 
     return templates.TemplateResponse(

@@ -1,7 +1,7 @@
 from app.storage.db import reset_db, get_all_images
 from app.services.pipeline import run_pipeline
 from app.storage.vector_db import search_embeddings
-
+import time
 # Reset database
 print("\nReset database...")
 reset_db()
@@ -9,7 +9,14 @@ reset_db()
 
 # Run indexing pipeline
 print("\nRunning pipeline...")
+
+start = time.time()
+
 result = run_pipeline()
+
+elapsed = time.time() - start
+print(f"Pipeline finished in {elapsed:.2f}s")
+
 print("Pipeline result:", result)
 
 
@@ -31,11 +38,11 @@ for row in rows:
 
 
 # Test semantic search
-print("\nTesting semantic search...")
+'''print("\nTesting semantic search...")
 
 query = "lake"
 print("Query:", query)
 
 results = search_embeddings(query)
 
-print("Matched image ids:", results)
+print("Matched image ids:", results)'''

@@ -1,5 +1,6 @@
 import time
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
 
 from app.ai.llm import analyze_image
 from app.config import inbox_dir, supported_image_ext
@@ -10,6 +11,20 @@ from app.storage.vector_db import upsert_embedding
 """
 Image indexing pipeline.
 """
+
+# Return all valid images in inbox.
+def list_inbox_images() -> list[Path]:
+    if not inbox_dir.exists():
+        return []
+
+    image_files = []
+
+    for file_path in inbox_dir.iterdir():
+        if file_path.is_file() and file_path.suffix.lower() in supported_image_ext:
+            image_files.append(file_path)
+
+    return image_files
+
 
 # Scan inbox and return images that are not yet indexed.
 def scan_images() -> tuple[list[Path], int, int]:
@@ -24,7 +39,6 @@ def scan_images() -> tuple[list[Path], int, int]:
 
         if not file_path.is_file():
             continue
-
         if file_path.suffix.lower() not in supported_image_ext:
             continue
 
@@ -104,9 +118,9 @@ def run_pipeline() -> dict:
 
     total = indexed + skipped
 
-    # Index new images
-    for file_path in new_images:
-        index_image(file_path)
+    # Parallel indexing
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        executor.map(index_image, new_images)
 
     # Return count results
     return {
