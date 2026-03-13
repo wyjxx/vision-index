@@ -3,55 +3,54 @@ from pathlib import Path
 
 from app.ai.llm import analyze_image
 from app.config import inbox_dir, supported_image_ext
-from app.storage.db import image_exists, insert_image
 from app.services.thumbnail import make_thumbnail
+from app.storage.db import image_exists, insert_image
 from app.storage.vector_db import upsert_embedding
-
 
 """
 Image indexing pipeline.
 """
 
-# Scan and return all images in inbox.
-def scan_images() -> list[Path]:
-    
+# Scan inbox and return images that are not yet indexed.
+def scan_images() -> tuple[list[Path], int, int]:
     if not inbox_dir.exists():
-        return []
+        return [], 0, 0
 
-    image_files = []
+    new_images = []
+    indexed = 0
+    skipped = 0
 
-    # Check if image is valid format
     for file_path in inbox_dir.iterdir():
-        if file_path.is_file() and file_path.suffix.lower() in supported_image_ext:
-            image_files.append(file_path)
 
-    return image_files
+        if not file_path.is_file():
+            continue
+
+        if file_path.suffix.lower() not in supported_image_ext:
+            continue
+
+        db_file_path = build_db_file_path(file_path)
+
+        if image_exists(db_file_path):
+            skipped += 1
+        else:
+            new_images.append(file_path)
+            indexed += 1
+
+    return new_images, indexed, skipped
 
 
-# Index one image if it is not already indexed.
-def index_image(file_path: Path) -> bool:
-    
-    db_file_path = f"inbox/{file_path.name}"
-    # Check if image record exists
-    if image_exists(db_file_path):
-        return False
+# Build database file path for one inbox image.
+def build_db_file_path(file_path: Path) -> str:
+    return f"inbox/{file_path.name}"
 
-    # timing start
-    start = time.time()
 
-    # Generate thumbnail 
-    thumb_path = make_thumbnail(file_path)
-    # Call VLM
-    result = analyze_image(file_path)
-    
-    # timing end
-    elapsed = time.time() - start
-    print(f"{file_path.name} analyzed in {elapsed:.2f}s")
+# Store one indexed image into SQLite.
+def store_image_record(file_path: Path, result: dict, thumb_path: str) -> int:
+    db_file_path = build_db_file_path(file_path)
 
-    # Insert image record into database
-    image_id = insert_image(
+    return insert_image(
         file_name=file_path.name,
-        file_path=f"inbox/{file_path.name}",
+        file_path=db_file_path,
         caption=result["caption"],
         description=result["description"],
         objects=result["objects"],
@@ -60,36 +59,54 @@ def index_image(file_path: Path) -> bool:
         thumbnail_path=thumb_path,
     )
 
-    # Build text for embedding
-    text = " ".join([
+
+# Build text for embedding.
+def build_embedding_text(result: dict) -> str:
+    return " ".join([
         result["caption"],
-        #result["description"],
+        # result["description"],
         " ".join(result["objects"]),
         " ".join(result["scene_tags"]),
     ])
 
-    # Store embedding into Chroma
+
+# Index one image.
+def index_image(file_path: Path) -> None:
+
+    # Generate thumbnail
+    thumb_path = make_thumbnail(file_path)
+
+    # Timing start
+    start = time.time()
+
+    # Call VLM
+    result = analyze_image(file_path)
+
+    # Timing end
+    elapsed = time.time() - start
+    print(f"{file_path.name} analyzed in {elapsed:.2f}s")
+
+    # Store image record
+    image_id = store_image_record(file_path, result, thumb_path)
+
+    # Build embedding text
+    text = build_embedding_text(result)
+
+    # Store embedding
     upsert_embedding(image_id, text)
 
-    return True
 
-
-# Scan inbox and index new images
-# Return count results
+# Scan inbox and index new images.
+# Return count results.
 def run_pipeline() -> dict:
-    
-    image_files = scan_images()
 
-    total = len(image_files)
-    indexed = 0
-    skipped = 0
+    # Scan inbox
+    new_images, indexed, skipped = scan_images()
 
-    # Count results
-    for file_path in image_files:
-        if index_image(file_path):
-            indexed += 1
-        else:
-            skipped += 1
+    total = indexed + skipped
+
+    for file_path in new_images:
+        index_image(file_path)
 
     return {
         "total": total,
