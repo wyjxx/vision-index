@@ -33,7 +33,8 @@ htmlcov/
 *.log
 
 # Local database and generated data
-data/app.db
+data/
+
 gallery/thumbs/
 gallery/chroma/
 gallery/inbox_test/
@@ -43,3 +44,4 @@ gallery/inbox/
 !data/.gitkeep
 !gallery/thumbs/.gitkeep
 !gallery/chroma/.gitkeep
+!gallery/inbox/.gitkeep
