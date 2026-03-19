@@ -1,165 +1,146 @@
 # vision-index
 
-vision-index is a small personal AI project for building a **local image indexing system**.
+vision-index is a small local AI project for indexing personal images.
 
-The goal is to explore how vision-language models can automatically analyze personal photo collections and enable structured metadata storage and semantic retrieval.
+It scans images from `gallery/inbox`, analyzes them with a local vision-language model, stores metadata in SQLite, stores embeddings in Chroma, and supports semantic image search through a simple FastAPI dashboard.
 
-Images are placed into a local `gallery/inbox` folder.  
-The system analyzes them using a local vision model, generates metadata, and stores results in a database.
+## Features
 
----
-
-# Features (current stage)
-
-Current capabilities:
-
-- scan images from `gallery/inbox`
-- analyze images using a local vision-language model (Ollama)
-- generate structured metadata
+- upload images from the web UI
+- scan local images from `gallery/inbox`
+- analyze images with a local VLM via Ollama
+- generate structured metadata:
   - caption
   - description
   - objects
   - scene tags
 - generate thumbnails
-- store results in SQLite
-- view indexed images in a web interface
+- store metadata in SQLite
+- store embeddings in Chroma
+- search images with natural language
+- view all images and search results in a simple dashboard
 
-This repository currently implements **Stage 1: image understanding**.
+## Stack
 
----
+- Python
+- FastAPI
+- Jinja2
+- SQLite
+- Chroma
+- Ollama
 
-# Project structure
+## Project structure
 
-```
+```text
+vision-index/
+├─ app/
+│  ├─ ai/
+│  │  └─ llm.py
+│  ├─ services/
+│  │  ├─ pipeline.py
+│  │  ├─ search.py
+│  │  └─ thumbnail.py
+│  ├─ storage/
+│  │  ├─ db.py
+│  │  └─ vector_db.py
+│  ├─ templates/
+│  │  └─ dashboard.html
+│  ├─ static/
+│  ├─ config.py
+│  ├─ main.py
+│  └─ models.py
+├─ data/
+│  └─ app.db
+├─ gallery/
+│  ├─ inbox/
+│  ├─ thumbs/
+│  └─ chroma/
+├─ scripts/
+│  └─ test_pipeline.py
+├─ .env.example
+├─ requirements.txt
+└─ README.md
+````
 
-vision-index
-│
-├─ app
-│  ├─ main.py # FastAPI entry
-│  ├─ config.py # paths and configuration
-│  ├─ models.py # Pydantic models
-│  │
-│  ├─ ai
-│  │ └─ llm.py # VLM / Ollama calls
-│  │
-│  ├─ services
-│  │ ├─ pipeline.py # indexing pipeline
-│  │ ├─ thumbnail.py # thumbnail generation
-│  │ └─ search.py # (future semantic search)
-│  │
-│  ├─ storage
-│  │ └─ db.py # SQLite storage
-│  │
-│  └─ templates
-│    └─ viewer.html # web UI
-│
-├─ gallery
-│  ├─ inbox # new images
-│  ├─ thumbs # generated thumbnails
-│  └─ chroma # future vector store
-│
-└─ scripts
-└─ test_pipeline.py
+## Pipeline
 
-```
-
----
-
-# Pipeline
-
-The indexing workflow:
-
-```
-
+```text
 gallery/inbox
 ↓
 scan images
 ↓
-vision model analysis
+generate thumbnail
+↓
+analyze image with VLM
 ↓
 generate metadata
 ↓
-create thumbnail
+store metadata in SQLite
 ↓
-store in SQLite
+generate embedding
 ↓
-view in web UI
-
+store embedding in Chroma
+↓
+semantic search in dashboard
 ```
 
----
+## Setup
 
-# Running the project
+### 1. Install dependencies
 
-### 1 Install dependencies
-
-```
-
+```bash
 pip install -r requirements.txt
-
 ```
 
-### 2 Start Ollama and the vision model
+### 2. Configure environment
 
-Example:
+Create a `.env` file if needed.
 
+Example values:
+
+```env
+OLLAMA_HOST=http://127.0.0.1:11434
+VISION_MODEL=qwen3.5:4b
+EMBEDDING_MODEL=nomic-embed-text:latest
 ```
 
-ollama run qwen2.5vl
+### 3. Start Ollama
 
+Make sure both the vision model and embedding model are available in Ollama.
+```bash
+ollama pull qwen3.5:4b
+ollama pull nomic-embed-text:latest
 ```
 
-### 3 Run the server
+### 4. Run the app
 
-```
-
+```bash
 uvicorn app.main:app --reload
-
 ```
 
-### 4 Open the viewer
+### 5. Open in browser
 
+```text
+http://localhost:8000
 ```
 
-[http://localhost:8000/viewer](http://localhost:8000/viewer)
+## Current scope
 
-```
+This project is intentionally kept simple:
 
----
+* local-first
+* small codebase
+* easy to read
+* easy to extend later
 
-# Development stages
+Current focus:
 
-The project is developed incrementally.
+* image understanding
+* metadata indexing
+* embedding-based retrieval
 
-### Stage 1
-Image understanding
+Future direction:
 
-- VLM image analysis
-- metadata generation
-- SQLite storage
-- web viewer
-
-### Stage 2
-Semantic retrieval
-
-- embedding generation
-- vector database (Chroma)
-- text-to-image search
-
-### Stage 3
-Agent workflows
-
-- natural language search
-- automated organization
-- AI-assisted photo workflows
-
----
-
-# Purpose
-
-This project is mainly a **learning experiment** for exploring:
-
-- vision-language models
-- local AI pipelines
-- semantic indexing
-- lightweight AI applications
+* better search quality
+* richer metadata
+* lightweight agent workflows
