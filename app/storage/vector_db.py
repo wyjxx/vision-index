@@ -40,3 +40,8 @@ def search_embeddings(query: str, limit: int = 3):
     )
 
     return results["ids"][0]
+
+# Delete one embedding from Chroma.
+def delete_embedding(image_id: int) -> None:
+    collection = get_collection()
+    collection.delete(ids=[str(image_id)])

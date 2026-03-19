@@ -101,6 +101,14 @@
 
                 {% if image.indexed %}
                 <div class="status indexed">Indexed</div>
+                
+                <!-- Delete button -->
+                <form action="/delete" method="post">
+                    <input type="hidden" name="file_name" value="{{ image.file_name }}">
+                    <button type="submit" onclick="return confirm('Delete this image?')">
+                        Delete
+                    </button>
+                </form>
 
                 <details class="meta-box">
                     <summary>Metadata</summary>
@@ -112,6 +120,15 @@
                 </details>
 
                 {% else %}
+
+                <!-- Delete button -->
+                <form action="/delete" method="post">
+                    <input type="hidden" name="file_name" value="{{ image.file_name }}">
+                    <button type="submit" onclick="return confirm('Delete this image?')">
+                        Delete
+                    </button>
+                </form>
+
                 <div class="status pending">Pending</div>
                 {% endif %}
 

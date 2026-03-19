@@ -1,15 +1,17 @@
-from fastapi import FastAPI, Request, UploadFile, File, Query
+from fastapi import FastAPI, Request, UploadFile, File, Query, Form
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 import shutil
+from pathlib import Path
 
 from app.config import gallery_dir, inbox_dir, thumbs_dir, search_limit
 from app.services.pipeline import run_pipeline, list_inbox_images
 from app.services.thumbnail import make_thumbnail
 from app.services.search import semantic_search
-from app.storage.db import get_all_images, init_db
+from app.storage.db import get_all_images, init_db, get_image_by_id, delete_image_by_id
+from app.storage.vector_db import delete_embedding
 
 
 '''
@@ -84,6 +86,7 @@ def build_gallery() -> list[dict]:
 
             image.update(
                 {
+                    "id": row["id"],
                     "indexed": True,
                     "caption": row["caption"],
                     "description": row["description"],
@@ -159,6 +162,39 @@ def search_page(request: Request, q: str = Query(default="")):
             "search_results": search_results,
         },
     )
+
+
+# 4. Delete API
+@app.post("/delete")
+def delete_image(file_name: str = Form(...)):
+
+    # Get all indexed image records from SQLite database
+    # Make sure if pending or indexed
+    rows = get_all_images()
+    row_map = {row["file_name"]: dict(row) for row in rows}
+
+    row = row_map.get(file_name)
+
+    # Build path
+    image_path = inbox_dir / file_name
+    thumb_path = thumbs_dir / file_name
+
+    # Delete original
+    if image_path.exists():
+        image_path.unlink()
+
+    # Delete thumbnail
+    if thumb_path.exists():
+        thumb_path.unlink()
+
+    # If indexed: delete databases
+    if row:
+        image_id = row["id"]
+
+        delete_embedding(image_id)
+        delete_image_by_id(image_id)
+
+    return RedirectResponse("/", status_code=303)
 
 
 # Debug API: return all indexed images

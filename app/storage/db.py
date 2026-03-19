@@ -174,3 +174,36 @@ def get_images_by_ids(image_ids: list[int]) -> list[sqlite3.Row]:
         ).fetchall()
 
     return rows
+
+# Return one image by id.
+def get_image_by_id(image_id: int) -> sqlite3.Row | None:
+    with connect_db() as conn:
+        row = conn.execute(
+            """
+            SELECT
+                id,
+                file_name,
+                file_path,
+                caption,
+                description,
+                objects,
+                scene_tags,
+                embedding_id,
+                thumbnail_path,
+                created_at
+            FROM images
+            WHERE id = ?
+            """,
+            (image_id,),
+        ).fetchone()
+    return row
+
+
+# Delete one image record by id.
+def delete_image_by_id(image_id: int) -> None:
+    with connect_db() as conn:
+        conn.execute(
+            "DELETE FROM images WHERE id = ?",
+            (image_id,),
+        )
+        conn.commit()
