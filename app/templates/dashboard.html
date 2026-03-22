@@ -120,7 +120,8 @@
                 </details>
 
                 {% else %}
-
+                <div class="status pending">Pending</div>
+                
                 <!-- Delete button -->
                 <form action="/delete" method="post">
                     <input type="hidden" name="file_name" value="{{ image.file_name }}">
@@ -128,8 +129,6 @@
                         Delete
                     </button>
                 </form>
-
-                <div class="status pending">Pending</div>
                 {% endif %}
 
             </div>
