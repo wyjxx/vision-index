@@ -27,11 +27,10 @@ def upsert_embedding(image_id: int, text: str):
         documents=[text],
     )
 
-# Search embedding from Chroma
-def search_embeddings(query: str, limit: int = 3):
+# Search embeddings from Chroma
+def search_embeddings(query: str, limit: int) -> list[dict]:
 
     collection = get_collection()
-
     embedding = generate_embedding(query)
 
     results = collection.query(
@@ -39,7 +38,22 @@ def search_embeddings(query: str, limit: int = 3):
         n_results=limit,
     )
 
-    return results["ids"][0]
+    ids = results["ids"][0]
+    documents = results["documents"][0]
+    distances = results["distances"][0]
+
+    matches = []
+
+    for image_id, document, distance in zip(ids, documents, distances):
+        matches.append(
+            {
+                "id": int(image_id),
+                "document": document,
+                "distance": distance,
+            }
+        )
+
+    return matches
 
 # Delete one embedding from Chroma.
 def delete_embedding(image_id: int) -> None:

@@ -40,5 +40,7 @@ vision_model = os.getenv("VISION_MODEL", "qwen3.5:4b")
 embedding_model = os.getenv("EMBEDDING_MODEL", "nomic-embed-text:latest")
 chroma_collection = "vision_index_images"
 
-# Search result limit
-search_limit = 3
+# Search setting
+recall_limit = 10
+search_limit = 5
+keyword_weight = 0.2
