@@ -20,7 +20,7 @@ def connect_db() -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     return conn
 
-# Delete then init db
+# Reset: delete then init
 def reset_db():
     if db_path.exists():
         db_path.unlink()

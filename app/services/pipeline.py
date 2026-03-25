@@ -42,7 +42,7 @@ def scan_images() -> tuple[list[Path], int, int]:
         if file_path.suffix.lower() not in supported_image_ext:
             continue
 
-        db_file_path = build_db_file_path(file_path)
+        db_file_path = build_db_relative_path(file_path)
 
         if image_exists(db_file_path):
             skipped += 1
@@ -54,13 +54,13 @@ def scan_images() -> tuple[list[Path], int, int]:
 
 
 # Build database file path for one inbox image.
-def build_db_file_path(file_path: Path) -> str:
+def build_db_relative_path(file_path: Path) -> str:
     return f"inbox/{file_path.name}"
 
 
 # Store one indexed image into SQLite.
 def store_image_record(file_path: Path, result: dict, thumb_path: str) -> int:
-    db_file_path = build_db_file_path(file_path)
+    db_file_path = build_db_relative_path(file_path)
 
     return insert_image(
         file_name=file_path.name,

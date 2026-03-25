@@ -1,4 +1,5 @@
 import chromadb
+import shutil
 
 from app.config import chroma_dir, chroma_collection
 from app.ai.llm import generate_embedding
@@ -8,11 +9,37 @@ from app.ai.llm import generate_embedding
 Chroma embedding vector storage and search
 """
 
-client = chromadb.PersistentClient(path=str(chroma_dir))
+_client = None
+
+
+# Get or create client
+def get_client():
+    global _client
+    if _client is None:
+        _client = chromadb.PersistentClient(path=str(chroma_dir))
+    return _client
+
 
 # Get vector collection
 def get_collection():
+    client = get_client()
     return client.get_or_create_collection(name=chroma_collection)
+
+
+# Reset: delete then init
+def reset_vector_db() -> None:
+    global _client
+
+    _client = None
+
+    if chroma_dir.exists():
+        shutil.rmtree(chroma_dir)
+
+    client = chromadb.PersistentClient(path=str(chroma_dir))
+    client.get_or_create_collection(name=chroma_collection)
+
+    _client = client
+
 
 # Store embedding into Chroma
 def upsert_embedding(image_id: int, text: str):

@@ -10,7 +10,7 @@ from app.config import gallery_dir, inbox_dir, thumbs_dir, search_limit
 from app.services.pipeline import run_pipeline, list_inbox_images
 from app.services.thumbnail import make_thumbnail
 from app.services.search import semantic_search
-from app.storage.db import get_all_images, init_db, get_image_by_id, delete_image_by_id
+from app.storage.db import get_all_images, init_db, get_image_by_id, delete_image_by_id, get_image_by_path
 from app.storage.vector_db import delete_embedding
 
 
@@ -168,16 +168,12 @@ def search_page(request: Request, q: str = Query(default="")):
 @app.post("/delete")
 def delete_image(file_name: str = Form(...)):
 
-    # Get all indexed image records from SQLite database
-    # Make sure if pending or indexed
-    rows = get_all_images()
-    row_map = {row["file_name"]: dict(row) for row in rows}
-
-    row = row_map.get(file_name)
-
-    # Build path
+    # Build image absolute path
     image_path = inbox_dir / file_name
     thumb_path = thumbs_dir / file_name
+
+    # Get image records by relative path
+    row = get_image_by_path(f"inbox/{file_name}")
 
     # Delete original
     if image_path.exists():
@@ -190,9 +186,10 @@ def delete_image(file_name: str = Form(...)):
     # If indexed: delete databases
     if row:
         image_id = row["id"]
-
         delete_embedding(image_id)
         delete_image_by_id(image_id)
+    else:
+        print("NO SQLite database row matched!")
 
     return RedirectResponse("/", status_code=303)
 
