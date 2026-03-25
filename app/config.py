@@ -21,12 +21,12 @@ project_root = Path(__file__).resolve().parent.parent
 app_dir = project_root / "app" # app/
 
 data_dir = project_root / "data" # data/
-db_path = data_dir / "app.db" # data/app.db
+db_path = data_dir / "images.db" # data/images.db
+chroma_dir = data_dir / "vector" # data/vector/
 
 gallery_dir = project_root / "gallery" # gallery/
 inbox_dir = gallery_dir / "inbox"      # gallery/inbox/
 thumbs_dir = gallery_dir / "thumbs"    # gallery/thumbs/
-chroma_dir = gallery_dir / "chroma"    # gallery/chroma/
 
 # General settings
 thumbnail_size = (512, 512)

@@ -46,40 +46,35 @@ Development stages:
 ## Project Structure
 
 ```
-
 vision-index/
 ├─ app/
-│  ├─ config.py
-│  ├─ main.py
-│  ├─ models.py
-│  │
 │  ├─ ai/
 │  │  └─ llm.py
-│  │
 │  ├─ services/
 │  │  ├─ pipeline.py
-│  │  ├─ thumbnail.py
-│  │  └─ search.py
-│  │
+│  │  ├─ search.py
+│  │  └─ helper.py
 │  ├─ storage/
-│  │  └─ db.py
-│  │
+│  │  ├─ db.py
+│  │  └─ vector_db.py
 │  ├─ templates/
-│  │  └─ viewer.html
-│  │
-│  └─ static/
-│     └─ style.css
-│
+│  │  └─ dashboard.html
+│  ├─ static/
+│  ├─ config.py
+│  ├─ main.py
+│  └─ models.py
 ├─ data/
-│  └─ app.db
-│
+│  ├─ images.db
+│  └─ vector/
 ├─ gallery/
-│  ├─ chroma/
 │  ├─ inbox/
 │  └─ thumbs/
-│
 ├─ scripts/
-│  ├─ test_pipeline.py
+│  ├─ reset.py
+│  └─ test_pipeline.py
+├─ .env.example
+├─ requirements.txt
+└─ README.md
 
 ```
 

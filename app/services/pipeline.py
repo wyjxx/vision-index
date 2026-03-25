@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from app.ai.llm import analyze_image
 from app.config import inbox_dir, supported_image_ext
-from app.services.thumbnail import make_thumbnail
+from app.services.helper import make_thumbnail, build_db_relative_path, build_embedding_text
 from app.storage.db import image_exists, insert_image
 from app.storage.vector_db import upsert_embedding
 
@@ -53,11 +53,6 @@ def scan_images() -> tuple[list[Path], int, int]:
     return new_images, indexed, skipped
 
 
-# Build database file path for one inbox image.
-def build_db_relative_path(file_path: Path) -> str:
-    return f"inbox/{file_path.name}"
-
-
 # Store one indexed image into SQLite.
 def store_image_record(file_path: Path, result: dict, thumb_path: str) -> int:
     db_file_path = build_db_relative_path(file_path)
@@ -72,16 +67,6 @@ def store_image_record(file_path: Path, result: dict, thumb_path: str) -> int:
         embedding_id="",
         thumbnail_path=thumb_path,
     )
-
-
-# Build text for embedding.
-def build_embedding_text(result: dict) -> str:
-    return " ".join([
-        result["caption"],
-        # result["description"],
-        " ".join(result["objects"]),
-        " ".join(result["scene_tags"]),
-    ])
 
 
 # Index one image.

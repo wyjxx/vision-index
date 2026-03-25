@@ -39,7 +39,7 @@ vision-index/
 │  ├─ services/
 │  │  ├─ pipeline.py
 │  │  ├─ search.py
-│  │  └─ thumbnail.py
+│  │  └─ helper.py
 │  ├─ storage/
 │  │  ├─ db.py
 │  │  └─ vector_db.py
@@ -50,12 +50,13 @@ vision-index/
 │  ├─ main.py
 │  └─ models.py
 ├─ data/
-│  └─ app.db
+│  ├─ images.db
+│  └─ vector/
 ├─ gallery/
 │  ├─ inbox/
-│  ├─ thumbs/
-│  └─ chroma/
+│  └─ thumbs/
 ├─ scripts/
+│  ├─ reset.py
 │  └─ test_pipeline.py
 ├─ .env.example
 ├─ requirements.txt

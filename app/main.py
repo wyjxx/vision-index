@@ -8,7 +8,7 @@ from pathlib import Path
 
 from app.config import gallery_dir, inbox_dir, thumbs_dir, search_limit
 from app.services.pipeline import run_pipeline, list_inbox_images
-from app.services.thumbnail import make_thumbnail
+from app.services.helper import make_thumbnail
 from app.services.search import semantic_search
 from app.storage.db import get_all_images, init_db, get_image_by_id, delete_image_by_id, get_image_by_path
 from app.storage.vector_db import delete_embedding
