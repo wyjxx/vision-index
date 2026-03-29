@@ -41,6 +41,6 @@ embedding_model = os.getenv("EMBEDDING_MODEL", "nomic-embed-text:latest")
 chroma_collection = "vision_index_images"
 
 # Search setting
-recall_limit = 10
-search_limit = 5
+recall_limit = 15
+search_limit = 10
 keyword_weight = 0.2

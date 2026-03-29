@@ -1,0 +1,92 @@
+[
+  {
+    "query": "cat",
+    "type": "object",
+    "relevant_files": ["007.jpg", "008.jpg", "020.jpg", "046.jpg"],
+    "best_files": ["020.jpg", "046.jpg"]
+  },
+  {
+    "query": "car on street",
+    "type": "composition",
+    "relevant_files": ["001.jpg", "005.jpg", "013.jpg", "019.jpg", "022.jpg", "027.jpg", "030.jpg"],
+    "best_files": ["001.jpg", "005.jpg", "019.jpg"]
+  },
+  {
+    "query": "person fishing",
+    "type": "composition",
+    "relevant_files": ["028.jpg"],
+    "best_files": ["028.jpg"]
+  },
+  {
+    "query": "street food stall",
+    "type": "scene",
+    "relevant_files": ["004.jpg", "009.jpg", "013.jpg", "023.jpg", "042.jpg", "037.jpg"],
+    "best_files": ["009.jpg", "013.jpg", "023.jpg"]
+  },
+  {
+    "query": "ferry on water",
+    "type": "composition",
+    "relevant_files": ["014.jpg", "015.jpg", "027.jpg", "033.jpg"],
+    "best_files": ["014.jpg"]
+  },
+  {
+    "query": "busy street",
+    "type": "scene",
+    "relevant_files": ["006.jpg", "009.jpg", "022.jpg", "023.jpg", "037.jpg", "047.jpg"],
+    "best_files": ["006.jpg", "009.jpg", "023.jpg", "037.jpg", "047.jpg"]
+  },
+  {
+    "query": "city skyline view",
+    "type": "scene",
+    "relevant_files": ["015.jpg", "025.jpg", "027.jpg", "033.jpg", "035.jpg"],
+    "best_files": ["027.jpg", "033.jpg"]
+  },
+  {
+    "query": "seaside walkway",
+    "type": "scene",
+    "relevant_files": ["025.jpg", "027.jpg", "028.jpg", "030.jpg", "038.jpg", "041.jpg", "043.jpg"],
+    "best_files": [ "027.jpg", "028.jpg", "038.jpg", "041.jpg", "043.jpg"]
+  },
+  {
+    "query": "historic building",
+    "type": "scene",
+    "relevant_files": ["006.jpg", "034.jpg", "048.jpg", "049.jpg", "050.jpg"],
+    "best_files": ["006.jpg", "034.jpg", "048.jpg", "049.jpg", "050.jpg"]
+  },
+  {
+    "query": "empty grass field",
+    "type": "scene",
+    "relevant_files": ["008.jpg", "021.jpg", "035.jpg", "050.jpg"],
+    "best_files": ["021.jpg", "035.jpg", "050.jpg"]
+  },
+  {
+    "query": "sunset scene",
+    "type": "attribute",
+    "relevant_files": ["022.jpg", "025.jpg", "043.jpg"],
+    "best_files": ["022.jpg", "025.jpg", "043.jpg"]
+  },
+  {
+    "query": "night street with lights",
+    "type": "composition",
+    "relevant_files": ["001.jpg", "002.jpg", "003.jpg", "004.jpg"],
+    "best_files": ["001.jpg", "003.jpg"]
+  },
+  {
+    "query": "cloudy outdoor scene",
+    "type": "attribute",
+    "relevant_files": ["005.jpg", "014.jpg", "015.jpg", "044.jpg"],
+    "best_files": ["014.jpg", "015.jpg", "044.jpg"]
+  },
+  {
+    "query": "restaurant",
+    "type": "scene",
+    "relevant_files": ["013.jpg", "017.jpg", "018.jpg", "023.jpg", "032.jpg"],
+    "best_files": ["017.jpg", "018.jpg", "023.jpg"]
+  },
+  {
+    "query": "colorful table",
+    "type": "object",
+    "relevant_files": ["032.jpg"],
+    "best_files": ["032.jpg"]
+  }
+]

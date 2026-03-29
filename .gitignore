@@ -35,8 +35,7 @@ htmlcov/
 # Local database and generated data
 data/
 
-gallery/thumbs/
-gallery/inbox/
+gallery/
 
 # Optional: keep folder structure with placeholder files
 !data/.gitkeep

@@ -1,0 +1,465 @@
+{
+  "summary": {
+    "query_count": 15,
+    "search_limit": 10,
+    "metric_top_k": 5,
+    "avg_top1_accuracy": 0.6667,
+    "avg_precision_at_5": 0.5067,
+    "avg_recall_at_5": 0.6327
+  },
+  "queries": [
+    {
+      "query": "cat",
+      "type": "object",
+      "relevant_files": [
+        "007.jpg",
+        "008.jpg",
+        "020.jpg",
+        "046.jpg"
+      ],
+      "best_files": [
+        "020.jpg",
+        "046.jpg"
+      ],
+      "predicted_files": [
+        "020.jpg",
+        "046.jpg",
+        "008.jpg",
+        "007.jpg",
+        "019.jpg",
+        "041.jpg",
+        "026.jpg",
+        "018.jpg",
+        "025.jpg",
+        "022.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.8,
+      "recall_at_5": 1.0
+    },
+    {
+      "query": "car on street",
+      "type": "composition",
+      "relevant_files": [
+        "001.jpg",
+        "005.jpg",
+        "013.jpg",
+        "019.jpg",
+        "022.jpg",
+        "027.jpg",
+        "030.jpg"
+      ],
+      "best_files": [
+        "001.jpg",
+        "005.jpg",
+        "019.jpg"
+      ],
+      "predicted_files": [
+        "019.jpg",
+        "005.jpg",
+        "009.jpg",
+        "022.jpg",
+        "001.jpg",
+        "037.jpg",
+        "003.jpg",
+        "006.jpg",
+        "023.jpg",
+        "047.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.5714
+    },
+    {
+      "query": "person fishing",
+      "type": "composition",
+      "relevant_files": [
+        "028.jpg"
+      ],
+      "best_files": [
+        "028.jpg"
+      ],
+      "predicted_files": [
+        "043.jpg",
+        "028.jpg",
+        "025.jpg",
+        "013.jpg",
+        "029.jpg",
+        "038.jpg",
+        "041.jpg",
+        "024.jpg",
+        "026.jpg",
+        "037.jpg"
+      ],
+      "top1_accuracy": 0.0,
+      "precision_at_5": 0.2,
+      "recall_at_5": 1.0
+    },
+    {
+      "query": "street food stall",
+      "type": "scene",
+      "relevant_files": [
+        "004.jpg",
+        "009.jpg",
+        "013.jpg",
+        "023.jpg",
+        "042.jpg",
+        "037.jpg"
+      ],
+      "best_files": [
+        "009.jpg",
+        "013.jpg",
+        "023.jpg"
+      ],
+      "predicted_files": [
+        "023.jpg",
+        "013.jpg",
+        "009.jpg",
+        "004.jpg",
+        "024.jpg",
+        "018.jpg",
+        "037.jpg",
+        "042.jpg",
+        "017.jpg",
+        "036.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.6667
+    },
+    {
+      "query": "ferry on water",
+      "type": "composition",
+      "relevant_files": [
+        "014.jpg",
+        "015.jpg",
+        "027.jpg",
+        "033.jpg"
+      ],
+      "best_files": [
+        "014.jpg"
+      ],
+      "predicted_files": [
+        "026.jpg",
+        "030.jpg",
+        "027.jpg",
+        "015.jpg",
+        "043.jpg",
+        "028.jpg",
+        "038.jpg",
+        "044.jpg",
+        "014.jpg",
+        "029.jpg"
+      ],
+      "top1_accuracy": 0.0,
+      "precision_at_5": 0.4,
+      "recall_at_5": 0.5
+    },
+    {
+      "query": "busy street",
+      "type": "scene",
+      "relevant_files": [
+        "006.jpg",
+        "009.jpg",
+        "022.jpg",
+        "023.jpg",
+        "037.jpg",
+        "047.jpg"
+      ],
+      "best_files": [
+        "006.jpg",
+        "009.jpg",
+        "023.jpg",
+        "037.jpg",
+        "047.jpg"
+      ],
+      "predicted_files": [
+        "022.jpg",
+        "023.jpg",
+        "003.jpg",
+        "006.jpg",
+        "019.jpg",
+        "037.jpg",
+        "047.jpg",
+        "005.jpg",
+        "009.jpg",
+        "030.jpg"
+      ],
+      "top1_accuracy": 0.0,
+      "precision_at_5": 0.6,
+      "recall_at_5": 0.5
+    },
+    {
+      "query": "city skyline view",
+      "type": "scene",
+      "relevant_files": [
+        "015.jpg",
+        "025.jpg",
+        "027.jpg",
+        "033.jpg",
+        "035.jpg"
+      ],
+      "best_files": [
+        "027.jpg",
+        "033.jpg"
+      ],
+      "predicted_files": [
+        "033.jpg",
+        "035.jpg",
+        "025.jpg",
+        "027.jpg",
+        "038.jpg",
+        "015.jpg",
+        "043.jpg",
+        "002.jpg",
+        "006.jpg",
+        "003.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.8,
+      "recall_at_5": 0.8
+    },
+    {
+      "query": "seaside walkway",
+      "type": "scene",
+      "relevant_files": [
+        "025.jpg",
+        "027.jpg",
+        "028.jpg",
+        "030.jpg",
+        "038.jpg",
+        "041.jpg",
+        "043.jpg"
+      ],
+      "best_files": [
+        "027.jpg",
+        "028.jpg",
+        "038.jpg",
+        "041.jpg",
+        "043.jpg"
+      ],
+      "predicted_files": [
+        "038.jpg",
+        "026.jpg",
+        "047.jpg",
+        "021.jpg",
+        "043.jpg",
+        "044.jpg",
+        "037.jpg",
+        "035.jpg",
+        "017.jpg",
+        "030.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.4,
+      "recall_at_5": 0.2857
+    },
+    {
+      "query": "historic building",
+      "type": "scene",
+      "relevant_files": [
+        "006.jpg",
+        "034.jpg",
+        "048.jpg",
+        "049.jpg",
+        "050.jpg"
+      ],
+      "best_files": [
+        "006.jpg",
+        "034.jpg",
+        "048.jpg",
+        "049.jpg",
+        "050.jpg"
+      ],
+      "predicted_files": [
+        "049.jpg",
+        "006.jpg",
+        "035.jpg",
+        "005.jpg",
+        "002.jpg",
+        "033.jpg",
+        "047.jpg",
+        "030.jpg",
+        "019.jpg",
+        "026.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.4,
+      "recall_at_5": 0.4
+    },
+    {
+      "query": "empty grass field",
+      "type": "scene",
+      "relevant_files": [
+        "008.jpg",
+        "021.jpg",
+        "035.jpg",
+        "050.jpg"
+      ],
+      "best_files": [
+        "021.jpg",
+        "035.jpg",
+        "050.jpg"
+      ],
+      "predicted_files": [
+        "050.jpg",
+        "021.jpg",
+        "035.jpg",
+        "008.jpg",
+        "018.jpg",
+        "003.jpg",
+        "041.jpg",
+        "005.jpg",
+        "010.jpg",
+        "029.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.8,
+      "recall_at_5": 1.0
+    },
+    {
+      "query": "sunset scene",
+      "type": "attribute",
+      "relevant_files": [
+        "022.jpg",
+        "025.jpg",
+        "043.jpg"
+      ],
+      "best_files": [
+        "022.jpg",
+        "025.jpg",
+        "043.jpg"
+      ],
+      "predicted_files": [
+        "003.jpg",
+        "043.jpg",
+        "025.jpg",
+        "037.jpg",
+        "026.jpg",
+        "033.jpg",
+        "035.jpg",
+        "044.jpg",
+        "038.jpg",
+        "022.jpg"
+      ],
+      "top1_accuracy": 0.0,
+      "precision_at_5": 0.4,
+      "recall_at_5": 0.6667
+    },
+    {
+      "query": "night street with lights",
+      "type": "composition",
+      "relevant_files": [
+        "001.jpg",
+        "002.jpg",
+        "003.jpg",
+        "004.jpg"
+      ],
+      "best_files": [
+        "001.jpg",
+        "003.jpg"
+      ],
+      "predicted_files": [
+        "003.jpg",
+        "048.jpg",
+        "022.jpg",
+        "006.jpg",
+        "037.jpg",
+        "004.jpg",
+        "031.jpg",
+        "043.jpg",
+        "005.jpg",
+        "017.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.2,
+      "recall_at_5": 0.25
+    },
+    {
+      "query": "cloudy outdoor scene",
+      "type": "attribute",
+      "relevant_files": [
+        "005.jpg",
+        "014.jpg",
+        "015.jpg",
+        "044.jpg"
+      ],
+      "best_files": [
+        "014.jpg",
+        "015.jpg",
+        "044.jpg"
+      ],
+      "predicted_files": [
+        "003.jpg",
+        "035.jpg",
+        "009.jpg",
+        "014.jpg",
+        "041.jpg",
+        "038.jpg",
+        "015.jpg",
+        "049.jpg",
+        "037.jpg",
+        "026.jpg"
+      ],
+      "top1_accuracy": 0.0,
+      "precision_at_5": 0.2,
+      "recall_at_5": 0.25
+    },
+    {
+      "query": "restaurant",
+      "type": "scene",
+      "relevant_files": [
+        "013.jpg",
+        "017.jpg",
+        "018.jpg",
+        "023.jpg",
+        "032.jpg"
+      ],
+      "best_files": [
+        "017.jpg",
+        "018.jpg",
+        "023.jpg"
+      ],
+      "predicted_files": [
+        "017.jpg",
+        "019.jpg",
+        "030.jpg",
+        "018.jpg",
+        "023.jpg",
+        "013.jpg",
+        "037.jpg",
+        "024.jpg",
+        "009.jpg",
+        "003.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.6,
+      "recall_at_5": 0.6
+    },
+    {
+      "query": "colorful table",
+      "type": "object",
+      "relevant_files": [
+        "032.jpg"
+      ],
+      "best_files": [
+        "032.jpg"
+      ],
+      "predicted_files": [
+        "032.jpg",
+        "018.jpg",
+        "042.jpg",
+        "017.jpg",
+        "010.jpg",
+        "031.jpg",
+        "045.jpg",
+        "020.jpg",
+        "037.jpg",
+        "046.jpg"
+      ],
+      "top1_accuracy": 1.0,
+      "precision_at_5": 0.2,
+      "recall_at_5": 1.0
+    }
+  ]
+}
