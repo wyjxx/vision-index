@@ -65,7 +65,7 @@ def semantic_search(query: str, limit: int) -> list[dict]:
         # Embedding distance info
         match = match_map[image_id]
         
-        # Build text for rerank
+        # Build text for key_score
         text = build_rerank_text(row)
 
         sem_score = semantic_score(match["distance"])
