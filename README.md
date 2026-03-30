@@ -18,6 +18,7 @@ It scans images from `gallery/inbox`, analyzes them with a local vision-language
 - store metadata in SQLite
 - store embeddings in Chroma
 - search images with natural language
+- evaluate retrieval quality with golden queries
 - view all images and search results in a simple dashboard
 
 ## Stack
@@ -47,40 +48,44 @@ vision-index/
 │  │  └─ dashboard.html
 │  ├─ static/
 │  ├─ config.py
-│  ├─ main.py
+│  └─ main.py
 ├─ data/
 │  ├─ images.db
 │  └─ vector/
 ├─ gallery/
 │  ├─ inbox/
 │  └─ thumbs/
+├─ evaluation/
+│  ├─ eval_search.py
+│  ├─ golden_queries.json
+│  └─ result_v1.json
 ├─ scripts/
 │  ├─ reset.py
 │  └─ test_pipeline.py
 ├─ .env.example
 ├─ requirements.txt
 └─ README.md
-````
+```
 
 ## Pipeline
 
 ```text
 gallery/inbox
-↓
+→
 scan images
-↓
+→
 generate thumbnail
-↓
+→
 analyze image with VLM
-↓
+→
 generate metadata
-↓
+→
 store metadata in SQLite
-↓
+→
 generate embedding
-↓
+→
 store embedding in Chroma
-↓
+→
 semantic search in dashboard
 ```
 
@@ -138,6 +143,7 @@ Current focus:
 * image understanding
 * metadata indexing
 * embedding-based retrieval
+* basic retrieval evaluation
 
 Future direction:
 

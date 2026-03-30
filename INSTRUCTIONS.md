@@ -2,12 +2,12 @@
 
 ## Project
 
-vision-index — a personal student AI project.
+vision-index - a personal student AI project.
 
 Goal: build a simple local image indexing system.
 
 Images are placed into `gallery/inbox/`.  
-The system should analyze them, store metadata, create embeddings, and support semantic search, build basic for agentic workflow in the future.
+The system should analyze them, store metadata, create embeddings, support semantic search, and keep a small evaluation loop for retrieval quality.
 
 Workflow:
 
@@ -17,13 +17,15 @@ Workflow:
 4. store metadata in SQLite
 5. create and store embeddings in Chroma
 6. enable semantic search
-7. build initial agent/workflows
+7. evaluate retrieval quality with golden queries
+8. build initial agent/workflows
 
 Development stages:
 
 - Stage 1: image understanding using vlm
 - Stage 2: embeddings and retrieval
-- Stage 3: simple agent/workflows
+- Stage 3: evaluation and iteration
+- Stage 4: simple agent/workflows
 
 
 ## Coding Rules
@@ -61,13 +63,17 @@ vision-index/
 │  │  └─ dashboard.html
 │  ├─ static/
 │  ├─ config.py
-│  ├─ main.py
+│  └─ main.py
 ├─ data/
 │  ├─ images.db
 │  └─ vector/
 ├─ gallery/
 │  ├─ inbox/
 │  └─ thumbs/
+├─ evaluation/
+│  ├─ eval_search.py
+│  ├─ golden_queries.json
+│  └─ result_v1.json
 ├─ scripts/
 │  ├─ reset.py
 │  └─ test_pipeline.py
@@ -99,6 +105,11 @@ thumbnail.py
 search.py  
 - semantic search logic
 
+eval_search.py
+- offline retrieval evaluation
+- runs golden queries
+- computes top1 / precision@5 / recall@5
+
 db.py  
 - SQLite and Chroma access
 - metadata storage
@@ -126,6 +137,7 @@ Required:
 - store metadata in SQLite
 - store embeddings in Chroma
 - support semantic search with FastAPI
+- support simple offline retrieval evaluation
 
 Not needed yet:
 
@@ -147,6 +159,3 @@ Prefer:
 - easier debugging
 
 Do not add complexity unless it is clearly needed.
-```
-
-
