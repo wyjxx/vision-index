@@ -62,7 +62,6 @@ vision-index/
 │  ├─ static/
 │  ├─ config.py
 │  ├─ main.py
-│  └─ models.py
 ├─ data/
 │  ├─ images.db
 │  └─ vector/
