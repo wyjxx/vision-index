@@ -55,15 +55,16 @@ def scan_images() -> tuple[list[Path], int, int]:
 
 # Store one indexed image into SQLite.
 def store_image_record(file_path: Path, result: dict, thumb_path: str) -> int:
+    # Convert file path into stored relative path.
     db_file_path = build_db_relative_path(file_path)
 
     return insert_image(
         file_name=file_path.name,
         file_path=db_file_path,
         caption=result["caption"],
-        description=result["description"],
         objects=result["objects"],
         scene_tags=result["scene_tags"],
+        attributes=result["attributes"],
         embedding_id="",
         thumbnail_path=thumb_path,
     )
@@ -71,7 +72,6 @@ def store_image_record(file_path: Path, result: dict, thumb_path: str) -> int:
 
 # Index one image.
 def index_image(file_path: Path) -> None:
-
     # Generate thumbnail
     thumb_path = make_thumbnail(file_path)
 
@@ -97,7 +97,6 @@ def index_image(file_path: Path) -> None:
 
 # Scan inbox -> index images -> count results
 def run_pipeline() -> dict:
-
     # Scan inbox
     new_images, indexed, skipped = scan_images()
 

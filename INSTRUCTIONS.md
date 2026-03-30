@@ -131,9 +131,9 @@ Required:
 - analyze images with a VLM
 - generate:
   - caption
-  - description
   - objects
   - scene tags
+  - attributes
 - store metadata in SQLite
 - store embeddings in Chroma
 - support semantic search with FastAPI

@@ -4,13 +4,17 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 import shutil
-from pathlib import Path
 
 from app.config import gallery_dir, inbox_dir, thumbs_dir, search_limit
 from app.services.pipeline import run_pipeline, list_inbox_images
-from app.services.helper import make_thumbnail
+from app.services.helper import (
+    format_image_record,
+    make_thumbnail,
+    parse_attributes,
+    parse_json_list,
+)
 from app.services.search import semantic_search
-from app.storage.db import get_all_images, init_db, get_image_by_id, delete_image_by_id, get_image_by_path
+from app.storage.db import get_all_images, init_db, delete_image_by_id, get_image_by_path
 from app.storage.vector_db import delete_embedding
 
 
@@ -56,8 +60,8 @@ def build_gallery() -> list[dict]:
     # Get all indexed image records from SQLite database
     rows = get_all_images()
 
-    # Convert database result to dictionary
-    indexed_map = {row["file_name"]: dict(row) for row in rows}
+    # Convert database rows into display-ready dictionaries.
+    indexed_map = {row["file_name"]: format_image_record(dict(row)) for row in rows}
 
     images = []
 
@@ -89,9 +93,9 @@ def build_gallery() -> list[dict]:
                     "id": row["id"],
                     "indexed": True,
                     "caption": row["caption"],
-                    "description": row["description"],
                     "objects": row["objects"],
                     "scene_tags": row["scene_tags"],
+                    "attributes": row["attributes"],
                 }
             )
 
@@ -121,7 +125,7 @@ def dashboard(request: Request, q: str = ""):
 # 1. Upload API
 @app.post("/upload")
 async def upload_image(file: UploadFile = File(...)):
-
+    # Save uploaded file into inbox.
     inbox_dir.mkdir(parents=True, exist_ok=True)
     save_path = inbox_dir / file.filename
 
@@ -137,7 +141,6 @@ async def upload_image(file: UploadFile = File(...)):
 # 2. Run pipeline API
 @app.post("/run-pipeline")
 def run_pipeline_route():
-
     run_pipeline()
 
     return RedirectResponse("/", status_code=303)
@@ -149,8 +152,9 @@ def search_page(request: Request, q: str = Query(default="")):
     # Build inbox gallery data
     images = build_gallery()
     
-    # Search query
+    # Search query and format results for display.
     search_results = semantic_search(q, limit=search_limit) if q.strip() else []
+    search_results = [format_image_record(row) for row in search_results]
     
     # Refresh webpage
     return templates.TemplateResponse(
@@ -167,7 +171,6 @@ def search_page(request: Request, q: str = Query(default="")):
 # 4. Delete API
 @app.post("/delete")
 def delete_image(file_name: str = Form(...)):
-
     # Build image absolute path
     image_path = inbox_dir / file_name
     thumb_path = thumbs_dir / file_name
@@ -197,7 +200,15 @@ def delete_image(file_name: str = Form(...)):
 # Debug API: return all indexed images
 @app.get("/images")
 def list_images():
-
     rows = get_all_images()
 
-    return [dict(row) for row in rows]
+    # Parse JSON fields before returning them.
+    return [
+        {
+            **dict(row),
+            "objects": parse_json_list(row["objects"]),
+            "scene_tags": parse_json_list(row["scene_tags"]),
+            "attributes": parse_attributes(row["attributes"]),
+        }
+        for row in rows
+    ]

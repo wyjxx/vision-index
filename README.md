@@ -11,9 +11,9 @@ It scans images from `gallery/inbox`, analyzes them with a local vision-language
 - analyze images with a local VLM via Ollama
 - generate structured metadata:
   - caption
-  - description
   - objects
   - scene tags
+  - attributes
 - generate thumbnails
 - store metadata in SQLite
 - store embeddings in Chroma

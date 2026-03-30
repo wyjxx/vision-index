@@ -3,6 +3,7 @@ import sqlite3
 from pathlib import Path
 
 from app.config import db_path
+from app.services.helper import normalize_attributes
 
 """
 Simple SQLite helpers.
@@ -36,9 +37,9 @@ def init_db() -> None:
                 file_name TEXT NOT NULL,
                 file_path TEXT NOT NULL UNIQUE,
                 caption TEXT,
-                description TEXT,
                 objects TEXT,
                 scene_tags TEXT,
+                attributes TEXT,
                 embedding_id TEXT,
                 thumbnail_path TEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -61,25 +62,28 @@ def insert_image(
     file_name: str,
     file_path: str,
     caption: str = "",
-    description: str = "",
     objects: list[str] | None = None,
     scene_tags: list[str] | None = None,
+    attributes: dict | None = None,
     embedding_id: str = "",
     thumbnail_path: str = "",
 ) -> int:
+    # Normalize optional metadata fields before saving.
     objects = objects or []
     scene_tags = scene_tags or []
+    attributes = normalize_attributes(attributes)
 
     with connect_db() as conn:
+        # Store list/dict fields as JSON text in SQLite.
         cursor = conn.execute(
             """
             INSERT INTO images (
                 file_name,
                 file_path,
                 caption,
-                description,
                 objects,
                 scene_tags,
+                attributes,
                 embedding_id,
                 thumbnail_path
             )
@@ -89,9 +93,9 @@ def insert_image(
                 file_name,
                 file_path,
                 caption,
-                description,
                 json.dumps(objects, ensure_ascii=False),
                 json.dumps(scene_tags, ensure_ascii=False),
+                json.dumps(attributes, ensure_ascii=False),
                 embedding_id,
                 thumbnail_path,
             ),
@@ -111,9 +115,9 @@ def get_all_images() -> list[sqlite3.Row]:
                 file_name,
                 file_path,
                 caption,
-                description,
                 objects,
                 scene_tags,
+                attributes,
                 embedding_id,
                 thumbnail_path,
                 created_at
@@ -133,9 +137,9 @@ def get_image_by_path(file_path: Path | str) -> sqlite3.Row | None:
                 file_name,
                 file_path,
                 caption,
-                description,
                 objects,
                 scene_tags,
+                attributes,
                 embedding_id,
                 thumbnail_path,
                 created_at
@@ -161,9 +165,9 @@ def get_images_by_ids(image_ids: list[int]) -> list[sqlite3.Row]:
                 file_name,
                 file_path,
                 caption,
-                description,
                 objects,
                 scene_tags,
+                attributes,
                 embedding_id,
                 thumbnail_path,
                 created_at
@@ -185,9 +189,9 @@ def get_image_by_id(image_id: int) -> sqlite3.Row | None:
                 file_name,
                 file_path,
                 caption,
-                description,
                 objects,
                 scene_tags,
+                attributes,
                 embedding_id,
                 thumbnail_path,
                 created_at

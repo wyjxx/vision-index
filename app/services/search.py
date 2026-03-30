@@ -1,7 +1,7 @@
 from app.storage.vector_db import search_embeddings
 from app.storage.db import get_images_by_ids
 from app.config import recall_limit, keyword_weight
-import json
+from app.services.helper import parse_attributes, parse_json_list
 
 """
 Semantic search service.
@@ -9,10 +9,15 @@ Semantic search service.
 
 # Build text for rerank
 def build_rerank_text(row: dict) -> str:
+    # Parse JSON fields before building rerank text.
+    attributes = parse_attributes(row.get("attributes"))
+
     return " ".join([
         row.get("caption", ""),
-        " ".join(json.loads(row.get("objects", "[]"))),
-        " ".join(json.loads(row.get("scene_tags", "[]"))),
+        " ".join(parse_json_list(row.get("objects"))),
+        " ".join(parse_json_list(row.get("scene_tags"))),
+        " ".join(attributes["lighting"]),
+        " ".join(attributes["color"]),
     ])
 
 # Keyword score

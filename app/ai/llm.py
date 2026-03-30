@@ -5,6 +5,7 @@ from pathlib import Path
 import requests
 
 from app.config import ollama_host, vision_model, embedding_model
+from app.services.helper import normalize_attributes, normalize_text_list
 
 
 """
@@ -15,12 +16,11 @@ Send an image to VLM and returns structured metadata.
 
 # Return base64 string for one image file.
 def encode_image(image_path: Path) -> str:
-    
     return base64.b64encode(image_path.read_bytes()).decode("utf-8")
 
-# Analyze one image with VLM
+# Analyze one image with VLM and normalize the output fields.
 def analyze_image(image_path: Path) -> dict:
-    
+    # Encode image before sending to Ollama.
     image_b64 = encode_image(image_path)
 
     # Response format schema
@@ -28,7 +28,6 @@ def analyze_image(image_path: Path) -> dict:
         "type": "object",
         "properties": {
             "caption": {"type": "string"},
-            "description": {"type": "string"},
             "objects": {
                 "type": "array",
                 "items": {"type": "string"},
@@ -37,8 +36,22 @@ def analyze_image(image_path: Path) -> dict:
                 "type": "array",
                 "items": {"type": "string"},
             },
+            "attributes": {
+                "type": "object",
+                "properties": {
+                    "lighting": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                    },
+                    "color": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                    },
+                },
+                "required": ["lighting", "color"],
+            },
         },
-        "required": ["caption", "description", "objects", "scene_tags"],
+        "required": ["caption", "objects", "scene_tags", "attributes"],
     }
 
     prompt = """
@@ -54,11 +67,13 @@ def analyze_image(image_path: Path) -> dict:
 
     Fields:
     - caption: one short sentence summarizing image
-    - description: 1-2 short concise sentences describing the overall scene
     - objects: 4-8 main visible objects only
-    - scene_tags: 3-6 short scene or style tags
+    - scene_tags: 3-6 short scene tags
+    - attributes.lighting: visible lighting tags such as daytime, night, bright, dim, sunny, cloudy
+    - attributes.color: visible main colors ordered by coverage from most dominant to least dominant
     """
 
+    # Request structured output from the vision model.
     response = requests.post(
         f"{ollama_host}/api/generate",
         json={
@@ -75,24 +90,20 @@ def analyze_image(image_path: Path) -> dict:
     response.raise_for_status()
     data = response.json()
 
-    # Raw model response
-    #print("full response:", data)
-    #print("raw response text:", data.get("response"))
-    #print("MODEL:", vision_model)
-
+    # Parse and normalize the JSON response.
     result = json.loads(data["response"])
 
     return {
         "caption": result.get("caption", ""),
-        "description": result.get("description", ""),
-        "objects": result.get("objects", []),
-        "scene_tags": result.get("scene_tags", []),
+        "objects": normalize_text_list(result.get("objects")),
+        "scene_tags": normalize_text_list(result.get("scene_tags")),
+        "attributes": normalize_attributes(result.get("attributes")),
     }
 
 
 # Generate embedding using embedding model.
 def generate_embedding(text: str) -> list[float]:
-
+    # Request one embedding vector for the input text.
     response = requests.post(
         f"{ollama_host}/api/embeddings",
         json={
@@ -105,4 +116,5 @@ def generate_embedding(text: str) -> list[float]:
     response.raise_for_status()
     data = response.json()
 
+    # Return the embedding array directly.
     return data["embedding"]
