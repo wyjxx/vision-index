@@ -1,24 +1,30 @@
 from app.storage.vector_db import search_embeddings
 from app.storage.db import get_images_by_ids
-from app.config import recall_limit, keyword_weight
+from app.config import (
+    recall_limit,
+    global_weight,
+    caption_weight,
+    object_weight,
+    scene_weight,
+    attribute_weight,
+)
 from app.services.helper import parse_attributes, parse_json_list
 
 """
 Semantic search service.
 """
 
-# Build text for rerank
-def build_rerank_text(row: dict) -> str:
-    # Parse JSON fields before building rerank text.
-    attributes = parse_attributes(row.get("attributes"))
+# Return image records in fields: caption + objects + scene_tags + attributes
+def build_search_fields(image_record: dict) -> dict[str, str]:
+    """Extract searchable text per field for rerank."""
+    attributes = parse_attributes(image_record.get("attributes"))
 
-    return " ".join([
-        row.get("caption", ""),
-        " ".join(parse_json_list(row.get("objects"))),
-        " ".join(parse_json_list(row.get("scene_tags"))),
-        " ".join(attributes["lighting"]),
-        " ".join(attributes["color"]),
-    ])
+    return {
+        "caption": image_record.get("caption", ""),
+        "objects": " ".join(parse_json_list(image_record.get("objects"))),
+        "scene_tags": " ".join(parse_json_list(image_record.get("scene_tags"))),
+        "attributes": " ".join(attributes["lighting"] + attributes["color"]),
+    }
 
 # Keyword score
 def keyword_score(query: str, text: str) -> float:
@@ -32,9 +38,22 @@ def keyword_score(query: str, text: str) -> float:
     return matched / len(query_terms)
 
 
-# Similarity (distance) score
+# Similarity score
 def semantic_score(distance: float) -> float:
     return 1.0 / (1.0 + distance)
+
+
+# Calculate field keyword score
+def field_keyword_scores(query: str, image_record: dict) -> dict[str, float]:
+    """Calculate keyword score for each metadata field."""
+    fields = build_search_fields(image_record)
+
+    return {
+        "caption": keyword_score(query, fields["caption"]),
+        "objects": keyword_score(query, fields["objects"]),
+        "scene_tags": keyword_score(query, fields["scene_tags"]),
+        "attributes": keyword_score(query, fields["attributes"]),
+    }
 
 
 # Search images by text query
@@ -45,44 +64,59 @@ def semantic_search(query: str, limit: int) -> list[dict]:
 
     # Step 1: recall candidates
     # Get most similar images with id and embedding distance info
-    matches = search_embeddings(query, limit=recall_limit)
-    if not matches:
+    vector_hits = search_embeddings(query, limit=recall_limit)
+    if not vector_hits:
         return []
-    image_ids = [match["id"] for match in matches]
+    image_ids = [vector_hit["id"] for vector_hit in vector_hits]
 
     # Get images records
-    rows = get_images_by_ids(image_ids)
+    image_records = get_images_by_ids(image_ids)
 
     # ID -> embedding distance info
-    match_map = {match["id"]: match for match in matches}
+    vector_hit_by_id = {vector_hit["id"]: vector_hit for vector_hit in vector_hits}
     # ID -> image records
-    row_map = {row["id"]: dict(row) for row in rows}
+    image_record_by_id = {
+        image_record["id"]: dict(image_record)
+        for image_record in image_records
+    }
 
     scored_results = []
 
     # Step 2: rerank
     for image_id in image_ids:
-        if image_id not in row_map:
+        if image_id not in image_record_by_id:
             continue
         
         # Image records
-        row = row_map[image_id]
+        image_record = image_record_by_id[image_id]
         # Embedding distance info
-        match = match_map[image_id]
+        vector_hit = vector_hit_by_id[image_id]
+
+        global_score = semantic_score(vector_hit["distance"])
         
-        # Build text for key_score
-        text = build_rerank_text(row)
+        field_scores = field_keyword_scores(query, image_record)
 
-        sem_score = semantic_score(match["distance"])
-        key_score = keyword_score(query, text)
+        final_score = (
+            global_weight * global_score
+            + caption_weight * field_scores["caption"]
+            + object_weight * field_scores["objects"]
+            + scene_weight * field_scores["scene_tags"]
+            + attribute_weight * field_scores["attributes"]
+        )
 
-        # Final score = similarity + keyword
-        final_score = sem_score + keyword_weight * key_score
-
-        row["score"] = final_score
-        scored_results.append(row)
+        image_record["final_score"] = final_score
+        # For explainable result
+        image_record["global_score"] = global_score
+        image_record["field_score_sum"] = (
+            caption_weight * field_scores["caption"]
+            + object_weight * field_scores["objects"]
+            + scene_weight * field_scores["scene_tags"]
+            + attribute_weight * field_scores["attributes"]
+        )
+        image_record["field_score_each"] = field_scores
+        scored_results.append(image_record)
 
     # Step 3: sort by final score
-    scored_results.sort(key=lambda x: x["score"], reverse=True)
+    scored_results.sort(key=lambda x: x["final_score"], reverse=True)
 
     return scored_results[:limit]
