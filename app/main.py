@@ -47,7 +47,8 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
 
-# Helper function: Build inbox gallery data
+# Helper function: Build main gallery data
+# Return image data and records
 def build_gallery() -> list[dict]:
     '''
     Merge inbox images and indexed metadata
@@ -104,10 +105,10 @@ def build_gallery() -> list[dict]:
     return images
 
 
-# Dashboard page
+# Build dashboard page
 @app.get("/")
 def dashboard(request: Request, q: str = ""):
-    # Build inbox gallery data
+    # Return main gallery data (image data and records)
     images = build_gallery()
     
     # Return webpage
@@ -115,9 +116,9 @@ def dashboard(request: Request, q: str = ""):
         "dashboard.html",
         {
             "request": request,
-            "images": images,
+            "images": images, # For Main Gallery
             "query": q,
-            "search_results": [],
+            "search_results": [], # For Search Result
         },
     )
 
