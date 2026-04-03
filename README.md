@@ -1,25 +1,27 @@
 # vision-index
 
-vision-index is a small local AI project for indexing personal images.
+`vision-index` is a small local image indexing project.
 
-It scans images from `gallery/inbox`, analyzes them with a local vision-language model, stores metadata in SQLite, stores embeddings in Chroma, and supports semantic image search through a simple FastAPI dashboard.
+It scans images from `gallery/inbox`, analyzes them with a local vision-language model through Ollama, stores structured metadata in SQLite, stores embeddings in Chroma, and provides semantic image search in a simple FastAPI dashboard.
 
 ## Features
 
 - upload images from the web UI
 - scan local images from `gallery/inbox`
+- generate thumbnails for gallery display
 - analyze images with a local VLM via Ollama
-- generate structured metadata:
-  - caption
-  - objects
-  - scene tags
-  - attributes
-- generate thumbnails
+- extract structured metadata:
+  - `caption`
+  - `objects`
+  - `scene_tags`
+  - `attributes.lighting`
+  - `attributes.color`
 - store metadata in SQLite
 - store embeddings in Chroma
 - search images with natural language
+- rerank search results with field-aware keyword scores
 - evaluate retrieval quality with golden queries
-- view all images and search results in a simple dashboard
+- delete images from both storage and index
 
 ## Stack
 
@@ -27,81 +29,85 @@ It scans images from `gallery/inbox`, analyzes them with a local vision-language
 - FastAPI
 - Jinja2
 - SQLite
-- Chroma
+- ChromaDB
 - Ollama
+- Pillow
 
-## Project structure
-
-```text
-vision-index/
-├─ app/
-│  ├─ ai/
-│  │  └─ llm.py
-│  ├─ services/
-│  │  ├─ pipeline.py
-│  │  ├─ search.py
-│  │  └─ helper.py
-│  ├─ storage/
-│  │  ├─ db.py
-│  │  └─ vector_db.py
-│  ├─ templates/
-│  │  └─ dashboard.html
-│  ├─ static/
-│  ├─ config.py
-│  └─ main.py
-├─ data/
-│  ├─ images.db
-│  └─ vector/
-├─ gallery/
-│  ├─ inbox/
-│  └─ thumbs/
-├─ evaluation/
-│  ├─ eval_search.py
-│  ├─ golden_queries.json
-│  └─ result_v1.json
-├─ scripts/
-│  ├─ reset.py
-│  └─ test_pipeline.py
-├─ .env.example
-├─ requirements.txt
-└─ README.md
-```
-
-## Pipeline
+## How It Works
 
 ```text
 gallery/inbox
-→
-scan images
-→
-generate thumbnail
-→
-analyze image with VLM
-→
-generate metadata
-→
-store metadata in SQLite
-→
-generate embedding
-→
-store embedding in Chroma
-→
-semantic search in dashboard
+  -> scan supported images
+  -> generate thumbnail
+  -> analyze image with Ollama VLM
+  -> build structured metadata
+  -> save metadata in SQLite
+  -> generate embedding
+  -> save embedding in Chroma
+  -> search and rerank in dashboard
+```
+
+## Project Structure
+
+```text
+vision-index/
+|-- app/
+|   |-- ai/
+|   |   `-- llm.py
+|   |-- services/
+|   |   |-- helper.py
+|   |   |-- pipeline.py
+|   |   `-- search.py
+|   |-- storage/
+|   |   |-- db.py
+|   |   `-- vector_db.py
+|   |-- static/
+|   |   `-- style.css
+|   |-- templates/
+|   |   `-- dashboard.html
+|   |-- config.py
+|   `-- main.py
+|-- data/
+|-- evaluation/
+|   |-- eval_search.py
+|   |-- golden_queries.json
+|   `-- result_v*.json
+|-- gallery/
+|   |-- inbox/
+|   `-- thumbs/
+|-- scripts/
+|   |-- rename_images.py
+|   `-- reset_db.py
+|-- .env.example
+|-- requirements.txt
+`-- README.md
 ```
 
 ## Setup
 
-### 1. Install dependencies
+### 1. Create a virtual environment
+
+```bash
+python -m venv .venv
+```
+
+Windows PowerShell:
+
+```bash
+.venv\Scripts\Activate.ps1
+```
+
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Configure environment
+### 3. Configure environment variables
 
-Create a `.env` file if needed.
+Create a `.env` file in the project root.
 
-Example values:
+Example:
 
 ```env
 OLLAMA_HOST=http://127.0.0.1:11434
@@ -109,44 +115,91 @@ VISION_MODEL=qwen3.5:4b
 EMBEDDING_MODEL=nomic-embed-text:latest
 ```
 
-### 3. Start Ollama
+### 4. Start Ollama and pull models
 
-Make sure both the vision model and embedding model are available in Ollama.
+Make sure Ollama is running and the required models are available:
+
 ```bash
 ollama pull qwen3.5:4b
 ollama pull nomic-embed-text:latest
 ```
 
-### 4. Run the app
+### 5. Run the app
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-### 5. Open in browser
+Open:
 
 ```text
-http://localhost:8000
+http://127.0.0.1:8000
 ```
 
-## Current scope
+## Usage
 
-This project is intentionally kept simple:
+### Dashboard
 
-* local-first
-* small codebase
-* easy to read
-* easy to extend later
+- upload images from the home page
+- browse all files currently in `gallery/inbox`
+- run the indexing pipeline from the UI
+- search with natural language queries
+- inspect indexed metadata in the gallery cards
+- delete an image and remove its embedding at the same time
 
-Current focus:
+### Indexing pipeline
 
-* image understanding
-* metadata indexing
-* embedding-based retrieval
-* basic retrieval evaluation
+The pipeline:
 
-Future direction:
+- scans supported image formats: `.jpg`, `.jpeg`, `.png`, `.webp`
+- skips files that already exist in SQLite
+- processes new images with up to 3 worker threads
+- generates thumbnails in `gallery/thumbs`
+- writes metadata to `data/images.db`
+- writes embeddings to `data/vector/`
 
-* better search quality
-* richer metadata
-* lightweight agent workflows
+### Search
+
+Search is a two-stage flow:
+
+1. recall candidates from Chroma using embeddings
+2. rerank them with a weighted combination of semantic score and keyword matches across caption, objects, scene tags, and attributes
+
+Current search-related settings live in `app/config.py`.
+
+## Evaluation
+
+Run the offline retrieval evaluation with:
+
+```bash
+python -m evaluation.eval_search
+```
+
+This reads `evaluation/golden_queries.json` and writes the latest report to `evaluation/result.json`.
+
+Reported metrics:
+
+- `top1_accuracy`
+- `precision@5`
+- `recall@5`
+
+## Utility Scripts
+
+Reset SQLite and Chroma data:
+
+```bash
+python scripts/reset_db.py
+```
+
+Rename a dataset into sequential file names:
+
+```bash
+python scripts/rename_images.py
+```
+
+## Notes
+
+- this project is local-first
+- Ollama must be reachable from the app process
+- `data/` and `gallery/thumbs/` are created as the app runs
+- the current UI is intentionally simple and focused on indexing plus retrieval
