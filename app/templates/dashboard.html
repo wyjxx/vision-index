@@ -63,10 +63,17 @@
                 <div class="filename">{{ img.file_name }}</div>
 
                 <div class="status indexed">Indexed</div>
+                <div class="score-chip">Final Score: {{ "%.3f"|format(img.final_score) }}</div>
 
                 <details class="meta-box">
                     <summary>Metadata</summary>
 
+                    <p><b>Semantic Score:</b> {{ "%.3f"|format(img.global_score) }}</p>
+                    <p><b>Field Match Score Sum:</b> {{ "%.3f"|format(img.field_score_sum) }}</p>
+                    <p><b>Caption Match:</b> {{ "%.3f"|format(img.field_score_each.caption) }}</p>
+                    <p><b>Objects Match:</b> {{ "%.3f"|format(img.field_score_each.objects) }}</p>
+                    <p><b>Scene Match:</b> {{ "%.3f"|format(img.field_score_each.scene_tags) }}</p>
+                    <p><b>Attributes Match:</b> {{ "%.3f"|format(img.field_score_each.attributes) }}</p>
                     <p><b>Caption:</b> {{ img.caption }}</p>
                     <p><b>Objects:</b> {{ img.objects }}</p>
                     <p><b>Scene:</b> {{ img.scene_tags }}</p>
