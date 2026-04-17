@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from app.services.search import semantic_search
+from app.services.search import semantic_search, DEFAULT_SEARCH_WEIGHTS
 
 
 # Paths
@@ -14,6 +14,9 @@ RESULT_PATH = EVAL_DIR / "result.json"
 # Search config
 SEARCH_LIMIT = 10
 TOP_K = 5
+
+# Default evaluation weights follow app search config.
+DEFAULT_EVAL_WEIGHTS = dict(DEFAULT_SEARCH_WEIGHTS)
 
 
 def load_golden_queries(path: Path) -> list[dict]:
@@ -93,7 +96,7 @@ def calc_recall_at_k(
     return hits / len(relevant_files)
 
 
-def evaluate_one_query(item: dict) -> dict:
+def evaluate_one_query(item: dict, weights: dict | None = None) -> dict:
     """Run search and evaluate one query."""
     query = item["query"]
     query_type = item.get("type", "")
@@ -101,7 +104,7 @@ def evaluate_one_query(item: dict) -> dict:
     best_files = get_best_files(item)
 
     # Run search
-    results = semantic_search(query, limit=SEARCH_LIMIT)
+    results = semantic_search(query, limit=SEARCH_LIMIT, weights=weights)
 
     # Extract ordered file names
     predicted_files = extract_file_names(results)
@@ -132,6 +135,24 @@ def calc_average(items: list[dict], key: str) -> float:
     return sum(item[key] for item in items) / len(items)
 
 
+def build_summary(results: list[dict], weights: dict | None = None) -> dict:
+    """Build aggregate metrics for one evaluation run."""
+    summary = {
+        "query_count": len(results),
+        "search_limit": SEARCH_LIMIT,
+        "metric_top_k": TOP_K,
+        "avg_top1_accuracy": round(calc_average(results, "top1_accuracy"), 4),
+        "avg_precision_at_5": round(calc_average(results, "precision_at_5"), 4),
+        "avg_recall_at_5": round(calc_average(results, "recall_at_5"), 4),
+    }
+
+    # Attach the evaluated weight set for comparison.
+    if weights:
+        summary["weights"] = dict(weights)
+
+    return summary
+
+
 def save_results(path: Path, results: list[dict], summary: dict) -> None:
     """Save detailed results and summary to json file."""
     data = {
@@ -155,27 +176,31 @@ def print_query_result(item: dict) -> None:
     print(f"Recall@5: {item['recall_at_5']:.2f}")
 
 
-def main() -> None:
-    """Run full search evaluation."""
-    golden_queries = load_golden_queries(GOLDEN_PATH)
-
+def run_full_evaluation(
+    weights: dict | None = None,
+    golden_path: Path = GOLDEN_PATH,
+) -> tuple[list[dict], dict]:
+    """Run full evaluation with optional search weights."""
+    # Load golden query annotations.
+    golden_queries = load_golden_queries(golden_path)
     all_results = []
 
-    # Evaluate each query
+    # Evaluate each query with the same weight set.
     for item in golden_queries:
-        result = evaluate_one_query(item)
+        result = evaluate_one_query(item, weights=weights)
         all_results.append(result)
-        print_query_result(result)
 
-    # Calculate summary metrics
-    summary = {
-        "query_count": len(all_results),
-        "search_limit": SEARCH_LIMIT,
-        "metric_top_k": TOP_K,
-        "avg_top1_accuracy": round(calc_average(all_results, "top1_accuracy"), 4),
-        "avg_precision_at_5": round(calc_average(all_results, "precision_at_5"), 4),
-        "avg_recall_at_5": round(calc_average(all_results, "recall_at_5"), 4),
-    }
+    # Build summary metrics for this evaluation run.
+    summary = build_summary(all_results, weights=weights)
+    return all_results, summary
+
+
+def main() -> None:
+    """Run full search evaluation."""
+    all_results, summary = run_full_evaluation(weights=DEFAULT_EVAL_WEIGHTS)
+
+    for result in all_results:
+        print_query_result(result)
 
     # Save full results
     save_results(RESULT_PATH, all_results, summary)

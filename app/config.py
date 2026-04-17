@@ -43,8 +43,10 @@ chroma_collection = "vision_index_images"
 # Search setting
 recall_limit = 15
 search_limit = 10
-global_weight = 0.40
-caption_weight = 0.35
-object_weight = 0.30
-scene_weight = 0.20
-attribute_weight = 0.15
+
+# Search score weights
+global_weight = 0.75
+caption_weight = 0.1
+object_weight = 0.05
+scene_weight = 0.05
+attribute_weight = 0.2
