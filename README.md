@@ -1,6 +1,6 @@
-# vision-index
+# Vision-Index
 
-`vision-index` is a small local image indexing project.
+`Vision-Index` is a small local image indexing project.
 
 It scans images from `gallery/inbox`, analyzes them with a local vision-language model through Ollama, stores structured metadata in SQLite, stores embeddings in Chroma, and provides semantic image search in a simple FastAPI dashboard.
 
@@ -70,7 +70,9 @@ vision-index/
 |-- data/
 |-- evaluation/
 |   |-- eval_search.py
+|   |-- grid_search.py
 |   |-- golden_queries.json
+|   |-- grid_search_result.json
 |   `-- result_v*.json
 |-- gallery/
 |   |-- inbox/
@@ -182,6 +184,12 @@ Reported metrics:
 - `top1_accuracy`
 - `precision@5`
 - `recall@5`
+
+Grid search is used to tune rerank weights on the golden query set:
+
+```bash
+python -m evaluation.grid_search
+```
 
 ## Utility Scripts
 

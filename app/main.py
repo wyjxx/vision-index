@@ -30,7 +30,7 @@ Responsibilities:
 '''
 
 
-app = FastAPI(title="vision-index")
+app = FastAPI(title="Vision-Index")
 
 
 # Initialize database on startup
