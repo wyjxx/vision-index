@@ -1,8 +1,8 @@
 # Vision-Index
 
-`Vision-Index` is a small local image indexing project.
+`Vision-Index` is a local-first image indexing and retrieval project.
 
-It scans images from `gallery/inbox`, analyzes them with a local vision-language model through Ollama, stores structured metadata in SQLite, stores embeddings in Chroma, and provides semantic image search in a simple FastAPI dashboard.
+It ingests images from `gallery/inbox`, extracts structured visual metadata with a local vision-language model via Ollama, stores metadata in SQLite and embeddings in Chroma, and serves semantic search through a lightweight FastAPI dashboard.
 
 ## Features
 
@@ -10,12 +10,7 @@ It scans images from `gallery/inbox`, analyzes them with a local vision-language
 - scan local images from `gallery/inbox`
 - generate thumbnails for gallery display
 - analyze images with a local VLM via Ollama
-- extract structured metadata:
-  - `caption`
-  - `objects`
-  - `scene_tags`
-  - `attributes.lighting`
-  - `attributes.color`
+- extract structured metadata: `caption`, `objects`, `scene_tags`, `attributes.lighting`, `attributes.color`
 - store metadata in SQLite
 - store embeddings in Chroma
 - search images with natural language
@@ -37,14 +32,15 @@ It scans images from `gallery/inbox`, analyzes them with a local vision-language
 
 ```text
 gallery/inbox
-  -> scan supported images
-  -> generate thumbnail
-  -> analyze image with Ollama VLM
+  -> ingest new images
+  -> analyze with Ollama VLM
   -> build structured metadata
   -> save metadata in SQLite
   -> generate embedding
   -> save embedding in Chroma
-  -> search and rerank in dashboard
+  -> search by natural language query
+  -> rerank results
+  -> display results in dashboard
 ```
 
 ## Project Structure
@@ -149,43 +145,43 @@ http://127.0.0.1:8000
 - inspect indexed metadata in the gallery cards
 - delete an image and remove its embedding at the same time
 
-### Indexing pipeline
-
-The pipeline:
-
-- scans supported image formats: `.jpg`, `.jpeg`, `.png`, `.webp`
-- skips files that already exist in SQLite
-- processes new images with up to 3 worker threads
-- generates thumbnails in `gallery/thumbs`
-- writes metadata to `data/images.db`
-- writes embeddings to `data/vector/`
-
 ### Search
 
-Search is a two-stage flow:
+Search uses a two-stage flow:
 
 1. recall candidates from Chroma using embeddings
 2. rerank them with a weighted combination of semantic score and keyword matches across caption, objects, scene tags, and attributes
 
-Current search-related settings live in `app/config.py`.
+`final_score` is computed as:
+
+```text
+final_score =
+  global_weight * global_score
+  + caption_weight * caption_match
+  + object_weight * objects_match
+  + scene_weight * scene_tags_match
+  + attribute_weight * attributes_match
+```
+
+- `global_score` is derived from distance between query and embedding
+- `caption_match`, `objects_match`, `scene_tags_match`, and `attributes_match` are keyword match scores
+- weights are configured in `app/config.py`: `global_weight`, `caption_weight`, `object_weight`, `scene_weight`, `attribute_weight`
 
 ## Evaluation
 
-Run the offline retrieval evaluation with:
+Offline evaluation:
 
 ```bash
 python -m evaluation.eval_search
 ```
 
-This reads `evaluation/golden_queries.json` and writes the latest report to `evaluation/result.json`.
-
-Reported metrics:
+Metrics:
 
 - `top1_accuracy`
 - `precision@5`
 - `recall@5`
 
-Grid search is used to tune rerank weights on the golden query set:
+Grid search for rerank weights:
 
 ```bash
 python -m evaluation.grid_search
