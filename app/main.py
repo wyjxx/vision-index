@@ -13,7 +13,7 @@ from app.services.helper import (
     parse_attributes,
     parse_json_list,
 )
-from app.services.search import semantic_search
+from app.services.search import search
 from app.storage.db import get_all_images, init_db, delete_image_by_id, get_image_by_path
 from app.storage.vector_db import delete_embedding
 
@@ -154,7 +154,7 @@ def search_page(request: Request, q: str = Query(default="")):
     images = build_gallery()
     
     # Search query and format results for display.
-    search_results = semantic_search(q, limit=search_limit) if q.strip() else []
+    search_results = search(q, search_limit=search_limit) if q.strip() else []
     search_results = [format_image_record(row) for row in search_results]
     
     # Refresh webpage

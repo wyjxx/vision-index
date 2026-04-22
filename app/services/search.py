@@ -79,9 +79,9 @@ def field_keyword_scores(query: str, image_record: dict) -> dict[str, float]:
 
 
 # Search images by text query
-def semantic_search(
+def search(
     query: str,
-    limit: int,
+    search_limit: int,
     weights: dict | None = None,
 ) -> list[dict]:
     query = query.strip()
@@ -148,4 +148,4 @@ def semantic_search(
     # Step 3: sort by final score
     scored_results.sort(key=lambda x: x["final_score"], reverse=True)
 
-    return scored_results[:limit]
+    return scored_results[:search_limit]

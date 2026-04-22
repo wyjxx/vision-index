@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from app.services.search import semantic_search, DEFAULT_SEARCH_WEIGHTS
+from app.services.search import search, DEFAULT_SEARCH_WEIGHTS
 
 
 # Paths
@@ -104,7 +104,7 @@ def evaluate_one_query(item: dict, weights: dict | None = None) -> dict:
     best_files = get_best_files(item)
 
     # Run search
-    results = semantic_search(query, limit=SEARCH_LIMIT, weights=weights)
+    results = search(query, search_limit=SEARCH_LIMIT, weights=weights)
 
     # Extract ordered file names
     predicted_files = extract_file_names(results)
