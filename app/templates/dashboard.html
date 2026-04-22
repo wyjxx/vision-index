@@ -3,147 +3,177 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <!-- Page title -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vision-Index</title>
-
-    <!-- Load external CSS file -->
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-
-    <!-- Page title -->
-    <h1>Vision-Index</h1>
-
-    <!-- Top action bar -->
-    <div class="topbar">
-
-        <!-- Upload image -->
-        <form action="/upload" method="post" enctype="multipart/form-data" class="inline-form">
-            <input type="file" name="file" accept="image/*" required>
-            <button type="submit">Upload</button>
-        </form>
-
-        <!-- Run pipeline -->
-        <form action="/run-pipeline" method="post" class="inline-form">
-            <button type="submit">Run Pipeline</button>
-        </form>
-
-        <!-- Search indexed images -->
-        <form action="/search" method="get" class="inline-form search-form">
-            <input
-                type="text"
-                name="q"
-                value="{{ query }}"
-                placeholder="Search indexed images..."
-            >
-            <button type="submit">Search</button>
-        </form>
-
-    </div>
-
-    <!-- Search results -->
-    {% if query %}
-    <section class="section-block">
-
-        <h2>Search results</h2>
-        <p class="section-subtitle">Query: <b>{{ query }}</b></p>
-
-        {% if search_results %}
-        <div class="grid">
-            {% for img in search_results %}
-            <div class="card">
-
-                <!-- Open original image -->
-                <a href="/gallery/{{ img.file_path }}" target="_blank" class="image-link">
-                    <img src="/gallery/{{ img.thumbnail_path }}" alt="{{ img.file_name }}">
-                </a>
-
-                <div class="filename">{{ img.file_name }}</div>
-
-                <div class="status indexed">Indexed</div>
-                <div class="score-chip">Final Score: {{ "%.3f"|format(img.final_score) }}</div>
-
-                <details class="meta-box">
-                    <summary>Metadata</summary>
-
-                    <p><b>Semantic Score:</b> {{ "%.3f"|format(img.global_score) }}</p>
-                    <p><b>Field Match Score Sum:</b> {{ "%.3f"|format(img.field_score_sum) }}</p>
-                    <p><b>Caption Match:</b> {{ "%.3f"|format(img.field_score_each.caption) }}</p>
-                    <p><b>Objects Match:</b> {{ "%.3f"|format(img.field_score_each.objects) }}</p>
-                    <p><b>Scene Match:</b> {{ "%.3f"|format(img.field_score_each.scene_tags) }}</p>
-                    <p><b>Attributes Match:</b> {{ "%.3f"|format(img.field_score_each.attributes) }}</p>
-                    <p><b>Caption:</b> {{ img.caption }}</p>
-                    <p><b>Objects:</b> {{ img.objects }}</p>
-                    <p><b>Scene:</b> {{ img.scene_tags }}</p>
-                    <p><b>Attributes:</b> {{ img.attributes }}</p>
-                </details>
-
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Vision-Index</h1>
+                <p class="page-subtitle">Your Local Gallery With Indexing and Retrieval</p>
             </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <p class="empty-text">No search results found.</p>
+        </header>
+
+        <section class="topbar">
+            <section class="card-surface topbar-card topbar-card-wide">
+                <div class="form-copy">
+                    <span class="form-label">Upload Images</span>
+                    <span class="form-hint">Add a new asset to the inbox, then run indexing</span>
+                </div>
+
+                <div class="action-row">
+                    <form action="/upload" method="post" enctype="multipart/form-data" class="inline-form upload-form compact-form">
+                        <input type="file" name="file" accept="image/*" required>
+                        <button type="submit" class="button button-primary">Upload</button>
+                    </form>
+
+                    <form action="/run-pipeline" method="post" class="inline-form compact-form">
+                        <button type="submit" class="button">Run Indexing</button>
+                    </form>
+                </div>
+            </section>
+
+            <form action="/search" method="get" class="inline-form search-form card-surface topbar-card">
+                <div class="form-copy">
+                    <span class="form-label">Search Images</span>
+                    <span class="form-hint">Search images by extracted metadata</span>
+                </div>
+                <div class="search-input-group">
+                    <input
+                        type="text"
+                        name="q"
+                        value="{{ query }}"
+                        placeholder="Enter anything to search..."
+                    >
+                    <button type="submit" class="button button-primary">Search</button>
+                </div>
+            </form>
+        </section>
+
+        {% if query %}
+        <section class="section-block">
+            <div class="section-heading">
+                <div>
+                    <h2>Search results</h2>
+                    <p class="section-subtitle">Query: <b>{{ query }}</b></p>
+                </div>
+                <span class="section-chip">{{ search_results | length }} results</span>
+            </div>
+
+            {% if search_results %}
+            <div class="grid">
+                {% for img in search_results %}
+                <article class="card">
+                    <a href="/gallery/{{ img.file_path }}" target="_blank" class="image-link">
+                        <img src="/gallery/{{ img.thumbnail_path }}" alt="{{ img.file_name }}">
+                    </a>
+
+                    <div class="card-body">
+                        <div class="card-head">
+                            <div class="filename">{{ img.file_name }}</div>
+                            <div class="card-badges">
+                                <span class="status indexed">Indexed</span>
+                                <details class="score-details">
+                                    <summary class="score-summary">
+                                        <span class="score-chip">Score {{ "%.3f"|format(img.final_score) }}</span>
+                                    </summary>
+                                    <div class="score-popover">
+                                        <p><b>Semantic:</b> {{ "%.3f"|format(img.global_score) }}</p>
+                                        <p><b>Field Sum:</b> {{ "%.3f"|format(img.field_score_sum) }}</p>
+                                        <p><b>Caption Match:</b> {{ "%.3f"|format(img.field_score_each.caption) }}</p>
+                                        <p><b>Objects Match:</b> {{ "%.3f"|format(img.field_score_each.objects) }}</p>
+                                        <p><b>Scene Match:</b> {{ "%.3f"|format(img.field_score_each.scene_tags) }}</p>
+                                        <p><b>Attributes Match:</b> {{ "%.3f"|format(img.field_score_each.attributes) }}</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+
+                        <p class="summary-text">
+                            {{ img.caption if img.caption else "No caption metadata available." }}
+                        </p>
+
+                        <details class="meta-box">
+                            <summary class="more-summary">More</summary>
+                            <div class="meta-content">
+                                <p><b>Caption:</b> {{ img.caption }}</p>
+                                <p><b>Objects:</b> {{ img.objects }}</p>
+                                <p><b>Scene:</b> {{ img.scene_tags }}</p>
+                                <p><b>Attributes:</b> {{ img.attributes }}</p>
+                            </div>
+                        </details>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="empty-text">No search results found.</p>
+            {% endif %}
+        </section>
         {% endif %}
 
-    </section>
-    {% endif %}
-
-    <!-- Main gallery -->
-    <section class="section-block">
-
-        <h2>Gallery</h2>
-
-        <div class="grid">
-            {% for image in images %}
-            <div class="card">
-
-                <!-- Open original image -->
-                <a href="{{ image.image_path }}" target="_blank" class="image-link">
-                    <img src="{{ image.thumb_path }}" alt="{{ image.file_name }}">
-                </a>
-
-                <div class="filename">{{ image.file_name }}</div>
-
-                {% if image.indexed %}
-                <div class="status indexed">Indexed</div>
-                
-                <!-- Delete button -->
-                <form action="/delete" method="post">
-                    <input type="hidden" name="file_name" value="{{ image.file_name }}">
-                    <button type="submit" onclick="return confirm('Delete this image?')">
-                        Delete
-                    </button>
-                </form>
-
-                <details class="meta-box">
-                    <summary>Metadata</summary>
-
-                    <p><b>Caption:</b> {{ image.caption }}</p>
-                    <p><b>Objects:</b> {{ image.objects }}</p>
-                    <p><b>Scene:</b> {{ image.scene_tags }}</p>
-                    <p><b>Attributes:</b> {{ image.attributes }}</p>
-                </details>
-
-                {% else %}
-                <div class="status pending">Pending</div>
-                
-                <!-- Delete button -->
-                <form action="/delete" method="post">
-                    <input type="hidden" name="file_name" value="{{ image.file_name }}">
-                    <button type="submit" onclick="return confirm('Delete this image?')">
-                        Delete
-                    </button>
-                </form>
-                {% endif %}
-
+        <section class="section-block">
+            <div class="section-heading">
+                <div>
+                    <h2>Gallery</h2>
+                    <p class="section-subtitle">All uploaded images in the current inbox.</p>
+                </div>
+                <span class="section-chip">{{ images | length }} images</span>
             </div>
-            {% endfor %}
-        </div>
 
-    </section>
+            <div class="grid">
+                {% for image in images %}
+                <article class="card">
+                    <a href="{{ image.image_path }}" target="_blank" class="image-link">
+                        <img src="{{ image.thumb_path }}" alt="{{ image.file_name }}">
+                    </a>
 
+                    <div class="card-body">
+                        <div class="card-head">
+                            <div class="filename">{{ image.file_name }}</div>
+                            <div class="card-badges">
+                                <span class="status {{ 'indexed' if image.indexed else 'pending' }}">
+                                    {{ 'Indexed' if image.indexed else 'Pending' }}
+                                </span>
+                                <form action="/delete" method="post" class="chip-form">
+                                    <input type="hidden" name="file_name" value="{{ image.file_name }}">
+                                    <button type="submit" class="action-chip action-chip-danger" onclick="return confirm('Delete this image?')">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <p class="summary-text">
+                            {% if image.indexed and image.caption %}
+                            {{ image.caption }}
+                            {% elif image.indexed %}
+                            Metadata is available for this image.
+                            {% else %}
+                            This image is waiting for pipeline processing.
+                            {% endif %}
+                        </p>
+
+                        {% if image.indexed %}
+                        <details class="meta-box">
+                            <summary class="more-summary">More</summary>
+                            <div class="meta-content">
+                                <p><b>Caption:</b> {{ image.caption }}</p>
+                                <p><b>Objects:</b> {{ image.objects }}</p>
+                                <p><b>Scene:</b> {{ image.scene_tags }}</p>
+                                <p><b>Attributes:</b> {{ image.attributes }}</p>
+                            </div>
+                        </details>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
