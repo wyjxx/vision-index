@@ -1,9 +1,11 @@
 # Vision-Index
-**Local-first multimodal image indexing and semantic retrieval system.**
+**Local-first multimodal image indexing and semantic retrieval system**
 
 ## Introduction
 
-Vision-Index lets users upload images and search them with natural-language queries. It combines local VLM-based image understanding, text embeddings, vector retrieval, and two-stage search with reranking, all accessible through a FastAPI web dashboard.
+Vision-Index lets users upload images and search them with natural-language queries. 
+
+It combines local VLM-based image understanding, text embeddings, vector retrieval, and two-stage search with reranking, all accessible through a FastAPI web dashboard.
 
 **Tech Stack:** Python · FastAPI · Ollama · SQLite · ChromaDB
 
