@@ -74,7 +74,7 @@ The current offline evaluation uses 15 manually curated queries covering:
 |---:|---:|---:|
 | 80.00% | 57.33% | 70.60% |
 
-Historical results from the weight-selection benchmark, not a held-out test set. Current default weights differ.
+Historical results from the weight-selection benchmark, not a held-out test set.
 
 ## Quick Start
 
