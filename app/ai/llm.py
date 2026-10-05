@@ -83,6 +83,7 @@ def analyze_image(image_path: Path) -> dict:
             "stream": False,
             "format": schema,
             "think": False, # Disable think mode
+            "options": {"num_ctx": 8192},
         },
         timeout=120,
     )

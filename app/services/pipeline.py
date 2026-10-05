@@ -104,7 +104,7 @@ def run_pipeline() -> dict:
 
     # Parallel indexing
     with ThreadPoolExecutor(max_workers=3) as executor:
-        executor.map(index_image, new_images)
+        list(executor.map(index_image, new_images))
 
     # Return count results
     return {

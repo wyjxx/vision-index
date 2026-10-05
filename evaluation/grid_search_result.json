@@ -1,0 +1,7405 @@
+{
+  "search_space": {
+    "global_weight": [
+      0.5,
+      1.0,
+      1.5
+    ],
+    "caption_weight": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "object_weight": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "scene_weight": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "attribute_weight": [
+      0.05,
+      0.1,
+      0.2
+    ]
+  },
+  "candidate_count": 243,
+  "ranking_priority": [
+    "avg_precision_at_5",
+    "avg_recall_at_5",
+    "avg_top1_accuracy"
+  ],
+  "best_result": {
+    "rank_key": {
+      "avg_precision_at_5": 0.5733,
+      "avg_recall_at_5": 0.706,
+      "avg_top1_accuracy": 0.8
+    },
+    "weights": {
+      "global_weight": 0.5,
+      "caption_weight": 0.1,
+      "object_weight": 0.05,
+      "scene_weight": 0.05,
+      "attribute_weight": 0.2
+    },
+    "summary": {
+      "query_count": 15,
+      "search_limit": 10,
+      "metric_top_k": 5,
+      "avg_top1_accuracy": 0.8,
+      "avg_precision_at_5": 0.5733,
+      "avg_recall_at_5": 0.706,
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      }
+    }
+  },
+  "top_results": [
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    }
+  ],
+  "all_results": [
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5733,
+        "avg_recall_at_5": 0.706,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6965,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6965,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6965,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6965,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6927,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6894,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.56,
+        "avg_recall_at_5": 0.6878,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6832,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6816,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6798,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.8
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.8,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6783,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.1,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.1,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.676,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6743,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5467,
+        "avg_recall_at_5": 0.6743,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6721,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6683,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6683,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6683,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6683,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6683,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.05,
+        "object_weight": 0.2,
+        "scene_weight": 0.05,
+        "attribute_weight": 0.2
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6683,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.05,
+          "object_weight": 0.2,
+          "scene_weight": 0.05,
+          "attribute_weight": 0.2
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "avg_top1_accuracy": 0.7333
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.7333,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.6576,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.1,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.1,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.0,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.0,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 1.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.1,
+        "scene_weight": 0.2,
+        "attribute_weight": 0.1
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 1.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.1,
+          "scene_weight": 0.2,
+          "attribute_weight": 0.1
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.05,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.5333,
+        "avg_recall_at_5": 0.656,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.05,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.52,
+        "avg_recall_at_5": 0.6498,
+        "avg_top1_accuracy": 0.6667
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.2,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6667,
+        "avg_precision_at_5": 0.52,
+        "avg_recall_at_5": 0.6498,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.2,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    },
+    {
+      "rank_key": {
+        "avg_precision_at_5": 0.52,
+        "avg_recall_at_5": 0.6498,
+        "avg_top1_accuracy": 0.6
+      },
+      "weights": {
+        "global_weight": 0.5,
+        "caption_weight": 0.1,
+        "object_weight": 0.2,
+        "scene_weight": 0.1,
+        "attribute_weight": 0.05
+      },
+      "summary": {
+        "query_count": 15,
+        "search_limit": 10,
+        "metric_top_k": 5,
+        "avg_top1_accuracy": 0.6,
+        "avg_precision_at_5": 0.52,
+        "avg_recall_at_5": 0.6498,
+        "weights": {
+          "global_weight": 0.5,
+          "caption_weight": 0.1,
+          "object_weight": 0.2,
+          "scene_weight": 0.1,
+          "attribute_weight": 0.05
+        }
+      }
+    }
+  ]
+}
