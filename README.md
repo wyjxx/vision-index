@@ -7,19 +7,19 @@ Vision-Index lets users upload images and search them with natural-language quer
 
 **Tech Stack:** Python · FastAPI · Ollama · SQLite · ChromaDB
 
+---
+
 ## Demo
 
-### Homepage
-
-Upload images, run indexing, and inspect generated captions, objects, scene tags, and attributes.
+### Upload Images, Run Indexing, and Inspect Metadata
 
 ![Homepage showing the indexed image gallery](doc/homepage.png)
 
-### Search Results
-
-Search by description and inspect each result's metadata and ranking scores.
+### Search by Queries and Inspect Ranking Scores
 
 ![Search results for crowded street](doc/search.png)
+
+---
 
 ## Key Features
 
@@ -27,6 +27,8 @@ Search by description and inspect each result's metadata and ranking scores.
 - **Semantic search:** retrieve images using embeddings of their generated descriptions.
 - **Explainable ranking:** combine semantic similarity with field-level keyword scores.
 - **Search evaluation:** measure retrieval quality on annotated queries.
+
+---
 
 ## Pipeline Architecture
 
@@ -62,6 +64,8 @@ Search has two stages:
 
 Implementation: [Indexing](app/services/pipeline.py) · [Search and scoring](app/services/search.py) · [Model calls](app/ai/llm.py)
 
+---
+
 ## Evaluation
 
 The current offline evaluation uses 15 manually curated queries covering:
@@ -75,6 +79,8 @@ The current offline evaluation uses 15 manually curated queries covering:
 | 80.00% | 57.33% | 70.60% |
 
 Historical results from the weight-selection benchmark, not a held-out test set.
+
+---
 
 ## Quick Start
 
