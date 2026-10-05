@@ -34,27 +34,25 @@ Search by description and inspect each result's metadata and ranking scores.
 
 ```mermaid
 flowchart LR
-    A[Upload an image] --> B[Save image and generate thumbnail]
-    B --> C[Click Run Indexing]
-    C --> D[Ollama VLM analyzes the image]
+    A[Upload image] --> B[Save + thumbnail]
+    B --> C[Run Indexing]
+    C --> D[VLM analysis]
     D --> E[Caption, objects, scenes, lighting, colors]
     E --> F[(Store metadata in SQLite)]
-    E --> G[Combine metadata into text]
-    G --> H[Ollama generates a text embedding]
-    H --> I[(Store embedding in Chroma)]
+    E --> G[Text embedding]
+    G --> H[(Store embedding in Chroma)]
 ```
-
 ### Image Search
 
 ```mermaid
 flowchart LR
-    J[Enter a search query] --> K[Ollama generates a query embedding]
-    K --> L[Chroma retrieves 15 candidates]
-    I[(Stored image embeddings)] --> L
-    L --> M[Load candidate metadata from SQLite]
-    F[(Stored image metadata)] --> M
-    M --> N[Combine semantic and field keyword scores]
-    N --> O[Sort and display the top 10 images]
+    A[Search Query] --> B[Query embedding]
+    B --> C[Recall 15 candidates]
+    D[(Chroma)] --> C
+    C --> E[Load metadata]
+    F[(SQLite)] --> E
+    E --> G[Weighted reranking: semantic + keyword]
+    G --> H[Top 10 images]
 ```
 
 Search has two stages:
