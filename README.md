@@ -45,12 +45,14 @@ flowchart TD
 ```
 
 ### Image Search
+
 ```mermaid
+flowchart TD
     J[Enter a search query] --> K[Ollama generates a query embedding]
-    K --> L[Chroma retrieves 15 candidate images]
-    I --> L
+    K --> L[Chroma retrieves 15 candidates]
+    I[(Stored image embeddings)] --> L
     L --> M[Load candidate metadata from SQLite]
-    F --> M
+    F[(Stored image metadata)] --> M
     M --> N[Combine semantic and field keyword scores]
     N --> O[Sort and display the top 10 images]
 ```
