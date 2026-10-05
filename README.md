@@ -33,7 +33,7 @@ Search by description and inspect each result's metadata and ranking scores.
 ### Image Indexing
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[Upload an image] --> B[Save image and generate thumbnail]
     B --> C[Click Run Indexing]
     C --> D[Ollama VLM analyzes the image]
@@ -47,7 +47,7 @@ flowchart TD
 ### Image Search
 
 ```mermaid
-flowchart TD
+flowchart LR
     J[Enter a search query] --> K[Ollama generates a query embedding]
     K --> L[Chroma retrieves 15 candidates]
     I[(Stored image embeddings)] --> L
