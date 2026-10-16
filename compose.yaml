@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:${APP_PORT:-8000}:8000"
+    environment:
+      # Use a separate setting so local Python can keep OLLAMA_HOST=localhost.
+      OLLAMA_HOST: ${DOCKER_OLLAMA_HOST:-http://host.docker.internal:11434}
+      VISION_MODEL: ${VISION_MODEL:-qwen3.5:4b}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-nomic-embed-text:latest}
+    extra_hosts:
+      # Also resolve the host address on Linux Docker Engine.
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./data:/app/data
+      - ./gallery:/app/gallery
+    init: true
+    restart: unless-stopped

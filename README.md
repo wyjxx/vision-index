@@ -86,18 +86,35 @@ Historical results from the weight-selection benchmark, not a held-out test set.
 
 ## Quick Start
 
-Use a Python 3.12 environment with Ollama running at `http://127.0.0.1:11434`.
+Install and start [Ollama](https://ollama.com/download), then download models:
 
 ```bash
-git clone https://github.com/wyjxx/vision-index.git
-cd vision-index
-pip install -r requirements.txt
 ollama pull qwen3.5:4b
 ollama pull nomic-embed-text:latest
-python -c "from pathlib import Path; Path('gallery/inbox').mkdir(parents=True, exist_ok=True)"
-uvicorn app.main:app --reload
+git clone https://github.com/wyjxx/vision-index.git
+cd vision-index
 ```
 
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000): **Upload → Run Indexing → Search**.
+Choose one route:
 
-For environment setup, model configuration, and evaluation commands, see [Technical Documentation](doc/TECHNICAL.md).
+### 1. Docker
+
+Install and start [Docker](https://www.docker.com/products/docker-desktop/), then run:
+
+```bash
+docker compose up --build
+```
+
+Open [localhost:8000](http://localhost:8000). Data persists in `gallery/` and `data/`.
+
+### 2. Local Python
+
+Install Python 3.12, then run:
+
+```bash
+python -m venv .venv
+python -m pip install -r requirements.txt
+python -m uvicorn app.main:app --reload
+```
+
+Open [localhost:8000](http://localhost:8000).

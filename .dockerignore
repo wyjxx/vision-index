@@ -1,0 +1,11 @@
+# Send only the files needed by the Dockerfile to the build context.
+**
+!requirements.txt
+!app/
+!app/**
+
+# Exclude generated Python files and local settings inside app/ as well.
+**/__pycache__/
+**/*.py[cod]
+**/.env
+**/.env.*

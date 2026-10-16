@@ -40,6 +40,9 @@ def on_startup() -> None:
 
 
 # Mount folders for browser access
+for directory in (inbox_dir, thumbs_dir):
+    directory.mkdir(parents=True, exist_ok=True)
+
 app.mount("/gallery", StaticFiles(directory=gallery_dir), name="gallery")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
