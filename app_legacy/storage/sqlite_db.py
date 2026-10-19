@@ -2,11 +2,11 @@ import json
 import sqlite3
 from pathlib import Path
 
-from app.config import db_path
-from app.services.helper import normalize_attributes
+from app_legacy.config import db_path
+from app_legacy.services.metadata import normalize_attributes
 
 """
-Simple SQLite helpers.
+SQLite metadata storage helpers.
 
 This module handles:
 - database connection

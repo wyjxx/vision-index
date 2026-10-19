@@ -2,11 +2,12 @@ import time
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
-from app.ai.llm import analyze_image
-from app.config import inbox_dir, supported_image_ext
-from app.services.helper import make_thumbnail, build_db_relative_path, build_embedding_text
-from app.storage.db import image_exists, insert_image
-from app.storage.vector_db import upsert_embedding
+from app_legacy.ai.llm import analyze_image, generate_embedding
+from app_legacy.config import inbox_dir, supported_image_ext
+from app_legacy.services.helper import make_thumbnail, build_db_relative_path
+from app_legacy.services.metadata import build_embedding_text
+from app_legacy.storage.sqlite_db import image_exists, insert_image
+from app_legacy.storage.vector_db import upsert_embedding
 
 """
 Image indexing pipeline.
@@ -91,8 +92,9 @@ def index_image(file_path: Path) -> None:
     # Build embedding text
     text = build_embedding_text(result)
 
-    # Store embedding
-    upsert_embedding(image_id, text)
+    # Generate the vector, then pass it to storage.
+    embedding = generate_embedding(text)
+    upsert_embedding(image_id, embedding, text)
 
 
 # Scan inbox -> index images -> count results

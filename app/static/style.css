@@ -161,6 +161,7 @@ h2 {
 }
 
 .upload-form input[type="file"],
+.upload-form input[type="text"],
 .search-form input[type="text"] {
     flex: 1 1 220px;
     min-height: 44px;
@@ -259,6 +260,25 @@ h2 {
     width: 100%;
     height: 200px;
     object-fit: cover;
+}
+
+.product-card img {
+    object-fit: contain;
+    background: #fff;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.pagination a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
 }
 
 .card-body {

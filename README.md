@@ -1,34 +1,24 @@
 # Vision-Index
-**Local-first multimodal image indexing and semantic retrieval system**
+
+**Multimodal product search with CLIP**
 
 ## Introduction
 
-Vision-Index lets users upload images and search them with natural-language queries. 
+Vision-Index lets users browse products, upload images, and search with natural-language queries.
 
-It combines local VLM-based image understanding, text embeddings, vector retrieval, and two-stage search with reranking, all accessible through a FastAPI web dashboard.
+V2 uses CLIP to encode product images and search queries into a shared vector space, with a FastAPI web dashboard for indexing and retrieval.
 
-**Tech Stack:** Python · FastAPI · Ollama · SQLite · ChromaDB
-
----
-
-## Demo
-
-### Upload Images, Run Indexing, and Inspect Metadata
-
-![Homepage showing the indexed image gallery](doc/homepage.png)
-
-### Search by Queries and Inspect Ranking Scores
-
-![Search results for crowded street](doc/search.png)
+**Tech Stack:** Python · PyTorch · Hugging Face Transformers · FastAPI · SQLite · ChromaDB
 
 ---
 
 ## Key Features
 
-- **Local image understanding:** generate captions, objects, scenes, lighting, and colors through Ollama.
-- **Semantic search:** retrieve images using embeddings of their generated descriptions.
-- **Explainable ranking:** combine semantic similarity with field-level keyword scores.
-- **Search evaluation:** measure retrieval quality on annotated queries.
+- **Semantic product search:** retrieve product images using natural-language queries.
+- **Product gallery:** browse a paginated catalog with images, titles, and indexing status.
+- **Image uploads:** add products through the web dashboard.
+- **Batch indexing:** index all pending products with one click; completed batches are skipped on subsequent runs.
+- **Local inference:** run CLIP on CUDA when available, with CPU fallback.
 
 ---
 
@@ -38,83 +28,82 @@ It combines local VLM-based image understanding, text embeddings, vector retriev
 
 ```mermaid
 flowchart LR
-    A[Upload image] --> B[Save + thumbnail]
-    B --> C[Run Indexing]
-    C --> D[VLM analysis]
-    D --> E[Caption, objects, scenes, lighting, colors]
-    E --> F[(Store metadata in SQLite)]
-    E --> G[Text embedding]
-    G --> H[(Store embedding in Chroma)]
+    A[Import or upload products] --> B[Images on disk + metadata in SQLite]
+    B --> C[CLIP image encoder]
+    C --> D[(Chroma image vectors)]
 ```
-### Image Search
+
+### Product Search
 
 ```mermaid
 flowchart LR
-    A[Search Query] --> B[Query embedding]
-    B --> C[Recall 15 candidates]
-    D[(Chroma)] --> C
-    C --> E[Load metadata]
-    F[(SQLite)] --> E
-    E --> G[Weighted reranking: semantic + keyword]
-    G --> H[Top 10 images]
+    A[Search query] --> B[CLIP text encoder]
+    B --> C[Cosine search in Chroma]
+    C --> D[Load product metadata from SQLite]
+    D --> E[Ranked product cards]
 ```
 
-Search has two stages:
+**Model:** `openai/clip-vit-base-patch32` · normalized 512-dimensional embeddings.
 
-1. **Recall:** retrieve 15 candidates by vector distance.
-2. **Rerank:** combine semantic and field-level keyword scores, then return the top 10.
-
-Implementation: [Indexing](app/services/pipeline.py) · [Search and scoring](app/services/search.py) · [Model calls](app/ai/llm.py)
+Implementation: [Indexing](app/services/index.py) · [Search](app/services/search.py) · [CLIP encoders](app/ai/clip.py)
 
 ---
 
-## Evaluation
+## Dataset & Evaluation
 
-The current offline evaluation uses 15 manually curated queries covering:
-- object search
-- scene search
-- visual attributes
-- compositional queries
+Current experiments use a subset of [Marqo-GS-10M](https://huggingface.co/datasets/Marqo/marqo-GS-10M), from `in_domain-350.parquet`:
 
-| Top-1 Accuracy | Precision@5 | Recall@5 |
-|---:|---:|---:|
-| 80.00% | 57.33% | 70.60% |
+| Products | Queries | Query–product pairs | Train / Validation / Test |
+|---:|---:|---:|---:|
+| 9,934 | 200 | 10,000 | 8,000 / 1,000 / 1,000 |
 
-Historical results from the weight-selection benchmark, not a held-out test set.
+Partitions are sampled by unique query–product pair; queries and products may overlap across partitions.
+
+**Current status:** pretrained CLIP is integrated. Retrieval benchmarking (Recall@K, MRR, nDCG, latency) and domain fine-tuning are the next steps.
 
 ---
 
 ## Quick Start
 
-Install and start [Ollama](https://ollama.com/download), then download models:
+Use Python 3.12. From the project root:
 
-```bash
-ollama pull qwen3.5:4b
-ollama pull nomic-embed-text:latest
-git clone https://github.com/wyjxx/vision-index.git
-cd vision-index
-```
-
-Choose one route:
-
-### 1. Docker
-
-Install and start [Docker](https://www.docker.com/products/docker-desktop/), then run:
-
-```bash
-docker compose up --build
-```
-
-Open [localhost:8000](http://localhost:8000). Data persists in `gallery/` and `data/`.
-
-### 2. Local Python
-
-Install Python 3.12, then run:
-
-```bash
+```powershell
 python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 python -m uvicorn app.main:app --reload
 ```
 
-Open [localhost:8000](http://localhost:8000).
+Open [localhost:8000](http://localhost:8000), upload products, click **Index All Unindexed**, then search. CLIP weights are downloaded on first use.
+
+For a prepared Marqo catalog, run `python -m scripts.import_products_sqlite` before starting the app. Dataset preparation and script usage are documented in [TECHNICAL.md](TECHNICAL.md).
+
+For NVIDIA CUDA 12.8, install this PyTorch pair **before** the requirements command:
+
+```powershell
+python -m pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128
+```
+
+For CPU-only wheels, replace `cu128` with `cpu`. See the [official PyTorch installation commands](https://pytorch.org/get-started/previous-versions/#v2-11-0).
+
+Data lives in `data/v2/`; archived V1 data lives in `data/legacy/`. Docker packaging is included; container and GPU deployment validation is pending.
+
+---
+
+## Legacy V1
+
+The original version is preserved in `app_legacy/` for general photo retrieval.
+
+| | V1 — Photo search | V2 — Product search |
+|---|---|---|
+| Image representation | Qwen VLM caption → Nomic text embedding | CLIP image embedding |
+| Query representation | Nomic text embedding | CLIP text embedding |
+| Retrieval | Vector search + keyword reranking | Cosine vector search |
+
+With the Python dependencies installed, Ollama running, and `qwen3.5:4b` / `nomic-embed-text:latest` available, start V1 with:
+
+```powershell
+python -m uvicorn app_legacy.main:app --reload --port 8001
+```
+
+Open [localhost:8001](http://localhost:8001). See the [Legacy README](app_legacy/README.md) for setup, screenshots, and implementation details.

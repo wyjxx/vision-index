@@ -4,174 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vision-Index</title>
+    <title>Vision-Index 2.0</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
     <main class="page">
         <header class="page-header">
-            <div>
-                <h1>Vision-Index</h1>
-                <p class="page-subtitle">Your Local Gallery With Indexing and Retrieval</p>
-            </div>
+            <h1>Vision-Index 2.0</h1>
+            <p class="page-subtitle">Find products with natural language</p>
         </header>
 
         <section class="topbar">
-            <section class="card-surface topbar-card topbar-card-wide">
-                <div class="form-copy">
-                    <span class="form-label">Upload Images</span>
-                    <span class="form-hint">Add a new asset to the inbox, then run indexing</span>
-                </div>
+        <form action="/upload" method="post" enctype="multipart/form-data"
+              class="upload-form card-surface topbar-card">
+            <div class="form-copy">
+                <span class="form-label">Upload Product</span>
+                <span class="form-hint">New products appear in the gallery before indexing</span>
+            </div>
+            <label for="product-title">Product title</label>
+            <input id="product-title" type="text" name="title" placeholder="Product title" required>
+            <label for="product-image">Product image</label>
+            <input id="product-image" type="file" name="file" accept="image/jpeg,image/png,image/webp" required>
+            <button type="submit" class="button button-primary">Upload</button>
+        </form>
 
-                <div class="action-row">
-                    <form action="/upload" method="post" enctype="multipart/form-data" class="inline-form upload-form compact-form">
-                        <input type="file" name="file" accept="image/*" required>
-                        <button type="submit" class="button button-primary">Upload</button>
-                    </form>
-
-                    <form action="/run-pipeline" method="post" class="inline-form compact-form">
-                        <button type="submit" class="button">Run Indexing</button>
-                    </form>
-                </div>
-            </section>
-
-            <form action="/search" method="get" class="inline-form search-form card-surface topbar-card">
-                <div class="form-copy">
-                    <span class="form-label">Search Images</span>
-                    <span class="form-hint">Search images by extracted metadata</span>
-                </div>
-                <div class="search-input-group">
-                    <input
-                        type="text"
-                        name="q"
-                        value="{{ query }}"
-                        placeholder="Enter anything to search..."
-                    >
-                    <button type="submit" class="button button-primary">Search</button>
-                </div>
-            </form>
+        <form action="/search/clip" method="get" class="search-form card-surface topbar-card">
+            <div class="form-copy">
+                <span class="form-label">Search Products</span>
+                <span class="form-hint">Describe the product you want to find</span>
+            </div>
+            <div class="search-input-group">
+                <input type="text" name="q" value="{{ query }}"
+                       placeholder="e.g. red leather handbag" required>
+                <button type="submit" class="button button-primary">Search</button>
+            </div>
+        </form>
         </section>
 
-        {% if query %}
+        <form action="/run-pipeline" method="post" class="inline-form">
+            <button type="submit" class="button">Index All Unindexed</button>
+            <span class="form-hint">Indexing finishes before returning to the gallery.</span>
+        </form>
+
         <section class="section-block">
             <div class="section-heading">
                 <div>
+                    {% if query %}
                     <h2>Search results</h2>
                     <p class="section-subtitle">Query: <b>{{ query }}</b></p>
+                    {% else %}
+                    <h2>Product Gallery</h2>
+                    <p class="section-subtitle">Browse the product catalog.</p>
+                    {% endif %}
                 </div>
-                <span class="section-chip">{{ search_results | length }} results</span>
+                {% if query %}
+                <a href="/" class="section-chip">Browse all products</a>
+                {% endif %}
+                <span class="section-chip">{{ total_products }} {{ 'results' if query else 'products' }}</span>
             </div>
 
-            {% if search_results %}
+            {% if products %}
             <div class="grid">
-                {% for img in search_results %}
-                <article class="card">
-                    <a href="/gallery/{{ img.file_path }}" target="_blank" class="image-link">
-                        <img src="/gallery/{{ img.thumbnail_path }}" alt="{{ img.file_name }}">
+                {% for product in products %}
+                <article class="card product-card">
+                    <a href="{{ product.image_url }}" target="_blank" rel="noopener" class="image-link">
+                        <img src="{{ product.image_url }}" alt="{{ product.title }}" loading="lazy">
                     </a>
-
                     <div class="card-body">
-                        <div class="card-head">
-                            <div class="filename">{{ img.file_name }}</div>
-                            <div class="card-badges">
-                                <span class="status indexed">Indexed</span>
-                                <details class="score-details">
-                                    <summary class="score-summary">
-                                        <span class="score-chip">Score {{ "%.3f"|format(img.final_score) }}</span>
-                                    </summary>
-                                    <div class="score-popover">
-                                        <p><b>Semantic:</b> {{ "%.3f"|format(img.global_score) }}</p>
-                                        <p><b>Field Sum:</b> {{ "%.3f"|format(img.field_score_sum) }}</p>
-                                        <p><b>Caption Match:</b> {{ "%.3f"|format(img.field_score_each.caption) }}</p>
-                                        <p><b>Objects Match:</b> {{ "%.3f"|format(img.field_score_each.objects) }}</p>
-                                        <p><b>Scene Match:</b> {{ "%.3f"|format(img.field_score_each.scene_tags) }}</p>
-                                        <p><b>Attributes Match:</b> {{ "%.3f"|format(img.field_score_each.attributes) }}</p>
-                                    </div>
-                                </details>
-                            </div>
-                        </div>
-
-                        <p class="summary-text">
-                            {{ img.caption if img.caption else "No caption metadata available." }}
-                        </p>
-
-                        <details class="meta-box">
-                            <summary class="more-summary">More</summary>
-                            <div class="meta-content">
-                                <p><b>Caption:</b> {{ img.caption }}</p>
-                                <p><b>Objects:</b> {{ img.objects }}</p>
-                                <p><b>Scene:</b> {{ img.scene_tags }}</p>
-                                <p><b>Attributes:</b> {{ img.attributes }}</p>
-                            </div>
-                        </details>
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
-            {% else %}
-            <p class="empty-text">No search results found.</p>
-            {% endif %}
-        </section>
-        {% endif %}
-
-        <section class="section-block">
-            <div class="section-heading">
-                <div>
-                    <h2>Gallery</h2>
-                    <p class="section-subtitle">All uploaded images in the current inbox.</p>
-                </div>
-                <span class="section-chip">{{ images | length }} images</span>
-            </div>
-
-            <div class="grid">
-                {% for image in images %}
-                <article class="card">
-                    <a href="{{ image.image_path }}" target="_blank" class="image-link">
-                        <img src="{{ image.thumb_path }}" alt="{{ image.file_name }}">
-                    </a>
-
-                    <div class="card-body">
-                        <div class="card-head">
-                            <div class="filename">{{ image.file_name }}</div>
-                            <div class="card-badges">
-                                <span class="status {{ 'indexed' if image.indexed else 'pending' }}">
-                                    {{ 'Indexed' if image.indexed else 'Pending' }}
-                                </span>
-                                <form action="/delete" method="post" class="chip-form">
-                                    <input type="hidden" name="file_name" value="{{ image.file_name }}">
-                                    <button type="submit" class="action-chip action-chip-danger" onclick="return confirm('Delete this image?')">
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <p class="summary-text">
-                            {% if image.indexed and image.caption %}
-                            {{ image.caption }}
-                            {% elif image.indexed %}
-                            Metadata is available for this image.
-                            {% else %}
-                            This image is waiting for pipeline processing.
-                            {% endif %}
-                        </p>
-
-                        {% if image.indexed %}
-                        <details class="meta-box">
-                            <summary class="more-summary">More</summary>
-                            <div class="meta-content">
-                                <p><b>Caption:</b> {{ image.caption }}</p>
-                                <p><b>Objects:</b> {{ image.objects }}</p>
-                                <p><b>Scene:</b> {{ image.scene_tags }}</p>
-                                <p><b>Attributes:</b> {{ image.attributes }}</p>
-                            </div>
-                        </details>
+                        <div class="filename">{{ product.title }}</div>
+                        <p class="summary-text">Product ID: {{ product.product_id }}</p>
+                        {% if product.indexed is defined and not product.indexed %}
+                        <span class="status pending">Not indexed</span>
+                        {% elif product.indexed %}
+                        <span class="status indexed">Indexed</span>
+                        {% endif %}
+                        {% if query %}
+                        <span class="score-chip">Similarity {{ "%.3f"|format(product.similarity) }}</span>
                         {% endif %}
                     </div>
                 </article>
                 {% endfor %}
             </div>
+            {% else %}
+            <p class="empty-text">{{ 'No search results found.' if query else 'No products available.' }}</p>
+            {% endif %}
+
+            {% if not query and total_pages > 1 %}
+            <nav class="pagination" aria-label="Product pages">
+                {% if page > 1 %}
+                <a href="/?page={{ page - 1 }}" class="button">Previous</a>
+                {% endif %}
+                <span>Page {{ page }} of {{ total_pages }}</span>
+                {% if page < total_pages %}
+                <a href="/?page={{ page + 1 }}" class="button">Next</a>
+                {% endif %}
+            </nav>
+            {% endif %}
         </section>
     </main>
 </body>

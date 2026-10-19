@@ -1,13 +1,16 @@
 # Vision-Index
 
+> This document describes the archived V1 system. Its entry point is now
+> `app_legacy/main.py`; the V2 CLIP application starts from `app/main.py`.
+
 `Vision-Index` is a local-first image indexing and retrieval project.
 
-It ingests images from `gallery/inbox`, extracts structured visual metadata with a local vision-language model via Ollama, stores metadata in SQLite and embeddings in Chroma, and serves semantic search through a lightweight FastAPI dashboard.
+It ingests images from `data/legacy/gallery/inbox`, extracts structured visual metadata with a local vision-language model via Ollama, stores metadata in SQLite and embeddings in Chroma, and serves semantic search through a lightweight FastAPI dashboard.
 
 ## Features
 
 - upload images from the web UI
-- scan local images from `gallery/inbox`
+- scan local images from `data/legacy/gallery/inbox`
 - generate thumbnails for gallery display
 - analyze images with a local VLM via Ollama
 - extract structured metadata: `caption`, `objects`, `scene_tags`, `attributes.lighting`, `attributes.color`
@@ -47,15 +50,16 @@ gallery/inbox
 
 ```text
 vision-index/
-|-- app/
+|-- app_legacy/
 |   |-- ai/
 |   |   `-- llm.py
 |   |-- services/
 |   |   |-- helper.py
-|   |   |-- pipeline.py
-|   |   `-- search.py
+|   |   |-- index.py
+|   |   |-- search.py
+|   |   `-- metadata.py
 |   |-- storage/
-|   |   |-- db.py
+|   |   |-- sqlite_db.py
 |   |   `-- vector_db.py
 |   |-- static/
 |   |   `-- style.css
@@ -125,7 +129,7 @@ ollama pull nomic-embed-text:latest
 ### 5. Run the app
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn app_legacy.main:app --reload
 ```
 
 Open:
@@ -139,7 +143,7 @@ http://127.0.0.1:8000
 ### Dashboard
 
 - upload images from the home page
-- browse all files currently in `gallery/inbox`
+- browse all files currently in `data/legacy/gallery/inbox`
 - run the indexing pipeline from the UI
 - search with natural language queries
 - inspect indexed metadata in the gallery cards
@@ -165,7 +169,7 @@ final_score =
 
 - `global_score` is derived from distance between query and embedding
 - `caption_match`, `objects_match`, `scene_tags_match`, and `attributes_match` are keyword match scores
-- weights are configured in `app/config.py`: `global_weight`, `caption_weight`, `object_weight`, `scene_weight`, `attribute_weight`
+- weights are configured in `app_legacy/config.py`: `global_weight`, `caption_weight`, `object_weight`, `scene_weight`, `attribute_weight`
 
 ## Evaluation
 

@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from app.services.search import search, DEFAULT_SEARCH_WEIGHTS
+from app_legacy.services.search import search, DEFAULT_SEARCH_WEIGHTS
 
 
 # Paths

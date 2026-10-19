@@ -13,6 +13,5 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./data:/app/data
-      - ./gallery:/app/gallery
     init: true
     restart: unless-stopped

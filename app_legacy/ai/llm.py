@@ -4,8 +4,9 @@ from pathlib import Path
 
 import requests
 
-from app.config import ollama_host, vision_model, embedding_model
-from app.services.helper import normalize_attributes, normalize_text_list
+from app_legacy.config import ollama_host, vision_model, embedding_model
+from app_legacy.services.helper import normalize_text_list
+from app_legacy.services.metadata import normalize_attributes
 
 
 """

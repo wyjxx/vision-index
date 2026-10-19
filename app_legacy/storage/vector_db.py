@@ -1,8 +1,7 @@
 import chromadb
 import shutil
 
-from app.config import chroma_dir, chroma_collection
-from app.ai.llm import generate_embedding
+from app_legacy.config import chroma_dir, chroma_collection
 
 
 """
@@ -42,11 +41,9 @@ def reset_vector_db() -> None:
 
 
 # Store embedding into Chroma
-def upsert_embedding(image_id: int, text: str):
+def upsert_embedding(image_id: int, embedding: list[float], text: str):
 
     collection = get_collection()
-
-    embedding = generate_embedding(text)
 
     collection.upsert(
         ids=[str(image_id)],
@@ -55,10 +52,9 @@ def upsert_embedding(image_id: int, text: str):
     )
 
 # Search embeddings from Chroma
-def search_embeddings(query: str, limit: int) -> list[dict]:
+def search_embeddings(embedding: list[float], limit: int) -> list[dict]:
 
     collection = get_collection()
-    embedding = generate_embedding(query)
 
     results = collection.query(
         query_embeddings=[embedding],

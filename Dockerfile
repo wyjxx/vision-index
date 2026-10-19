@@ -10,7 +10,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
-RUN mkdir -p data gallery/inbox gallery/thumbs
+RUN mkdir -p data/v2/marqo/images data/v2/uploads/images
 
 EXPOSE 8000
 
