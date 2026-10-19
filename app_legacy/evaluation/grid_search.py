@@ -2,11 +2,10 @@ import json
 from itertools import product
 from pathlib import Path
 
-from evaluation.eval_search import run_full_evaluation
+from app_legacy.evaluation.eval_search import EVAL_DIR, run_full_evaluation
 
 
 # Paths
-EVAL_DIR = Path("evaluation")
 GRID_RESULT_PATH = EVAL_DIR / "grid_search_result.json"
 
 # Grid search space

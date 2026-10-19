@@ -48,42 +48,6 @@ gallery/inbox
 
 ## Project Structure
 
-```text
-vision-index/
-|-- app_legacy/
-|   |-- ai/
-|   |   `-- llm.py
-|   |-- services/
-|   |   |-- helper.py
-|   |   |-- index.py
-|   |   |-- search.py
-|   |   `-- metadata.py
-|   |-- storage/
-|   |   |-- sqlite_db.py
-|   |   `-- vector_db.py
-|   |-- static/
-|   |   `-- style.css
-|   |-- templates/
-|   |   `-- dashboard.html
-|   |-- config.py
-|   `-- main.py
-|-- data/
-|-- evaluation/
-|   |-- eval_search.py
-|   |-- grid_search.py
-|   |-- golden_queries.json
-|   |-- grid_search_result.json
-|   `-- result_v*.json
-|-- gallery/
-|   |-- inbox/
-|   `-- thumbs/
-|-- scripts/
-|   |-- rename_images.py
-|   `-- reset_db.py
-|-- .env.example
-|-- requirements.txt
-`-- README.md
-```
 
 ## Setup
 
@@ -176,7 +140,7 @@ final_score =
 Offline evaluation:
 
 ```bash
-python -m evaluation.eval_search
+python -m app_legacy.evaluation.eval_search
 ```
 
 Metrics:
@@ -188,21 +152,7 @@ Metrics:
 Grid search for rerank weights:
 
 ```bash
-python -m evaluation.grid_search
-```
-
-## Utility Scripts
-
-Reset SQLite and Chroma data:
-
-```bash
-python scripts/reset_db.py
-```
-
-Rename a dataset into sequential file names:
-
-```bash
-python scripts/rename_images.py
+python -m app_legacy.evaluation.grid_search
 ```
 
 ## Notes

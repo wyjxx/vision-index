@@ -1,4 +1,4 @@
-# evaluation/eval_search.py
+# app_legacy/evaluation/eval_search.py
 
 import json
 from pathlib import Path
@@ -7,7 +7,7 @@ from app_legacy.services.search import search, DEFAULT_SEARCH_WEIGHTS
 
 
 # Paths
-EVAL_DIR = Path("evaluation")
+EVAL_DIR = Path(__file__).resolve().parent
 GOLDEN_PATH = EVAL_DIR / "golden_queries.json"
 RESULT_PATH = EVAL_DIR / "result.json"
 
