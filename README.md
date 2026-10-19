@@ -10,6 +10,17 @@ V2 uses CLIP to encode product images and search queries into a shared vector sp
 
 **Tech Stack:** Python · PyTorch · Hugging Face Transformers · FastAPI · SQLite · ChromaDB
 
+
+## Demo
+
+### Upload Images, Run Indexing
+
+![Homepage showing the gallery](doc/homepage.png)
+
+### Search by Queries and Inspect Scores
+
+![Search results](doc/search.png)
+
 ---
 
 ## Key Features

@@ -20,11 +20,11 @@ It combines local VLM-based image understanding, text embeddings, vector retriev
 
 ### Upload Images, Run Indexing, and Inspect Metadata
 
-![Homepage showing the indexed image gallery](../doc/homepage.png)
+![Homepage showing the indexed image gallery](../doc/legacy_homepage.png)
 
 ### Search by Queries and Inspect Ranking Scores
 
-![Search results for crowded street](../doc/search.png)
+![Search results for crowded street](../doc/legacy_search.png)
 
 ---
 
