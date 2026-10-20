@@ -66,3 +66,24 @@ def search_clip_embeddings(embedding: list[float], limit: int = 10) -> list[dict
             results["ids"][0], results["metadatas"][0], results["distances"][0],
         )
     ]
+
+
+def get_clip_embeddings(product_ids: list[str]) -> list[list[float]]:
+    """Read existing image vectors in the requested ID order, without encoding images."""
+    if not product_ids:
+        return []
+    # Evaluation must fail on a missing index instead of creating an empty one.
+    if not (clip_chroma_dir / "chroma.sqlite3").is_file():
+        raise ValueError("CLIP index does not exist; index the catalog first")
+    client = chromadb.PersistentClient(path=str(clip_chroma_dir))
+    collection = client.get_collection(clip_chroma_collection, embedding_function=None)
+    if (collection.metadata or {}).get("clip_model") != clip_model:
+        raise ValueError("Collection model differs from CLIP_MODEL")
+    vectors = {}
+    for start in range(0, len(product_ids), 500):
+        batch = collection.get(ids=product_ids[start:start + 500], include=["embeddings"])
+        vectors.update(zip(batch["ids"], batch["embeddings"]))
+    missing = set(product_ids) - vectors.keys()
+    if missing:
+        raise ValueError(f"Missing CLIP vectors for {len(missing)} catalog products")
+    return [vectors[product_id] for product_id in product_ids]

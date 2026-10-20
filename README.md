@@ -4,9 +4,11 @@
 
 ## Introduction
 
-Vision-Index lets users browse products, upload images, and search with natural-language queries.
+Vision-Index lets users browse products, upload images, index images, and search with natural-language.
 
-V2 uses CLIP to encode product images and search queries into a shared vector space, with a FastAPI web dashboard for indexing and retrieval.
+The current version provides a pretrained CLIP baseline, a FastAPI dashboard, and an offline evaluation pipeline for measuring future fine-tuning gains.
+
+This project's next step goal is to explore domain adaptation for multimodal product search: fine-tuning CLIP on domain-specific query–product data to improve retrieval in a target product domain.
 
 **Tech Stack:** Python · PyTorch · Hugging Face Transformers · FastAPI · SQLite · ChromaDB
 
@@ -30,6 +32,7 @@ V2 uses CLIP to encode product images and search queries into a shared vector sp
 - **Image uploads:** add products through the web dashboard.
 - **Batch indexing:** index all pending products with one click; completed batches are skipped on subsequent runs.
 - **Local inference:** run CLIP on CUDA when available, with CPU fallback.
+- **Baseline evaluation:** exact full-catalog ranking with Recall@K and nDCG@K.
 
 ---
 
@@ -68,9 +71,20 @@ Current experiments use a subset of [Marqo-GS-10M](https://huggingface.co/datase
 |---:|---:|---:|---:|
 | 9,934 | 200 | 10,000 | 8,000 / 1,000 / 1,000 |
 
-Partitions are sampled by unique query–product pair; queries and products may overlap across partitions.
+Partitions are sampled by unique query–product pair. All test queries also appear in train, so this evaluates held-out pairs rather than unseen queries.
 
-**Current status:** pretrained CLIP is integrated. Retrieval benchmarking (Recall@K, MRR, nDCG, latency) and domain fine-tuning are the next steps.
+**Pretrained CLIP quality evaluation is complete:** 198 test queries ranked against all 9,934 products using exact cosine similarity.
+
+| Metric | Test labels only | All known labels |
+|---|---:|---:|
+| Recall@100 | 0.6318 | 0.6435 |
+| nDCG@10 | 0.0952 | 0.3746 |
+| nDCG@50 | 0.2000 | 0.4451 |
+| nDCG@100 | 0.2358 | 0.5301 |
+
+Test-only scores use the 1,000 held-out pairs. All-known scores use annotations from all three splits, including training pairs, and describe catalog retrieval quality rather than held-out generalization.
+
+**Next:** domain fine-tuning and latency/resource benchmarks. Performance measurements are not yet available.
 
 ---
 
