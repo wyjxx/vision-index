@@ -1,6 +1,6 @@
 # Vision-Index
 
-**Multimodal product search with CLIP**
+**AI-powered E-commerce Product Search System**
 
 ## Introduction
 
@@ -8,7 +8,7 @@ Vision-Index lets users browse products, upload images, index images, and search
 
 The current version provides a pretrained CLIP baseline, a FastAPI dashboard, and an offline evaluation pipeline for measuring future fine-tuning gains.
 
-This project's next step goal is to explore domain adaptation for multimodal product search: fine-tuning CLIP on domain-specific query–product data to improve retrieval in a target product domain.
+This project's next step is to explore domain adaptation for multimodal product search: fine-tuning CLIP on domain-specific data to improve retrieval performance in a target product domain.
 
 **Tech Stack:** Python · PyTorch · Hugging Face Transformers · FastAPI · SQLite · ChromaDB
 
@@ -27,12 +27,10 @@ This project's next step goal is to explore domain adaptation for multimodal pro
 
 ## Key Features
 
-- **Semantic product search:** retrieve product images using natural-language queries.
-- **Product gallery:** browse a paginated catalog with images, titles, and indexing status.
-- **Image uploads:** add products through the web dashboard.
-- **Batch indexing:** index all pending products with one click; completed batches are skipped on subsequent runs.
-- **Local inference:** run CLIP on CUDA when available, with CPU fallback.
-- **Baseline evaluation:** exact full-catalog ranking with Recall@K and nDCG@K.
+- **Real-world E-commerce Data:** Processed 9,934 products from the Marqo-GS-10M dataset, including product images, metadata, and query–product pairs.
+- **Interactive FastAPI Dashboard:** Supports natural-language product search, image gallery browsing, image uploads, and batch indexing.
+- **Efficient Local AI Inference:** Uses CLIP to generate multimodal embeddings for semantic product retrieval.
+- **Retrieval Benchmarking:** Evaluates pretrained CLIP on the full product catalog using Recall@K and nDCG@K.
 
 ---
 
