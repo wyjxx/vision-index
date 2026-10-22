@@ -1,12 +1,13 @@
 # Vision-Index
 
 **AI-powered E-commerce Product Search System**
+**With Domain-Specific Fine-tuning and Evaluation**
 
 ## Introduction
 
 Vision-Index lets users browse products, upload images, index images, and search with natural-language.
 
-The current version provides a FastAPI dashboard, CLIP projection-layer fine-tuning, and an offline evaluation pipeline comparing pretrained and fine-tuned retrieval across three test scenarios.
+The current version provides an interactive FastAPI dashboard, CLIP projection-layer fine-tuning, and an offline evaluation pipeline comparing pretrained and fine-tuned retrieval across 3 test scenarios.
 
 **Tech Stack:** Python · PyTorch · Hugging Face Transformers · FastAPI · SQLite · ChromaDB
 
