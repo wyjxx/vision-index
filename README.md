@@ -62,7 +62,7 @@ Implementation: [Indexing](app/services/index.py) · [Search](app/services/searc
 
 ---
 
-## Dataset & Evaluation
+## Fine-tuning & Evaluation
 
 Training uses 10,000 query–product pairs from [Marqo-GS-10M](https://huggingface.co/datasets/Marqo/marqo-GS-10M), `in_domain-350.parquet`, split by unique pair into train / validation / test at 80% / 10% / 10%.
 
