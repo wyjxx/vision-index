@@ -24,7 +24,7 @@ The current dataset has **10,000 pairs, 200 queries, and 9,934 products**.
 | Validation | 1,000 | Hyperparameter and checkpoint selection |
 | Test | 1,000 | Final comparison; 198 queries |
 
-Pairs do not overlap across splits. Queries and products can overlap. All current test queries also appear in train, so this evaluates held-out pairs, not unseen-query generalization.
+Pairs do not overlap across splits. All 198 test queries appear in train. The cleaned test excludes 14 pairs sharing a training product ID or image-file hash, leaving 986 pairs with unseen images in `data/v2/marqo_seen_query_unseen_images/`. The original splits and full candidate catalog are preserved. Near-duplicate images were not checked.
 
 Files live in `data/v2/marqo/`:
 
@@ -80,28 +80,72 @@ Entry point: `app/main.py`. Gallery and search results use the same template.
 
 `main_helper.py` prepares image URLs and search results for the page. Images are served through `/product-images/` and `/uploaded-images/`.
 
-## 5. Evaluation
+## 5. Fine-tuning
 
-Entry point: **`evaluation/ranking.py:main()`**.
+Entry point: **`training/run.py:main()`**. Only `text_projection` and `visual_projection` are trainable; both encoders and `logit_scale` remain frozen. Encoder features are extracted without gradients, then projected and normalized for cosine similarity.
+
+```mermaid
+flowchart TD
+    I["Product image"] --> P["32 × 32 patches + patch embeddings"]
+    P --> V["Vision Transformer: 12 layers<br/>FROZEN"]
+    V --> VF["Pooled image features: 768 dimensions"]
+    VF --> VP["Image projection: 768 → 512<br/>FINE-TUNED"]
+    VP --> VN["L2-normalized image vector"]
+
+    Q["Search query"] --> T["Tokenization + token embeddings"]
+    T --> E["Text Transformer: 12 layers<br/>FROZEN"]
+    E --> EF["Pooled text features: 512 dimensions"]
+    EF --> EP["Text projection: 512 → 512<br/>FINE-TUNED"]
+    EP --> EN["L2-normalized text vector"]
+
+    VN --> S["Dot product = cosine similarity"]
+    EN --> S
+
+    classDef frozen fill:#e3f2fd,stroke:#64a5d8,color:#174b75;
+    classDef trainable fill:#dcfce7,stroke:#16a34a,color:#14532d,stroke-width:3px;
+    class P,V,T,E frozen;
+    class VP,EP trainable;
+```
+
+Training uses bidirectional multi-positive contrastive loss: average text-to-image and image-to-text losses. The positive mask includes all known training matches within each batch, so multiple relevant images are treated as positives. Each row averages its positive losses before the batch average.
+
+| Setting | Current experiment |
+| --- | --- |
+| Optimizer | AdamW, learning rate `1e-4`, weight decay `0` |
+| Batch sampling | Target: 64 queries, up to 2 pairs per query; deduplicate images and merge a single-query remainder |
+| Epoch coverage | All 8,000 training pairs, shuffled with seed `42 + epoch - 1` |
+| Precision | FP32 |
+| Validation | Exact full-catalog evaluation before training and after each epoch |
+| Checkpoint selection | Highest validation `test_pairs.ndcg@10`; Epoch 4 selected from five epochs |
+
+`training/dataset.py` builds batches, `loss.py` calculates the objective, and `epoch.py` updates the projections. Validation uses `evaluation.evaluate.evaluate_model()`, the same core as test evaluation.
+
+Checkpoints, validation reports, and `run.json` live in `data/v2/training/projection_batch64_5epochs/`. Each completed epoch saves model/processor files and `training_state.pt` with optimizer state, random states, and run history. Resume restores these states and checks dataset hashes and training settings; `--epochs` is the total target, not the number of extra epochs.
+
+## 6. Evaluation
+
+Entry point: **`evaluation/evaluate.py:main()`**. Training validation calls the same module's `evaluate_model()` directly.
 
 ```text
 Read queries and labels from the selected split
 → Fix the candidate set using products.jsonl
-→ Read existing image vectors from Chroma
-→ Encode each query with CLIP
+→ Encode all candidate images with the selected model
+→ Encode each query with the same model
 → Compute cosine similarity against every candidate and sort in float32
 → Score each query and save labeled pair ranks
 → Average query metrics and save the summary
 ```
 
-The candidate set contains 9,934 products. Later uploads are excluded unless added to the dataset catalog. Evaluation uses exact ranking, not Chroma HNSW search or the dashboard's Top-K limit. Equal scores are ordered by product ID, ascending as strings.
+The original test candidate set contains 9,934 products; each additional test uses its own `products.jsonl`. Later uploads are excluded unless added to the dataset catalog. Offline evaluation generates vectors in memory on every run; Chroma is used by the application. Evaluation uses exact ranking, independent of the dashboard's Top-K limit. Equal scores are ordered by product ID, ascending as strings.
+
+The CLI accepts a model ID or checkpoint directory through `--model` (`--checkpoint` is an alias). Encoding defaults to float32; use `--dtype float16` explicitly for FP16 encoding. Cosine ranking always uses float32. Keep encoding precision consistent when comparing reports.
 
 ### Code Responsibilities
 
 | File | Role |
 | --- | --- |
 | `dataset.py` | Group the selected split's query text and reference positions by query ID |
-| `ranking.py` | Coordinate evaluation; `rank_products()` produces full-catalog similarities and ranks |
+| `evaluate.py` | Encode current-model vectors, coordinate evaluation, and compute exact rankings with `rank_products()` |
 | `metrics.py` | Pure Recall@K and nDCG@K calculations |
 | `report.py` | Load scoring labels, calculate query reports, write details, and build the summary |
 
@@ -142,7 +186,7 @@ We calculate Recall@10/50/100, nDCG@10/50/100, and full-catalog nDCG. Scores are
 
 Full rankings are used in memory, not written to a large file. No Top-100 file is saved. Metrics are calculated before reducing the output, so compact storage does not change the scores.
 
-## 6. Pipeline Diagram
+## 7. Pipeline Diagram
 
 ```mermaid
 flowchart TD
@@ -163,13 +207,13 @@ flowchart TD
     TextAI --> ANN[Search service calls storage: approximate Top-K]
     Vectors --> ANN
     ANN --> Details[SQLite product details to dashboard]
-    Files --> Eval[evaluation/ranking.py]
-    Vectors --> Eval
-    Eval --> Exact[CLIP query encoding and exact full-catalog ranking]
+    Files --> Eval[evaluation/evaluate.py]
+    Model[Current model or checkpoint] --> Eval
+    Eval --> Exact[Image and query encoding, exact full-catalog ranking]
     Exact --> Report[report.py calls metrics.py and saves four files]
 ```
 
-## 7. Project Structure
+## 8. Project Structure
 
 ```text
 vision-index/
@@ -183,7 +227,8 @@ vision-index/
 │   ├── templates/             # Page template
 │   └── static/                # CSS
 ├── scripts/                   # Data import, CLI indexing, and search
-├── evaluation/                # dataset.py, ranking.py, metrics.py, report.py
+├── evaluation/                # dataset.py, evaluate.py, metrics.py, report.py
+├── training/                  # Projection fine-tuning, validation, and checkpoint resume
 ├── tests/                     # Metrics, exact ranking, and output checks
 ├── app_legacy/                # V1 code, documentation, and evaluation
 ├── data/
@@ -201,7 +246,7 @@ vision-index/
 └── compose.yaml               # Container runtime configuration
 ```
 
-## 8. Commands
+## 9. Commands
 
 Run from the project root with Python 3.12. See [README](README.md) for CUDA PyTorch installation.
 
@@ -234,15 +279,25 @@ Import skips existing IDs; it does not clear old products. Indexing handles only
 python -m scripts.search_clip --query "orange juicer" --limit 5
 ```
 
+**Train or resume projections:**
+
+```powershell
+python -m training.run --epochs 5 --output-dir data/v2/training/projection_example5
+python -m training.run --resume data/v2/training/projection_batch64_5epochs/checkpoint_epoch_5 --epochs 7 --output-dir data/v2/training/projection_batch64_to7
+```
+
+Each training output directory must be new. Resume inherits the original settings.
+
 **Inspect labels and run evaluation:**
 
 ```powershell
-python -m evaluation.dataset --split test
-python -m evaluation.ranking --split validation --limit 3 --output-dir data/v2/evaluation/validation_check
-python -m evaluation.ranking --split test --output-dir data/v2/evaluation/baseline_test_run2
+python -m evaluation.dataset --dataset-dir data/v2/marqo_seen_query_unseen_images --split test
+python -m evaluation.evaluate --split validation --limit 3 --dtype float32 --output-dir data/v2/evaluation/validation_check
+python -m evaluation.evaluate --dataset-dir data/v2/marqo_seen_query_unseen_images --split test --dtype float32 --output-dir data/v2/evaluation/01_seen_query_unseen_images_986pairs/baseline_fp32_run2
+python -m evaluation.evaluate --dataset-dir data/v2/marqo_seen_query_unseen_images --model data/v2/training/projection_batch64_5epochs/checkpoint_epoch_4 --split test --dtype float32 --output-dir data/v2/evaluation/01_seen_query_unseen_images_986pairs/finetuned_epoch4_fp32_run2
 ```
 
-`--limit 3` limits queries only; each query still ranks every candidate. Each output directory must be new. The existing baseline is in `data/v2/evaluation/baseline_test/`; there is no need to rerun it.
+`--limit 3` limits queries only; each query still ranks every candidate. Each output directory must be new. Existing reports are under `data/v2/evaluation/01_seen_query_unseen_images_986pairs/{baseline_fp32,finetuned_epoch4_fp32}/`. Use `--dataset-dir data/v2/marqo_unseen_similar_1000` or `data/v2/marqo_unseen` for the other two scenarios.
 
 **Run tests:**
 
@@ -250,16 +305,29 @@ python -m evaluation.ranking --split test --output-dir data/v2/evaluation/baseli
 python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
-## 9. Progress and Next Step
+## 10. Progress and Next Step
 
-Completed: data preparation, pretrained CLIP integration, SQLite/Chroma storage, upload/gallery/search, and full-catalog quality evaluation on 198 test queries.
+Completed: data preparation, CLIP integration, SQLite/Chroma storage, upload/gallery/search, projection fine-tuning, and three full-catalog test comparisons.
 
-| Metric | Test labels only | All known labels |
-| --- | ---: | ---: |
-| Recall@100 | 0.6318 | 0.6435 |
-| nDCG@10 | 0.0952 | 0.3746 |
-| Full-catalog nDCG | 0.2977 | 0.6670 |
+All results below use FP32 exact ranking and `test_pairs` labels, averaged equally across queries.
 
-This is a preliminary baseline on a fixed product subset. Compare models within each label scope, not between scopes or against official full-dataset scores. Query latency, index build cost, and resource usage have not been measured.
+- **01 — Seen queries, unseen images:** 198 queries, 986 pairs, 9,934 candidates.
+- **02 — Unseen queries/products, similar themes:** 202 queries, 1,000 pairs, 9,938 candidates.
+- **03 — Unseen queries/products, shifted themes:** 204 queries, 10,000 pairs, 9,742 candidates.
 
-**Next: fine-tune CLIP.** Train on train pairs and select the model using validation. Re-encode images and queries with the selected checkpoint, then compare against the baseline using the same candidates and scoring rules. Keep baseline vectors and results separate.
+| Scenario | Model | Recall@10 | Recall@50 | Recall@100 | nDCG@10 | nDCG@50 | nDCG@100 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 01 | Pretrained | 0.1258 | 0.4707 | 0.6272 | 0.0962 | 0.1979 | 0.2342 |
+| 01 | Fine-tuned, Epoch 4 | 0.1960 | 0.6073 | 0.8214 | 0.1590 | 0.2840 | 0.3317 |
+| 02 | Pretrained | 0.1096 | 0.4860 | 0.6305 | 0.0672 | 0.1844 | 0.2181 |
+| 02 | Fine-tuned, Epoch 4 | 0.1221 | 0.4715 | 0.6193 | 0.0802 | 0.1899 | 0.2256 |
+| 03 | Pretrained | 0.1015 | 0.3714 | 0.5429 | 0.3018 | 0.3477 | 0.4353 |
+| 03 | Fine-tuned, Epoch 4 | 0.0977 | 0.3574 | 0.5307 | 0.2833 | 0.3320 | 0.4213 |
+
+The similar-theme test samples 1,000 pairs from `zero_shot-88.parquet` with seed 42 while retaining its full catalog. The shifted-theme test uses all pairs from `zero_shot-0.parquet`, which leans toward women's apparel and accessories. Both have no query ID, normalized query text, or product ID overlap with the original dataset. Image duplicates were not checked for the similar-theme test; one identical-image product was retained in the shifted-theme test.
+
+Results live under `data/v2/evaluation/01_seen_query_unseen_images_986pairs/`, `02_unseen_query_similar_domain_1000pairs/`, and `03_unseen_query_shifted_domain_10000pairs/`, each containing `baseline_fp32/` and `finetuned_epoch4_fp32/`. The cleaned test was rescored from saved pair ranks without model inference; only `test_pairs` metrics are included. Original 1,000-pair reports remain in `archive/01_seen_query_1000pairs/` under the evaluation directory.
+
+Fine-tuning improves retrieval for seen queries, with mixed gains on new queries and products. These are single-run, subset results: compare models within each scenario, since topic composition and label density differ. Query latency, index build cost, and resource usage have not been measured.
+
+**Next:** broaden training query coverage and add an independent unseen-query validation set before further tuning.

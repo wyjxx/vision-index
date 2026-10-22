@@ -6,9 +6,7 @@
 
 Vision-Index lets users browse products, upload images, index images, and search with natural-language.
 
-The current version provides a pretrained CLIP baseline, a FastAPI dashboard, and an offline evaluation pipeline for measuring future fine-tuning gains.
-
-This project's next step is to explore domain adaptation for multimodal product search: fine-tuning CLIP on domain-specific data to improve retrieval performance in a target product domain.
+The current version provides a FastAPI dashboard, CLIP projection-layer fine-tuning, and an offline evaluation pipeline comparing pretrained and fine-tuned retrieval across three test scenarios.
 
 **Tech Stack:** Python · PyTorch · Hugging Face Transformers · FastAPI · SQLite · ChromaDB
 
@@ -30,7 +28,8 @@ This project's next step is to explore domain adaptation for multimodal product 
 - **Real-world E-commerce Data:** Processed 9,934 products from the Marqo-GS-10M dataset, including product images, metadata, and query–product pairs.
 - **Interactive FastAPI Dashboard:** Supports natural-language product search, image gallery browsing, image uploads, and batch indexing.
 - **Efficient Local AI Inference:** Uses CLIP to generate multimodal embeddings for semantic product retrieval.
-- **Retrieval Benchmarking:** Evaluates pretrained CLIP on the full product catalog using Recall@K and nDCG@K.
+- **CLIP Fine-tuning:** Trains text and image projection layers while keeping both encoders frozen.
+- **Retrieval Benchmarking:** Compares pretrained and fine-tuned CLIP using full-catalog Recall@K and nDCG@K, including unseen-query tests.
 
 ---
 
@@ -63,26 +62,21 @@ Implementation: [Indexing](app/services/index.py) · [Search](app/services/searc
 
 ## Dataset & Evaluation
 
-Current experiments use a subset of [Marqo-GS-10M](https://huggingface.co/datasets/Marqo/marqo-GS-10M), from `in_domain-350.parquet`:
+Training uses 10,000 query–product pairs from [Marqo-GS-10M](https://huggingface.co/datasets/Marqo/marqo-GS-10M), `in_domain-350.parquet`, split by unique pair into train / validation / test at 80% / 10% / 10%.
 
-| Products | Queries | Query–product pairs | Train / Validation / Test |
-|---:|---:|---:|---:|
-| 9,934 | 200 | 10,000 | 8,000 / 1,000 / 1,000 |
+**Projection fine-tuning:** trained for five epochs; Epoch 4 was selected by validation nDCG@10. Evaluation uses exact full-catalog cosine ranking in FP32.
 
-Partitions are sampled by unique query–product pair. All test queries also appear in train, so this evaluates held-out pairs rather than unseen queries.
+**Fine-tuned Epoch 4 vs. pretrained CLIP:** relative metric changes within each scenario.
 
-**Pretrained CLIP quality evaluation is complete:** 198 test queries ranked against all 9,934 products using exact cosine similarity.
+| Query | Images | Domain similarity | Recall@100 | nDCG@10 | nDCG@50 | nDCG@100 |
+|---|---|---|---:|---:|---:|---:|
+| Seen | Unseen* | Same | +31.0% | +65.3% | +43.5% | +41.7% |
+| Unseen | Unseen* | Similar | −1.8% | +19.4% | +3.0% | +3.4% |
+| Unseen | Unseen* | Shifted toward women's fashion | −2.3% | −6.1% | −4.5% | −3.2% |
 
-| Metric | Test labels only | All known labels |
-|---|---:|---:|
-| Recall@100 | 0.6318 | 0.6435 |
-| nDCG@10 | 0.0952 | 0.3746 |
-| nDCG@50 | 0.2000 | 0.4451 |
-| nDCG@100 | 0.2358 | 0.5301 |
+*Seen/unseen refers to local fine-tuning. The first test excludes training-image matches; external tests use new product IDs, with image-overlap limits detailed in [TECHNICAL.md](TECHNICAL.md#10-progress-and-next-step). Domain similarity describes product themes.*
 
-Test-only scores use the 1,000 held-out pairs. All-known scores use annotations from all three splits, including training pairs, and describe catalog retrieval quality rather than held-out generalization.
-
-**Next:** domain fine-tuning and latency/resource benchmarks. Performance measurements are not yet available.
+**Next:** broaden training query coverage and validate unseen-query generalization. Latency and resource benchmarks remain pending.
 
 ---
 
