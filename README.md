@@ -120,6 +120,7 @@ docker compose ps
 Demo setup downloads the [500-product data package](https://github.com/wyjxx/vision-index/releases/tag/demo-data-500) (11 MB) and imports SQLite. Compose mounts `data/v2/` to retain products, uploads, vectors, and model caches.
 
 Open [localhost:8000](http://localhost:8000) and click **Index All Unindexed**, then search.
+
 ---
 
 ## Legacy V1
