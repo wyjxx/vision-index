@@ -1,6 +1,7 @@
 # Vision-Index
 
 **AI-powered E-commerce Product Search System**
+
 **With Domain-Specific Fine-tuning and Evaluation**
 
 ## Introduction
