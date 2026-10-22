@@ -4,7 +4,7 @@ import unittest
 
 import numpy as np
 
-from evaluation.ranking import rank_products
+from evaluation.evaluate import rank_products
 
 
 class ExactRankingTests(unittest.TestCase):

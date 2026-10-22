@@ -4,9 +4,6 @@ import io
 import json
 import tempfile
 import unittest
-import sys
-from types import SimpleNamespace
-from unittest.mock import Mock, patch
 from math import log2
 from pathlib import Path
 
@@ -40,36 +37,6 @@ class CompactReportTests(unittest.TestCase):
                 (directory / f"{name}.jsonl").write_text(json.dumps(row), encoding="utf-8")
             (directory / "test.jsonl").write_text("invalid JSON", encoding="utf-8")
             self.assertEqual(load_known_labels(directory, "validation"), {"q": {"A": 1, "B": 1}})
-
-    def test_ranking_entry_point_writes_compact_artifacts(self):
-        from evaluation.ranking import main
-
-        with tempfile.TemporaryDirectory() as temporary:
-            directory = Path(temporary) / "dataset"
-            directory.mkdir()
-            rows = {"queries": [{"query_id": "q", "query": "test"}],
-                    "products": [{"product_id": pid} for pid in ("A", "B", "C")]}
-            for split, pid in (("train", "A"), ("validation", "B"), ("test", "C")):
-                rows[split] = [{"query_id": "q", "product_id": pid, "position": 1}]
-            for name, values in rows.items():
-                (directory / f"{name}.jsonl").write_text("\n".join(map(json.dumps, values)), encoding="utf-8")
-            output = Path(temporary) / "output"
-            encoder = Mock(return_value=[[1, 0]])
-            storage = Mock(return_value=[[1, 0], [0, 1], [-1, 0]])
-            modules = {"app.ai.clip": SimpleNamespace(encode_texts=encoder),
-                       "app.storage.clip_vector_db": SimpleNamespace(get_clip_embeddings=storage)}
-            with patch.dict(sys.modules, modules):
-                main(["--dataset-dir", str(directory), "--split", "test", "--output-dir", str(output)])
-            self.assertEqual({p.name for p in output.iterdir()}, {
-                "pair_rankings.jsonl", "per_query_metrics.jsonl", "summary.json", "config.json"})
-            self.assertTrue(json.loads((output / "config.json").read_text())["completed"])
-            pair = json.loads((output / "pair_rankings.jsonl").read_text())
-            self.assertEqual(pair["product_id"], "C")
-            self.assertEqual(pair["model_rank"], 3)
-            summary = json.loads((output / "summary.json").read_text())
-            self.assertAlmostEqual(summary["test_pairs"]["ndcg@10"], 0.5)
-            storage.assert_called_once_with(["A", "B", "C"])
-
 
 if __name__ == "__main__":
     unittest.main()
