@@ -3,6 +3,8 @@
 !requirements.txt
 !app/
 !app/**
+!scripts/
+!scripts/**
 
 # Exclude generated Python files and local settings inside app/ as well.
 **/__pycache__/

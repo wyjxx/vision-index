@@ -105,8 +105,21 @@ python -m pip install torch==2.11.0 torchvision==0.26.0 --index-url https://down
 
 For CPU-only wheels, replace `cu128` with `cpu`. See the [official PyTorch installation commands](https://pytorch.org/get-started/previous-versions/#v2-11-0).
 
-Data lives in `data/v2/`; archived V1 data lives in `data/legacy/`. Docker packaging is included; container and GPU deployment validation is pending.
+Data lives in `data/v2/`; archived V1 data lives in `data/legacy/`.
 
+### Docker Deployment
+
+With Docker running, prepare the demo data and start the CPU application:
+
+```powershell
+docker compose run --rm --build app python -m scripts.setup_demo
+docker compose up --build -d
+docker compose ps
+```
+
+Demo setup downloads the [500-product data package](https://github.com/wyjxx/vision-index/releases/tag/demo-data-500) (11 MB) and imports SQLite. Compose mounts `data/v2/` to retain products, uploads, vectors, and model caches.
+
+Open [localhost:8000](http://localhost:8000) and click **Index All Unindexed**, then search.
 ---
 
 ## Legacy V1

@@ -77,6 +77,7 @@ Entry point: `app/main.py`. Gallery and search results use the same template.
 | Upload: `POST /upload` | `services/upload.py` validates the title and image → save image and SQLite record as unindexed |
 | Index: `POST /run-pipeline` | Run `index_unindexed_products()` for all pending products → return to the gallery |
 | Search: `GET /search/clip?q=...` | `main_helper.py` → search service → attach image URLs → render |
+| Health: `GET /health` | Check HTTP availability and the SQLite connection |
 
 `main_helper.py` prepares image URLs and search results for the page. Images are served through `/product-images/` and `/uploaded-images/`.
 
@@ -242,7 +243,7 @@ vision-index/
 │       └── evaluation/        # Experiment outputs
 ├── doc/                       # Screenshots
 ├── requirements.txt           # Unified dependencies
-├── Dockerfile                 # Container build; deployment validation pending
+├── Dockerfile                 # CPU application image and health check
 └── compose.yaml               # Container runtime configuration
 ```
 
@@ -305,9 +306,24 @@ python -m evaluation.evaluate --dataset-dir data/v2/marqo_seen_query_unseen_imag
 python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
+**Deploy with Docker (CPU):**
+
+```powershell
+docker compose run --rm --build app python -m scripts.setup_demo
+docker compose up --build -d
+docker compose ps
+docker compose exec app python -m scripts.index_marqo_clip --batch-size 32
+```
+
+`scripts/setup_demo.py` downloads the fixed 500-product ZIP from GitHub Release `demo-data-500`, verifies SHA256, extracts images/metadata, and calls the existing SQLite importer. The package includes source attribution and the upstream license; it contains no Parquet file, training splits, model weights, or vector index. Existing catalogs are preserved. For local Python, run `python -m scripts.setup_demo`. `scripts/import_marqo.py` remains the separate training-data preparation command. Indexing can also be started from the dashboard.
+
+The container runs the V2 app on port 8000, mapped to `127.0.0.1:${APP_PORT:-8000}`. `compose.yaml` passes `CLIP_MODEL` and `CLIP_COLLECTION`; Ollama settings are used only by local V1.
+
+The image installs CPU PyTorch and copies application code and CLI scripts. Datasets, checkpoints, and credentials are excluded from the build context. `./data/v2:/app/data/v2` persists SQLite, Chroma, images, and model caches. `/health` checks HTTP and SQLite, without loading CLIP. Use `docker compose logs -f app` for logs and `docker compose down` to stop; host data remains intact.
+
 ## 10. Progress and Next Step
 
-Completed: data preparation, CLIP integration, SQLite/Chroma storage, upload/gallery/search, projection fine-tuning, and three full-catalog test comparisons.
+Completed: data preparation, CLIP integration, SQLite/Chroma storage, upload/gallery/search, projection fine-tuning, three full-catalog test comparisons, and CPU Docker deployment with health and persistence checks.
 
 All results below use FP32 exact ranking and `test_pairs` labels, averaged equally across queries.
 

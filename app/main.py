@@ -13,7 +13,7 @@ from app.config import app_dir, product_images_dir, search_limit, gallery_page_s
 from app.config import uploaded_images_dir
 from app.main_helper import add_product_image_urls, build_clip_results
 from app.services.upload import upload_product
-from app.storage.sqlite_db import get_products_page, init_db
+from app.storage.sqlite_db import connect_db, get_products_page, init_db
 
 
 @asynccontextmanager
@@ -37,6 +37,14 @@ app.mount(
     name="uploaded_images",
 )
 templates = Jinja2Templates(directory=app_dir / "templates")
+
+
+@app.get("/health")
+def health():
+    """Check HTTP availability and the SQLite connection."""
+    with connect_db() as connection:
+        connection.execute("SELECT 1").fetchone()
+    return {"status": "ok"}
 
 
 # Upload
