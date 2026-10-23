@@ -103,7 +103,7 @@ docker compose up --build -d
 docker compose ps
 ```
 
-### Using the App (Both Options)
+### Using the App
 
 `setup_demo` downloads the [500-product demo package](https://github.com/wyjxx/vision-index/releases/tag/demo-data-500) (11 MB) and imports it into SQLite, stored in `data/v2/`.
 
