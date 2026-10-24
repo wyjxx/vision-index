@@ -13,6 +13,8 @@ def connect_db():
     connection = sqlite3.connect(product_db_path, timeout=30)
     connection.row_factory = sqlite3.Row
     try:
+        # Reject links to products or collections that do not exist.
+        connection.execute("PRAGMA foreign_keys = ON")
         with connection:
             yield connection
     finally:
@@ -21,6 +23,7 @@ def connect_db():
 
 def init_db() -> None:
     with connect_db() as connection:
+        # Store the product records.
         connection.execute("""
             CREATE TABLE IF NOT EXISTS products (
                 product_id TEXT PRIMARY KEY NOT NULL,
@@ -31,6 +34,126 @@ def init_db() -> None:
                 created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             )
         """)
+        # Store the collection names.
+        connection.execute("""
+            CREATE TABLE IF NOT EXISTS collections (
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL UNIQUE CHECK (length(trim(name)) > 0),
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        # Link each product to its collections.
+        connection.execute("""
+            CREATE TABLE IF NOT EXISTS collection_products (
+                collection_id INTEGER NOT NULL,
+                product_id TEXT NOT NULL,
+                PRIMARY KEY (collection_id, product_id),
+                FOREIGN KEY (collection_id) REFERENCES collections(id)
+                    ON DELETE CASCADE,
+                FOREIGN KEY (product_id) REFERENCES products(product_id)
+                    ON DELETE CASCADE
+            )
+        """)
+
+
+# Find a collection by name.
+def get_collection(name: str) -> dict | None:
+    if not isinstance(name, str):
+        raise ValueError("collection name must be a nonempty string")
+    name = name.strip().lower()
+    if not name:
+        raise ValueError("collection name must be a nonempty string")
+    with connect_db() as connection:
+        row = connection.execute(
+            "SELECT id, name, created_at FROM collections WHERE name = ?",
+            (name,),
+        ).fetchone()
+    return dict(row) if row is not None else None
+
+
+# Create a collection if the name does not exist.
+def create_collection(name: str) -> dict:
+    """Return the collection details. Set created to True only for a new collection."""
+    if not isinstance(name, str):
+        raise ValueError("collection name must be a nonempty string")
+    name = name.strip().lower()
+    if not name:
+        raise ValueError("collection name must be a nonempty string")
+    with connect_db() as connection:
+        cursor = connection.execute("""
+            INSERT INTO collections (name) VALUES (?)
+            ON CONFLICT(name) DO NOTHING
+        """, (name,))
+        created = cursor.rowcount == 1
+        row = connection.execute(
+            "SELECT id, name, created_at FROM collections WHERE name = ?",
+            (name,),
+        ).fetchone()
+    return {**dict(row), "created": created}
+
+
+# Add the products to the collection.
+def add_products_to_collection(product_ids: list[str], collection_id: int) -> dict:
+
+    if isinstance(collection_id, bool) or not isinstance(collection_id, int) or collection_id < 1:
+        raise ValueError("collection_id must be a positive integer")
+    if not isinstance(product_ids, list):
+        raise ValueError("product_ids must be a list of nonempty strings")
+    for product_id in product_ids:
+        if not isinstance(product_id, str) or not product_id.strip():
+            raise ValueError("product_ids must contain nonempty strings")
+
+    # Process each product ID once.
+    unique_ids = list(dict.fromkeys(product_ids))
+    # Save all new links in one transaction.
+    with connect_db() as connection:
+        collection = connection.execute(
+            "SELECT id FROM collections WHERE id = ?", (collection_id,),
+        ).fetchone()
+        if collection is None:
+            raise ValueError("collection does not exist")
+        cursor = connection.executemany("""
+            INSERT INTO collection_products (collection_id, product_id)
+            VALUES (?, ?)
+            ON CONFLICT(collection_id, product_id) DO NOTHING
+        """, [(collection_id, product_id) for product_id in unique_ids])
+        added_count = cursor.rowcount
+
+    return {
+        "collection_id": collection_id,
+        "requested_count": len(unique_ids),
+        "added_count": added_count,
+        "already_present_count": len(unique_ids) - added_count,
+    }
+
+
+# Read the products in the collection.
+def get_collection_products(collection_id: int) -> list[dict]:
+
+    if isinstance(collection_id, bool) or not isinstance(collection_id, int) or collection_id < 1:
+        raise ValueError("collection_id must be a positive integer value")
+
+    with connect_db() as connection:
+        collection = connection.execute(
+            "SELECT id FROM collections WHERE id = ?", (collection_id,),
+        ).fetchone()
+        if collection is None:
+            raise ValueError("collection does not exist")
+        rows = connection.execute(
+            """SELECT products.*
+            FROM products JOIN collection_products
+            ON products.product_id = collection_products.product_id
+            WHERE collection_products.collection_id = ?
+            ORDER BY products.product_id""", (collection_id,)
+        ).fetchall()
+
+    products = []
+    for row in rows:
+        product = dict(row)
+        product["indexed"] = bool(product["indexed"])
+        products.append(product)
+
+    return products
 
 
 # Convert data format for sqlite
