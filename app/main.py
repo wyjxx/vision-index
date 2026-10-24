@@ -11,7 +11,8 @@ from fastapi.templating import Jinja2Templates
 
 from app.config import app_dir, product_images_dir, search_limit, gallery_page_size
 from app.config import uploaded_images_dir
-from app.main_helper import add_product_image_urls, build_clip_results
+from app.main_helper import add_product_image_urls
+from app.services.search import search_clip_products
 from app.services.upload import upload_product
 from app.storage.sqlite_db import connect_db, get_products_page, init_db
 
@@ -83,7 +84,7 @@ def dashboard(
     total_pages = 1
     if query:
         # Search for result
-        products = build_clip_results(request, query, search_limit)
+        products = add_product_image_urls(request,search_clip_products(query, search_limit))
         total = len(products)
     else:
         # Main page: Get products page
