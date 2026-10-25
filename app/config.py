@@ -22,6 +22,6 @@ uploaded_catalog_path = data_dir / "uploads" / "products.jsonl"
 
 clip_model = os.getenv("CLIP_MODEL", "openai/clip-vit-base-patch32")
 clip_chroma_collection = os.getenv("CLIP_COLLECTION", "vision_index_clip_products")
-search_limit = 10
+search_limit = 20
 gallery_page_size = 24
 clip_index_batch_size = 32
