@@ -107,6 +107,17 @@ def create_collection(name: str) -> dict:
     return {**dict(row), "created": created}
 
 
+# Delete a collection and its links
+def delete_collection(collection_id: int) -> dict:
+    if isinstance(collection_id, bool) or not isinstance(collection_id, int) or collection_id < 1:
+        raise ValueError("collection_id must be a positive integer")
+    with connect_db() as connection:
+        cursor = connection.execute("DELETE FROM collections WHERE id = ?", (collection_id,))
+        if cursor.rowcount == 0:
+            raise ValueError("collection does not exist")
+    return {"collection_id": collection_id, "deleted": True}
+
+
 # Add the products to the collection.
 def add_products_to_collection(product_ids: list[str], collection_id: int) -> dict:
 
@@ -139,6 +150,28 @@ def add_products_to_collection(product_ids: list[str], collection_id: int) -> di
         "requested_count": len(unique_ids),
         "added_count": added_count,
         "already_present_count": len(unique_ids) - added_count,
+    }
+
+
+# Remove product links from one collection. Keep the products.
+def remove_products_from_collection(product_ids: list[str], collection_id: int) -> dict:
+    if isinstance(collection_id, bool) or not isinstance(collection_id, int) or collection_id < 1:
+        raise ValueError("collection_id must be a positive integer")
+    if not isinstance(product_ids, list) or any(not isinstance(pid, str) or not pid.strip() for pid in product_ids):
+        raise ValueError("product_ids must be a list of nonempty strings")
+    unique_ids = list(dict.fromkeys(product_ids))
+    with connect_db() as connection:
+        collection = connection.execute("SELECT id FROM collections WHERE id = ?", (collection_id,)).fetchone()
+        if collection is None:
+            raise ValueError("collection does not exist")
+        cursor = connection.executemany(
+            "DELETE FROM collection_products WHERE collection_id = ? AND product_id = ?",
+            [(collection_id, pid) for pid in unique_ids],
+        )
+        removed_count = cursor.rowcount
+    return {
+        "collection_id": collection_id, "requested_count": len(unique_ids),
+        "removed_count": removed_count, "not_present_count": len(unique_ids) - removed_count,
     }
 
 
