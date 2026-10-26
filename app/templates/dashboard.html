@@ -47,10 +47,22 @@
             <span class="form-hint">Indexing finishes before returning to the gallery.</span>
         </form>
 
+        <div class="workspace">
         <section class="section-block">
+            <section class="collection-bar card-surface" aria-labelledby="collections-title">
+                <h2 id="collections-title">Collections</h2>
+                <a id="all-products" class="section-chip" href="/" data-collection-id="">All products</a>
+                <div id="collection-list" class="collection-strip" role="list" aria-live="polite">
+                    Loading collections...
+                </div>
+            </section>
+            <div id="product-gallery">
             <div class="section-heading">
                 <div>
-                    {% if query %}
+                    {% if collection %}
+                    <h2>{{ collection.name }}</h2>
+                    <p class="section-subtitle">Products in this collection.</p>
+                    {% elif query %}
                     <h2>Search results</h2>
                     <p class="section-subtitle">Query: <b>{{ query }}</b></p>
                     {% else %}
@@ -68,6 +80,12 @@
             <div class="grid">
                 {% for product in products %}
                 <article class="card product-card">
+                    {% if not collection %}
+                    <button type="button" class="delete-product" data-delete-product="{{ product.product_id }}"
+                            data-product-title="{{ product.title }}" aria-label="Delete product" title="Delete product">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7M14 10v7"/></svg>
+                    </button>
+                    {% endif %}
                     <a href="{{ product.image_url }}" target="_blank" rel="noopener" class="image-link">
                         <img src="{{ product.image_url }}" alt="{{ product.title }}" loading="lazy">
                     </a>
@@ -93,16 +111,34 @@
             {% if not query and total_pages > 1 %}
             <nav class="pagination" aria-label="Product pages">
                 {% if page > 1 %}
-                <a href="/?page={{ page - 1 }}" class="button">Previous</a>
+                <a href="{{ request.url.include_query_params(page=page - 1) }}" class="button">Previous</a>
                 {% endif %}
                 <span>Page {{ page }} of {{ total_pages }}</span>
                 {% if page < total_pages %}
-                <a href="/?page={{ page + 1 }}" class="button">Next</a>
+                <a href="{{ request.url.include_query_params(page=page + 1) }}" class="button">Next</a>
                 {% endif %}
             </nav>
             {% endif %}
+            </div>
+            <p id="collection-status" class="form-hint" role="status"></p>
         </section>
+        <aside class="agent-chat card-surface" aria-labelledby="chat-title">
+            <h2 id="chat-title">Assistant</h2>
+            <p class="form-hint">Search products and manage collections. Enter q to end a conversation.</p>
+            <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
+            <form id="chat-form">
+                <label for="chat-input">Message</label>
+                <div class="chat-controls">
+                    <input id="chat-input" type="text" placeholder="Ask about products..." required>
+                    <button type="submit" class="button button-primary">Send</button>
+                </div>
+            </form>
+            <p id="chat-status" class="form-hint" role="status"></p>
+        </aside>
+        </div>
     </main>
+    <script src="/static/chat.js" defer></script>
+    <script src="/static/collections.js" defer></script>
 </body>
 
 </html>

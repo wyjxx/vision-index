@@ -1,6 +1,6 @@
-# Run a terminal conversation and ask for write approval.
+# Run agent conversations for HTTP requests.
 
-import json
+from uuid import uuid4
 
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.checkpoint.memory import InMemorySaver
@@ -8,8 +8,21 @@ from langgraph.types import Command
 
 from app.agent.graph import build_graph
 
-# Question -> Model -> Tool Call -> Model -> ... -> Final Answer
-def run_agent(question: str, max_rounds: int = 5) -> str:
+graph = build_graph(checkpointer=InMemorySaver())
+
+
+# Report a missing conversation to the caller.
+class ConversationNotFoundError(LookupError):
+    pass
+
+
+# Report a conversation that has no pending input.
+class ConversationNotWaitingError(RuntimeError):
+    pass
+
+
+# Start a conversation and return its first answer
+def run_agent(question: str, max_rounds: int = 5) -> dict:
 
     if not isinstance(question, str) or not question.strip():
         raise ValueError("question must be a nonempty string")
@@ -30,29 +43,39 @@ def run_agent(question: str, max_rounds: int = 5) -> str:
         HumanMessage(content=question.strip()),
     ]
 
-    # Prepare and build graph
     state = {
         "messages": messages, "model_calls": 0,
         "max_rounds": max_rounds, "exit_requested": False,
     }
-    graph = build_graph(checkpointer=InMemorySaver())
-    config = {"configurable": {"thread_id": "agent"}}
 
+    thread_id = uuid4().hex
+    config = {"configurable": {"thread_id": thread_id}}
     result = graph.invoke(state, config)
+    return {"thread_id": thread_id, **result["__interrupt__"][0].value}
 
-    # Interrupt: wait for write approval or wait for continued conversation
-    while result.get("__interrupt__"):
-        request = result["__interrupt__"][0].value
-        if request["type"] == "write_approval":
-            print(json.dumps(request["tool_calls"], ensure_ascii=False, indent=2))
-            reply = input("Execute these operations? Enter y to confirm, or any other input to cancel: ").strip().lower() == "y"
-        else:
-            print(request["answer"])
-            reply = input("Enter something or Type q to quit: ").strip()
-            while not reply:
-                reply = input("Enter something or Type q to quit: ").strip()
 
-        # Let the graph decide the next node.
-        result = graph.invoke(Command(resume=reply), config)
+# Resume the saved graph and continue to next step
+def resume_agent(thread_id: str, reply: str) -> dict:
+    config = {"configurable": {"thread_id": thread_id}}
+    state = graph.get_state(config)
+    if not state.values:
+        raise ConversationNotFoundError("Conversation not found")
+    if not state.interrupts:
+        raise ConversationNotWaitingError("Conversation is not waiting for input")
 
-    return result["messages"][-1].content
+    if not isinstance(reply, str) or not reply.strip():
+        raise ValueError("Reply must be nonempty text")
+    reply = reply.strip()
+
+    request = state.interrupts[0].value
+    if request["type"] == "write_approval":
+        # Wait for write approval
+        resume_value = reply.lower() == "y"
+    else:
+        # Wait to continue or exit
+        resume_value = reply
+
+    result = graph.invoke(Command(resume=resume_value), config)
+    if result.get("__interrupt__"):
+        return {"thread_id": thread_id, **result["__interrupt__"][0].value}
+    return {"thread_id": thread_id, "type": "end", "answer": result["messages"][-1].content}

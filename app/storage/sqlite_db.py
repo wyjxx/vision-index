@@ -56,6 +56,21 @@ def init_db() -> None:
         """)
 
 
+# List all collections and count their products.
+def list_collections() -> list[dict]:
+    with connect_db() as connection:
+        rows = connection.execute("""
+            SELECT collections.id, collections.name,
+                   COUNT(collection_products.product_id) AS product_count
+            FROM collections
+            LEFT JOIN collection_products
+                ON collections.id = collection_products.collection_id
+            GROUP BY collections.id, collections.name
+            ORDER BY collections.name
+        """).fetchall()
+    return [dict(row) for row in rows]
+
+
 # Find a collection by name.
 def get_collection(name: str) -> dict | None:
     if not isinstance(name, str):
