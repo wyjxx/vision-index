@@ -55,6 +55,10 @@ async function loadCollections() {
         });
         collectionList.replaceChildren(...folders);
         if (!folders.length) collectionList.textContent = "No collections yet.";
+        const selectedId = galleryUrl.searchParams.get("collection_id");
+        if (selectedId && !collections.some(collection => String(collection.id) === selectedId)) {
+            showGallery(new URL("/", window.location.origin));
+        }
         updateSelection();
     } catch (error) {
         collectionList.textContent = "Could not load collections. Refresh the page to try again.";

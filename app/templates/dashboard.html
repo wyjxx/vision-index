@@ -12,7 +12,7 @@
     <main class="page">
         <header class="page-header">
             <h1>Vision-Index 2.0</h1>
-            <p class="page-subtitle">Find products with natural language</p>
+            <p class="page-subtitle">AI-based Products Retrieval & Management</p>
         </header>
 
         <section class="topbar">
@@ -20,7 +20,6 @@
               class="upload-form card-surface topbar-card">
             <div class="form-copy">
                 <span class="form-label">Upload Product</span>
-                <span class="form-hint">New products appear in the gallery before indexing</span>
             </div>
             <label for="product-title">Product title</label>
             <input id="product-title" type="text" name="title" placeholder="Product title" required>
@@ -32,7 +31,6 @@
         <form action="/search/clip" method="get" class="search-form card-surface topbar-card">
             <div class="form-copy">
                 <span class="form-label">Search Products</span>
-                <span class="form-hint">Describe the product you want to find</span>
             </div>
             <div class="search-input-group">
                 <input type="text" name="q" value="{{ query }}"
@@ -121,7 +119,7 @@
         </section>
         <aside class="agent-chat card-surface" aria-labelledby="chat-title">
             <h2 id="chat-title">Assistant</h2>
-            <p class="form-hint">Search products and manage collections. Enter q to end a conversation.</p>
+            <p class="form-hint">Search Products - Find Collection - View Collection Products - Create Collection - Add Products to Collection - Remove Products from Collection - Delete Collection. Enter q to end a conversation.</p>
             <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
             <form id="chat-form">
                 <label for="chat-input">Message</label>

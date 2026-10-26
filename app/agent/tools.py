@@ -6,7 +6,9 @@ from pydantic import BaseModel, ConfigDict, Field
 from app.storage.sqlite_db import get_collection as find_collection
 from app.storage.sqlite_db import get_collection_products as read_collection_products
 from app.storage.sqlite_db import create_collection as insert_collection
+from app.storage.sqlite_db import delete_collection as remove_collection
 from app.storage.sqlite_db import add_products_to_collection as add_collection_products
+from app.storage.sqlite_db import remove_products_from_collection as remove_collection_products
 
 
 # Pydantic model
@@ -42,10 +44,16 @@ class ReadCollectionInput(BaseModel):
     )
 
 
-class AddProductsToCollectionInput(BaseModel):
+class DeleteCollectionInput(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    product_ids: list[str] = Field(min_length=1, description="Use product IDs from search results.")
+    collection_id: int = Field(gt=0, strict=True, description="Use the collection ID from get_collection.")
+
+
+class CollectionProductsInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    product_ids: list[str] = Field(min_length=1, description="Use product IDs from search_products or get_collection_products.")
     collection_id: int = Field(gt=0, strict=True, description="Use an existing collection ID.")
 
 # Read Tool: Search for product by query.
@@ -109,7 +117,7 @@ def create_collection(name: str) -> dict:
 
 
 # Write Tool: Add products to collection
-@tool(args_schema=AddProductsToCollectionInput, description=(
+@tool(args_schema=CollectionProductsInput, description=(
     "Add products to an existing collection. Requires user approval. "
     "Use product IDs from search results and a collection ID from get_collection or create_collection."
 ))
@@ -117,7 +125,28 @@ def add_products_to_collection(product_ids: list[str], collection_id: int) -> di
     return add_collection_products(product_ids, collection_id)
 
 
+# Write Tool: Delete a collection after user approval.
+@tool(args_schema=DeleteCollectionInput, description=(
+    "Delete a collection and its product links. Keep all products and image files. "
+    "Use get_collection to verify its ID first. Requires user approval."
+))
+def delete_collection(collection_id: int) -> dict:
+    return remove_collection(collection_id)
+
+
+# Write Tool: Remove products from a collection after user approval.
+@tool(args_schema=CollectionProductsInput, description=(
+    "Remove products from one collection. Keep the collection, products, and image files. "
+    "Use get_collection and get_collection_products to find the collection and product IDs. Requires user approval."
+))
+def remove_products_from_collection(product_ids: list[str], collection_id: int) -> dict:
+    return remove_collection_products(product_ids, collection_id)
+
+
 # Give the model tools
 READ_ONLY_TOOLS = [search_products, get_collection,get_collection_products]
-WRITE_TOOLS = [create_collection, add_products_to_collection]
+WRITE_TOOLS = [
+    create_collection, add_products_to_collection,
+    delete_collection, remove_products_from_collection,
+]
 ALL_AGENT_TOOLS = READ_ONLY_TOOLS + WRITE_TOOLS
