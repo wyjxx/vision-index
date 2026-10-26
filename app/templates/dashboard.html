@@ -118,8 +118,14 @@
             <p id="collection-status" class="form-hint" role="status"></p>
         </section>
         <aside class="agent-chat card-surface" aria-labelledby="chat-title">
-            <h2 id="chat-title">Assistant</h2>
-            <p class="form-hint">Search Products - Find Collection - View Collection Products - Create Collection - Add Products to Collection - Remove Products from Collection - Delete Collection. Enter q to end a conversation.</p>
+            <h2 id="chat-title">AI Agent</h2>
+            <div class="agent-capabilities" aria-label="Agent tools">
+                <span>Search Products</span>
+                <span>Create & Delete Collection</span>
+                <span>Add Products to Collection</span>
+                <span>Remove Products from Collection</span>
+            </div>
+            <p class="form-hint">Enter q to end a conversation.</p>
             <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
             <form id="chat-form">
                 <label for="chat-input">Message</label>
