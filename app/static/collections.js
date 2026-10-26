@@ -61,8 +61,17 @@ async function loadCollections() {
     }
 }
 
+document.querySelector(".search-form").addEventListener("submit", event => {
+    event.preventDefault();
+    const query = new FormData(event.currentTarget).get("q").trim();
+    if (!query) return;
+    const url = new URL(event.currentTarget.action);
+    url.searchParams.set("q", query);
+    showGallery(url);
+});
+
 document.addEventListener("click", event => {
-    const link = event.target.closest(".collection-folder, #all-products, #product-gallery .pagination a");
+    const link = event.target.closest(".collection-folder, #all-products, #product-gallery .pagination a, #product-gallery .section-heading a");
     if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.button !== 0) return;
     event.preventDefault();
     showGallery(link.href);

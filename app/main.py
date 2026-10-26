@@ -139,5 +139,9 @@ def dashboard(
             "page": page,
             "total_pages": total_pages,
             "collection": collection,
+            "asset_versions": {
+                name: (app_dir / "static" / name).stat().st_mtime_ns
+                for name in ("style.css", "chat.js", "collections.js")
+            },
         },
     )

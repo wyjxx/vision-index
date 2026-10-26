@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vision-Index 2.0</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css?v={{ asset_versions['style.css'] }}">
 </head>
 
 <body>
@@ -44,7 +44,6 @@
 
         <form action="/run-pipeline" method="post" class="inline-form">
             <button type="submit" class="button">Index All Unindexed</button>
-            <span class="form-hint">Indexing finishes before returning to the gallery.</span>
         </form>
 
         <div class="workspace">
@@ -61,13 +60,11 @@
                 <div>
                     {% if collection %}
                     <h2>{{ collection.name }}</h2>
-                    <p class="section-subtitle">Products in this collection.</p>
                     {% elif query %}
                     <h2>Search results</h2>
                     <p class="section-subtitle">Query: <b>{{ query }}</b></p>
                     {% else %}
                     <h2>Product Gallery</h2>
-                    <p class="section-subtitle">Browse the product catalog.</p>
                     {% endif %}
                 </div>
                 {% if query %}
@@ -137,8 +134,8 @@
         </aside>
         </div>
     </main>
-    <script src="/static/chat.js" defer></script>
-    <script src="/static/collections.js" defer></script>
+    <script src="/static/chat.js?v={{ asset_versions['chat.js'] }}" defer></script>
+    <script src="/static/collections.js?v={{ asset_versions['collections.js'] }}" defer></script>
 </body>
 
 </html>
