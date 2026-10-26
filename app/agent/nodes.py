@@ -1,6 +1,6 @@
 """Define the steps that read and update the agent state."""
 
-from langchain_core.messages import AIMessage, ToolMessage
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from langgraph.types import interrupt
 
 from app.agent.executor import execute_tool_call
@@ -36,12 +36,31 @@ def approval_node(state: AgentState) -> dict:
     
     # If contained, interrupt and wait for approval
     if calls: 
-        write_approved = interrupt({"tool_calls": calls}) 
+        write_approved = interrupt({"type": "write_approval", "tool_calls": calls})
     else: 
         write_approved = False
 
     # Return the write approval status.
     return {"write_approved": write_approved is True}
+
+
+# Wait for a new message or an exit request.
+def wait_node(state: AgentState) -> dict:
+    question = interrupt({
+        "type": "user_input", "answer": state["messages"][-1].content,
+    }).strip()
+
+    # Exit 
+    if question.lower() == "q":
+        return {"exit_requested": True}
+
+    # Keep the messages and reset the model call count for the new turn.
+    return {
+        "messages": state["messages"] + [HumanMessage(content=question)],
+        "model_calls": 0,
+        "write_approved": False,
+        "exit_requested": False,
+    }
 
 
 # Run the tools request
@@ -70,7 +89,7 @@ def tool_node(state: AgentState) -> AgentState:
 
         tool_results.append(result)
 
-    # Add tool results
+    # Add the tool results
     # Reset write approval for the next round.
     return {
         **state,

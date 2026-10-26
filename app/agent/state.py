@@ -15,5 +15,8 @@ class AgentState(TypedDict):
     # Set the maximum number of model calls.
     max_rounds: int
 
+    # Record whether the user requested to exit.
+    exit_requested: bool
+
     # Store approval for the current write calls.
     write_approved: NotRequired[bool]

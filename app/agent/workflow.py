@@ -1,4 +1,4 @@
-# Run the agent graph and ask for approval in the terminal.
+# Run a terminal conversation and ask for write approval.
 
 import json
 
@@ -31,20 +31,28 @@ def run_agent(question: str, max_rounds: int = 5) -> str:
     ]
 
     # Prepare and build graph
-    state = {"messages": messages, "model_calls": 0, "max_rounds": max_rounds}
+    state = {
+        "messages": messages, "model_calls": 0,
+        "max_rounds": max_rounds, "exit_requested": False,
+    }
     graph = build_graph(checkpointer=InMemorySaver())
     config = {"configurable": {"thread_id": "agent"}}
 
-    # Start graph
     result = graph.invoke(state, config)
 
-    # If interrupt, ask for write approval
+    # Interrupt: wait for write approval or wait for continued conversation
     while result.get("__interrupt__"):
-        calls = result["__interrupt__"][0].value["tool_calls"]
-        print(json.dumps(calls, ensure_ascii=False, indent=2))
-        approved = input("Execute these operations? Enter y to confirm, or any other input to cancel: ").strip().lower() == "y"
+        request = result["__interrupt__"][0].value
+        if request["type"] == "write_approval":
+            print(json.dumps(request["tool_calls"], ensure_ascii=False, indent=2))
+            reply = input("Execute these operations? Enter y to confirm, or any other input to cancel: ").strip().lower() == "y"
+        else:
+            print(request["answer"])
+            reply = input("Enter something or Type q to quit: ").strip()
+            while not reply:
+                reply = input("Enter something or Type q to quit: ").strip()
 
-        # Continue graph with the user's decision.
-        result = graph.invoke(Command(resume=approved), config)
+        # Let the graph decide the next node.
+        result = graph.invoke(Command(resume=reply), config)
 
     return result["messages"][-1].content
