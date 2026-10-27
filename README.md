@@ -27,7 +27,7 @@ The project also includes CLIP projection-layer fine-tuning and an offline evalu
 
 <p align="center">
   <img src="doc/agentchat.png" alt="Agent Chat" width="35%">
-  <img src="doc/agentresult.png" alt="Agent Result" width="65%">
+  <img src="doc/agentresult.png" alt="Agent Result" width="60%">
 </p>
 ---
 
