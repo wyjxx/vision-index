@@ -8,12 +8,24 @@ Vision-Index is an interactive application for finding and organizing e-commerce
 
 Users can browse products, upload images, search with natural language, and manage collections through a conversational AI agent.
 
-The project also includes CLIP projection-layer fine-tuning and an offline evaluation pipeline to measure retrieval performance across three test scenarios.
+The project also includes CLIP fine-tuning and an evaluation pipeline to measure retrieval performance across 3 test scenarios.
 
-**Tech Stack:** Python · PyTorch · Hugging Face · CLIP · FastAPI · SQLite · ChromaDB · DeepSeek · LangChain · LangGraph
+**Tech Stack:** Python · PyTorch · Hugging Face · CLIP · FastAPI · SQLite · ChromaDB · DeepSeek API · LangChain · LangGraph
 
+---
 
-## Demo
+## Key Features
+
+- **Interactive Web Dashboard:** Built with FastAPI and supports product browsing, image uploads, semantic search, and an integrated agent chat panel.
+- **Conversational AI Agent:** Uses `deepseek-flash` and LangGraph to search products, inspect collections, create or delete collections, and add or remove products through multi-turn chat.
+- **Efficient Retrieval:** Runs `openai/clip-vit-base-patch32` to encode product images and text queries, searches image vectors in ChromaDB, and retrieves product metadata from SQLite.
+- **Real-world E-commerce Data:** Processed 9,934 products from the Marqo-GS-10M dataset, including product images, metadata, and query–product pairs. 
+- **CLIP Fine-tuning:** Trains text and image projection layers while keeping both encoders frozen.
+- **Multi-Scenario Retrieval Evaluation:** Compares pretrained and fine-tuned CLIP using full-catalog Recall@K and nDCG@K, including unseen-query tests.
+
+---
+
+## Web Demo
 
 ### Upload Images and Run Indexing
 
@@ -29,20 +41,25 @@ The project also includes CLIP projection-layer fine-tuning and an offline evalu
   <img src="doc/agentchat.png" alt="Agent Chat" width="35%">
   <img src="doc/agentresult.png" alt="Agent Result" width="60%">
 </p>
----
-
-## Key Features
-
-- **Interactive Web Dashboard:** Built with FastAPI and supports product browsing, image uploads, semantic search, and an integrated agent chat panel.
-- **Conversational AI Agent:** Uses DeepSeek and LangGraph to search products, inspect collections, create or delete collections, and add or remove products through multi-turn chat.
-- **Efficient Retrieval:** Runs CLIP locally to encode product images and text queries, searches image vectors in ChromaDB, and retrieves product metadata from SQLite.
-- **Real-world E-commerce Data:** Processed 9,934 products from the Marqo-GS-10M dataset, including product images, metadata, and query–product pairs. 
-- **CLIP Fine-tuning:** Trains text and image projection layers while keeping both encoders frozen.
-- **Multi-Scenario Retrieval Evaluation:** Compares pretrained and fine-tuned CLIP using full-catalog Recall@K and nDCG@K, including unseen-query tests.
 
 ---
 
-## Pipeline Architecture
+## Main Architecture
+
+### Conversational AI Agent
+
+```mermaid
+flowchart LR
+    A[User message] --> B[LLM + conversation context]
+    B --> C{Tool call?}
+    C -->|No| D[Reply to user]
+    C -->|Read| E[Search or inspect collections]
+    C -->|Write| F{User approval}
+    F -->|Approved| G[Update collections]
+    F -->|Cancelled| B
+    E --> B
+    G --> B
+```
 
 ### Image Indexing
 
@@ -63,24 +80,9 @@ flowchart LR
     D --> E[Ranked product cards]
 ```
 
-### Conversational AI Agent
+**Model:** `openai/clip-vit-base-patch32` for normalized 512-dimensional embeddings. DeepSeek (`deepseek-flash`) for conversation and tool calling.
 
-```mermaid
-flowchart LR
-    A[User message] --> B[LLM + conversation context]
-    B --> C{Tool call?}
-    C -->|No| D[Reply to user]
-    C -->|Read| E[Search or inspect collections]
-    C -->|Write| F{User approval}
-    F -->|Approved| G[Update collections]
-    F -->|Cancelled| B
-    E --> B
-    G --> B
-```
-
-**Model:** `openai/clip-vit-base-patch32` · normalized 512-dimensional embeddings.
-
-Implementation: [Indexing](app/services/index.py) · [Search](app/services/search.py) · [CLIP encoders](app/ai/clip.py)
+Implementation: [Indexing](app/services/index.py) · [Search](app/services/search.py) · [CLIP encoders](app/ai/clip.py) · [Agent graph](app/agent/graph.py) · [Agent tools](app/agent/tools.py) · [Agent model](app/agent/model.py)
 
 ---
 
@@ -100,12 +102,17 @@ Training uses 10,000 query–product pairs from [Marqo-GS-10M](https://huggingfa
 
 *Seen/unseen indicates whether queries or images were used during fine-tuning. Domain similarity describes how closely the test product themes match the training data.*
 
-
 ---
 
 ## Quick Start
 
-Choose one option below. Run all commands from the project root.
+### Configure the API Key
+
+```powershell
+$env:DEEPSEEK_API_KEY = "your_api_key"
+```
+
+Then choose one startup option below. Run all commands from the project root.
 
 ### Option 1: Local Python
 

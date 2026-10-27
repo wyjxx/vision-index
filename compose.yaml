@@ -6,6 +6,7 @@ services:
     environment:
       CLIP_MODEL: ${CLIP_MODEL:-openai/clip-vit-base-patch32}
       CLIP_COLLECTION: ${CLIP_COLLECTION:-vision_index_clip_products}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
     volumes:
       - ./data/v2:/app/data/v2
     init: true
