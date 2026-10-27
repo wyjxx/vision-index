@@ -26,8 +26,8 @@ The project also includes CLIP projection-layer fine-tuning and an offline evalu
 ### Manage Collections through AI Chat
 
 <p align="center">
-  <img src="doc/agentchat.png" alt="Agent Chat" width="20%">
-  <img src="doc/agentresult.png" alt="Agent Result" width="70%">
+  <img src="doc/agentchat.png" alt="Agent Chat" width="35%">
+  <img src="doc/agentresult.png" alt="Agent Result" width="65%">
 </p>
 ---
 
