@@ -1,35 +1,42 @@
-# Vision-Index: CLIP-based E-commerce Product Search
+# Vision-Index: AI-Assisted E-commerce Product Search & Management
 
-**With Projection-Layer Fine-tuning and Multi-Scenario Evaluation**
+**Conversational AI Agent · CLIP-based Retrieval · Projection-Layer Fine-tuning · Multi-Scenario Evaluation**
 
 ## Introduction
 
-Vision-Index lets users browse products, upload images, index images, and search with natural-language.
+Vision-Index is an interactive application for finding and organizing e-commerce products. 
 
-The current version provides an interactive FastAPI dashboard, CLIP projection-layer fine-tuning, and an offline evaluation pipeline comparing pretrained and fine-tuned retrieval across 3 test scenarios.
+Users can browse products, upload images, search with natural language, and manage collections through a conversational AI agent.
 
-**Tech Stack:** Python · PyTorch · Hugging Face · CLIP · FastAPI · SQLite · ChromaDB
+The project also includes CLIP projection-layer fine-tuning and an offline evaluation pipeline to measure retrieval performance across three test scenarios.
+
+**Tech Stack:** Python · PyTorch · Hugging Face · CLIP · FastAPI · SQLite · ChromaDB · DeepSeek · LangChain · LangGraph
 
 
 ## Demo
 
-### Upload Images, Run Indexing
+### Upload Images and Run Indexing
 
 ![Homepage showing the gallery](doc/homepage.png)
 
-### Search by Queries and Inspect Scores
+### Search Products and Inspect Scores
 
 ![Search results](doc/search.png)
 
+### Manage Collections through AI Chat
+
+![Agent Chat](doc/agentchat.png)
+![Agent Result](doc/agentresult.png)
 ---
 
 ## Key Features
 
-- **Real-world E-commerce Data:** Processed 9,934 products from the Marqo-GS-10M dataset, including product images, metadata, and query–product pairs.
-- **Interactive FastAPI Dashboard:** Supports natural-language product search, image gallery browsing, image uploads, and batch indexing.
-- **Efficient Local AI Inference:** Uses CLIP to generate multimodal embeddings for semantic product retrieval.
+- **Interactive Web Dashboard:** Built with FastAPI and supports product browsing, image uploads, semantic search, and an integrated agent chat panel.
+- **Conversational AI Agent:** Uses DeepSeek and LangGraph to search products, inspect collections, create or delete collections, and add or remove products through multi-turn chat.
+- **Efficient Retrieval:** Runs CLIP locally to encode product images and text queries, searches image vectors in ChromaDB, and retrieves product metadata from SQLite.
+- **Real-world E-commerce Data:** Processed 9,934 products from the Marqo-GS-10M dataset, including product images, metadata, and query–product pairs. 
 - **CLIP Fine-tuning:** Trains text and image projection layers while keeping both encoders frozen.
-- **Retrieval Benchmarking:** Compares pretrained and fine-tuned CLIP using full-catalog Recall@K and nDCG@K, including unseen-query tests.
+- **Multi-Scenario Retrieval Evaluation:** Compares pretrained and fine-tuned CLIP using full-catalog Recall@K and nDCG@K, including unseen-query tests.
 
 ---
 
@@ -52,6 +59,21 @@ flowchart LR
     B --> C[Cosine search in Chroma]
     C --> D[Load product metadata from SQLite]
     D --> E[Ranked product cards]
+```
+
+### Conversational AI Agent
+
+```mermaid
+flowchart LR
+    A[User message] --> B[LLM + conversation context]
+    B --> C{Tool call?}
+    C -->|No| D[Reply to user]
+    C -->|Read| E[Search or inspect collections]
+    C -->|Write| F{User approval}
+    F -->|Approved| G[Update collections]
+    F -->|Cancelled| B
+    E --> B
+    G --> B
 ```
 
 **Model:** `openai/clip-vit-base-patch32` · normalized 512-dimensional embeddings.
