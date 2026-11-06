@@ -16,10 +16,10 @@
         </header>
 
         <section class="topbar">
-        <form action="/upload" method="post" enctype="multipart/form-data"
-              class="upload-form card-surface topbar-card">
+        <form class="upload-form card-surface topbar-card">
             <div class="form-copy">
                 <span class="form-label">Upload Product</span>
+                <p id="upload-status" class="form-hint" role="status" hidden></p>
             </div>
             <label for="product-title">Product title</label>
             <input id="product-title" type="text" name="title" placeholder="Product title" required>
@@ -28,7 +28,7 @@
             <button type="submit" class="button button-primary">Upload</button>
         </form>
 
-        <form action="/search/clip" method="get" class="search-form card-surface topbar-card">
+        <form class="search-form card-surface topbar-card">
             <div class="form-copy">
                 <span class="form-label">Search Products</span>
             </div>
@@ -40,8 +40,9 @@
         </form>
         </section>
 
-        <form action="/run-pipeline" method="post" class="inline-form">
+        <form id="index-form" class="inline-form">
             <button type="submit" class="button">Index All Unindexed</button>
+            <span id="index-status" class="form-hint" role="status" hidden></span>
         </form>
 
         <div class="workspace">
@@ -139,6 +140,9 @@
         </div>
     </main>
     <script src="/static/chat.js?v={{ asset_versions['chat.js'] }}" defer></script>
+    <script src="/static/gallery.js?v={{ asset_versions['gallery.js'] }}" defer></script>
+    <script src="/static/upload.js?v={{ asset_versions['upload.js'] }}" defer></script>
+    <script src="/static/index.js?v={{ asset_versions['index.js'] }}" defer></script>
     <script src="/static/collections.js?v={{ asset_versions['collections.js'] }}" defer></script>
 </body>
 

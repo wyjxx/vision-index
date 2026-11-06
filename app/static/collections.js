@@ -1,30 +1,9 @@
 const collectionList = document.getElementById("collection-list");
-let galleryUrl = new URL(window.location.href);
-let galleryRequest = 0;
 
 function updateSelection() {
     document.querySelectorAll("[data-collection-id]").forEach(link => {
-        link.setAttribute("aria-current", link.dataset.collectionId === (galleryUrl.searchParams.get("collection_id") || "") ? "page" : "false");
+        link.setAttribute("aria-current", link.dataset.collectionId === (new URL(window.location.href).searchParams.get("collection_id") || "") ? "page" : "false");
     });
-}
-
-async function showGallery(url) {
-    const requestId = ++galleryRequest;
-    const status = document.getElementById("collection-status");
-    status.textContent = "Loading products...";
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Could not load products.");
-        const page = new DOMParser().parseFromString(await response.text(), "text/html");
-        if (requestId !== galleryRequest) return;
-        document.getElementById("product-gallery").replaceWith(page.getElementById("product-gallery"));
-        galleryUrl = new URL(url, window.location.origin);
-        window.history.replaceState(null, "", galleryUrl);
-        updateSelection();
-        status.textContent = "";
-    } catch (error) {
-        if (requestId === galleryRequest) status.textContent = "Could not load products. Please try again.";
-    }
 }
 
 async function loadCollections() {
@@ -55,51 +34,14 @@ async function loadCollections() {
         });
         collectionList.replaceChildren(...folders);
         if (!folders.length) collectionList.textContent = "No collections yet.";
-        const selectedId = galleryUrl.searchParams.get("collection_id");
-        if (selectedId && !collections.some(collection => String(collection.id) === selectedId)) {
-            showGallery(new URL("/", window.location.origin));
-        }
+        document.dispatchEvent(new CustomEvent("collections-loaded", {detail: collections}));
         updateSelection();
     } catch (error) {
         collectionList.textContent = "Could not load collections. Refresh the page to try again.";
     }
 }
 
-document.querySelector(".search-form").addEventListener("submit", event => {
-    event.preventDefault();
-    const query = new FormData(event.currentTarget).get("q").trim();
-    if (!query) return;
-    const url = new URL(event.currentTarget.action);
-    url.searchParams.set("q", query);
-    showGallery(url);
-});
-
-document.addEventListener("click", event => {
-    const link = event.target.closest(".collection-folder, #all-products, #product-gallery .pagination a, #product-gallery .section-heading a");
-    if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.button !== 0) return;
-    event.preventDefault();
-    showGallery(link.href);
-});
-document.addEventListener("agent-response", () => {
-    loadCollections();
-    if (galleryUrl.searchParams.has("collection_id")) showGallery(galleryUrl);
-});
-
-document.addEventListener("click", async event => {
-    const remove = event.target.closest("[data-delete-product]");
-    if (!remove || remove.disabled || !window.confirm(`Delete "${remove.dataset.productTitle}" and its image?`)) return;
-    remove.disabled = true;
-    try {
-        const response = await fetch(`/products/${encodeURIComponent(remove.dataset.deleteProduct)}`, {method: "DELETE"});
-        if (!response.ok && response.status !== 404) throw new Error("Could not delete product. If indexing is running, try again later.");
-        const url = new URL(galleryUrl);
-        url.searchParams.set("page", "1");
-        await showGallery(url);
-        loadCollections();
-    } catch (error) {
-        document.getElementById("collection-status").textContent = error.message;
-    } finally {
-        remove.disabled = false;
-    }
-});
+document.addEventListener("gallery-updated", updateSelection);
+document.addEventListener("products-changed", loadCollections);
+document.addEventListener("agent-response", loadCollections);
 loadCollections();

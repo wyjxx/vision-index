@@ -4,20 +4,22 @@ import mimetypes
 from contextlib import asynccontextmanager
 from filelock import Timeout
 
-from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
-from fastapi.responses import RedirectResponse
+from fastapi import Body, FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from app.agent.api import router as agent_router
-from app.config import app_dir, product_images_dir, search_limit, gallery_page_size
-from app.config import uploaded_images_dir
+from app.agent.workflow import (
+    ConversationNotFoundError, ConversationNotWaitingError,
+    resume_agent as resume_workflow, run_agent,
+)
+from app.config import app_dir, product_images_dir, uploaded_images_dir, search_limit, gallery_page_size
 from app.main_helper import add_product_image_urls
 from app.services.delete import delete_product
 from app.services.search import search_clip_products
 from app.services.upload import upload_product
-from app.storage.sqlite_db import connect_db, get_products_page, init_db, list_collections
-from app.storage.sqlite_db import get_collection_products
+from app.storage.sqlite_db import (
+    connect_db, get_collection_products, get_products_page, init_db, list_collections,
+)
 
 
 @asynccontextmanager
@@ -27,7 +29,6 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Vision-Index 2.0", version="2.0", lifespan=lifespan)
-app.include_router(agent_router)
 
 mimetypes.add_type("image/webp", ".webp")
 app.mount(
@@ -44,6 +45,7 @@ app.mount(
 templates = Jinja2Templates(directory=app_dir / "templates")
 
 
+# Health Check
 @app.get("/health")
 def health():
     """Check HTTP availability and the SQLite connection."""
@@ -52,14 +54,14 @@ def health():
     return {"status": "ok"}
 
 
-# Return the collection folders and product counts.
-@app.get("/collections")
+# Return collection.
+@app.get("/collections", tags=["Collections"])
 def collections() -> list[dict]:
     return list_collections()
 
 
-# Delete one product and its stored data.
-@app.delete("/products/{product_id}")
+# Delete
+@app.delete("/products/{product_id}", tags=["Products"])
 def delete_product_page(product_id: str) -> dict:
     try:
         delete_product(product_id)
@@ -73,32 +75,57 @@ def delete_product_page(product_id: str) -> dict:
 
 
 # Upload
-@app.post("/upload")
-def upload_product_page(title: str = Form(), file: UploadFile = File()):
+@app.post("/upload", tags=["Products"])
+def upload_product_page(title: str = Form(), file: UploadFile = File()) -> dict:
     try:
-        upload_product(title, file.file.read())
+        return upload_product(title, file.file.read())
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     finally:
         file.file.close()
-    return RedirectResponse("/", status_code=303)
 
 
 # Index
-@app.post("/run-pipeline")
-def run_pipeline_page():
+@app.post("/run-pipeline", tags=["Products"])
+def run_pipeline_page() -> dict:
     from app.services.index import index_unindexed_products
 
     try:
-        index_unindexed_products()
+        count = index_unindexed_products()
     except Timeout as exc:
         raise HTTPException(status_code=409, detail="Product indexing is already running") from exc
-    return RedirectResponse("/", status_code=303)
+    return {"indexed": count}
+
+
+# Start agent conversation.
+@app.post("/agent/start", tags=["Agent"])
+def start_agent(question: str = Body(..., embed=True, min_length=1, strict=True)) -> dict:
+    try:
+        return run_agent(question)
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+# Continue agent conversation.
+@app.post("/agent/{thread_id}/resume", tags=["Agent"])
+def resume_agent(
+    thread_id: str,
+    reply: str = Body(..., embed=True, min_length=1, strict=True,
+                      description="During chat, enter a message or q to quit. During write approval, enter y to confirm; other text cancels."),
+) -> dict:
+    try:
+        return resume_workflow(thread_id, reply)
+    except ConversationNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ConversationNotWaitingError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
 
 
 # Main page and Search
-@app.get("/")
-@app.get("/search/clip")
+@app.get("/", tags=["Dashboard"])
+@app.get("/search/clip", tags=["Dashboard"])
 def dashboard(
     request: Request,
     q: str = Query(default=""),
@@ -141,7 +168,7 @@ def dashboard(
             "collection": collection,
             "asset_versions": {
                 name: (app_dir / "static" / name).stat().st_mtime_ns
-                for name in ("style.css", "chat.js", "collections.js")
+                for name in ("style.css", "chat.js", "gallery.js", "upload.js", "index.js", "collections.js")
             },
         },
     )
