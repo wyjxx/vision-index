@@ -53,12 +53,12 @@ flowchart LR
     A[User message] --> B[LLM + conversation context]
     B --> C{Tool call?}
     C -->|No| D[Reply to user]
-    C -->|Read| E[Search or inspect collections]
+    C -->|Read| E[Execute Tools]
     C -->|Write| F{User approval}
-    F -->|Approved| G[Update collections]
+    D --> A
+    F -->|Approved| E
     F -->|Cancelled| B
     E --> B
-    G --> B
 ```
 
 ### Image Indexing
